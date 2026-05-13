@@ -72,11 +72,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Portfolio — Data Analyst Intern" },
-      { name: "description", content: "Capstone portfolio: Power BI product backlog dashboard and a full-stack Eskwelabs analytics web app. EIF Cohort 9, 2026." },
-      { name: "author", content: "EIF Cohort 9" },
-      { property: "og:title", content: "Portfolio — Data Analyst Intern" },
-      { property: "og:description", content: "Capstone portfolio: Power BI dashboards and analytics web apps." },
+      { title: "Cath Notado — Cybersecurity, Data Science, and Web Portfolio" },
+      { name: "description", content: "Cath Notado's portfolio covering cybersecurity, data science, web development, research, leadership, and projects." },
+      { name: "author", content: "Cath Notado" },
+      { property: "og:title", content: "Cath Notado — Cybersecurity, Data Science, and Web Portfolio" },
+      { property: "og:description", content: "A resume-based portfolio featuring projects, leadership, certifications, and technical experience." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       

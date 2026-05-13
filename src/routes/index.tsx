@@ -20,6 +20,13 @@ type Highlight = {
   note: string;
 };
 
+type ResumeItem = {
+  title: string;
+  meta: string;
+  summary: string;
+  tags: string[];
+};
+
 const heroContainer = {
   hidden: {},
   show: {
@@ -60,6 +67,123 @@ const featuredProjects: Project[] = [
      period: "2025 - 2026",
      summary: "End-to-end analytics solution for student performance tracking, course enrollment analysis, and learning outcome prediction with interactive visualizations.",
      tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
+  },
+];
+
+const resumeExperience: ResumeItem[] = [
+  {
+    title: "Marketing Intern — Edukasyon.ph",
+    meta: "Hybrid | March 2026 - Present",
+    summary: "Managed social media monitoring, community engagement, and strategic content execution to support marketing targets and objectives.",
+    tags: ["Marketing", "Content", "Community"],
+  },
+  {
+    title: "Data Analyst Intern — Eskwelabs",
+    meta: "Hybrid | February 2026 - Present",
+    summary: "Building a Product Development Backlog Dashboard using Microsoft Power BI and transforming synthetic data into actionable insights for decision-making.",
+    tags: ["Power BI", "Data Analysis", "Dashboards"],
+  },
+  {
+    title: "Captain — Amazon Web Services",
+    meta: "Onsite | November 2025 - Present",
+    summary: "Recognized as AWS Cloud Club Captain, organized technical events for students, and earned the Gold Badge Captain Award from AWS.",
+    tags: ["AWS", "Leadership", "Cloud"],
+  },
+  {
+    title: "Research Intern — Heartful Hospitality",
+    meta: "Remote | June - October 2025",
+    summary: "Researched senior health issues and created accessible, evidence-based content with accurate citations while helping develop wellness programs and recommendations.",
+    tags: ["Research", "Writing", "Accessibility"],
+  },
+  {
+    title: "Speaker Coordinator — DEVCON Manila",
+    meta: "Hybrid | April 2025 - Present",
+    summary: "Managed technical presentations, handled speaker communications, organized schedules, and facilitated seamless programming.",
+    tags: ["Events", "Operations", "Public Speaking"],
+  },
+  {
+    title: "Speaker Coordinator — Arduino Day Philippines",
+    meta: "Hybrid | January - March 2025",
+    summary: "Coordinated technical presentations and managed speaker communications for community events.",
+    tags: ["Events", "Coordination", "Community"],
+  },
+  {
+    title: "IT Support & Data Management — Philippine National Police (QCPD)",
+    meta: "Onsite | January - May 2022",
+    summary: "Managed digital documentation workflows for departmental efficiency and developed and deployed the official website for the QCPD sector.",
+    tags: ["IT Support", "Documentation", "Web"],
+  },
+];
+
+const volunteeringEvents: ResumeItem[] = [
+  {
+    title: "Host — CaffeineAI",
+    meta: "Onsite | October 2025",
+    summary: "Interviewed guests, mentors, participants, and volunteers in the hackathon.",
+    tags: ["Host", "Events", "Communication"],
+  },
+  {
+    title: "Stage Manager and Usher — UNLEASH Philippines",
+    meta: "Onsite | September 2025",
+    summary: "Coordinated stage flow, performers, and technical cues.",
+    tags: ["Stage Management", "Logistics", "Events"],
+  },
+  {
+    title: "Secretariat and Usher — IoT Conference of the Philippines",
+    meta: "Onsite | September 2025",
+    summary: "Managed documentation, communication, and scheduling while assisting attendees.",
+    tags: ["Documentation", "Scheduling", "Support"],
+  },
+  {
+    title: "Program Manager — DEVCON Manila (Game On Game Jam)",
+    meta: "Onsite | August 2025",
+    summary: "Handled the event facilities, staff, and speakers, and oversaw the timeline, resources, and activities.",
+    tags: ["Program Management", "Operations", "Leadership"],
+  },
+];
+
+const projectParticipations: ResumeItem[] = [
+  {
+    title: "OTIS Japan Incorporation — Appcon 2024",
+    meta: "Qualified Rank 75/178 Teams | April 21, 2025",
+    summary: "Team leader who developed an application that lessens skill gap issues.",
+    tags: ["React", "ShadCN", "Tailwind CSS", "Zustand", "TanStack Query", "FastAPI", "Supabase", "OpenAI API", "DeepSeek", "Gemini"],
+  },
+  {
+    title: "GDG PUP X CyberPH — SEEN 2025 Capture the Flag",
+    meta: "Ranked 11th | August 20, 2025",
+    summary: "Captured flags by solving problems related to network analysis, digital forensics, and related security tasks.",
+    tags: ["CTF", "Network Analysis", "Digital Forensics"],
+  },
+  {
+    title: "Trend Micro — Trend University CTF",
+    meta: "Ranked 116th/199 Teams | August 22, 2025",
+    summary: "Participated in the university capture the flag preliminary round, focusing on reverse engineering, OSINT, and related challenges.",
+    tags: ["CTF", "Reverse Engineering", "OSINT"],
+  },
+  {
+    title: "KadaKareer — Home Credit Hackada Competition",
+    meta: "3rd Runner-Up | November 18, 2024",
+    summary: "Lead programmer who built a customer engagement platform with a loyalty system for Home Credit Philippines.",
+    tags: ["React.js", "JavaScript", "TailwindCSS", "TypeScript", "Figma"],
+  },
+  {
+    title: "Trend Micro — Trend University CTF",
+    meta: "Ranked 100/199 Teams | August 20, 2024",
+    summary: "Participated in the online competition and solved cybersecurity challenges.",
+    tags: ["CTF", "Cybersecurity", "Problem Solving"],
+  },
+  {
+    title: "PUP Programmers Guild — Tech Careerscape",
+    meta: "3rd Runner-Up | September 16, 2023",
+    summary: "Researched the impact of the skill gap in companies in the Philippines and established a prototype for a skill gap assessment platform.",
+    tags: ["Research", "Prototyping", "Skill Gap"],
+  },
+  {
+    title: "Technological Institute of the Philippines — Robotics Competition",
+    meta: "Champion | May 6, 2023",
+    summary: "Designed and built an autonomous sumobot using Arduino Uno, DC motors, L298N driver, and IR sensors.",
+    tags: ["Arduino", "Robotics", "Embedded Systems"],
   },
 ];
 
@@ -106,37 +230,41 @@ const driveProjectFolders: DriveProject[] = [
 
 const backgroundHighlights: Highlight[] = [
   {
-    label: "Technical focus",
-    value: "Cybersecurity + web + data",
-    note: "You work across full-stack deployment, analysis, and systems thinking.",
+    label: "Current focus",
+    value: "Cybersecurity + data science",
+    note: "You are combining web development, analytics, and security work across internships and projects.",
   },
   {
-    label: "Internship",
-    value: "PNP QCPD",
-    note: "IT Support & Data Management Intern from January 2022 to May 2022.",
+    label: "Leadership",
+    value: "AWS Club Alpha",
+    note: "Co-founder and Chief Executive Officer of the RTU AWS Learning Club.",
   },
   {
     label: "Education",
-    value: "RTU, BIT",
-    note: "Bachelor of Information Technology, 2023 to ongoing.",
+    value: "RTU, BSIT",
+    note: "Cumulative GWA 1.50 and Academic Achiever, 2023 to present.",
   },
   {
-    label: "Community",
-    value: "Speaker coordinator",
-    note: "Volunteer leadership across DEVCON Manila and Arduino Day Philippines.",
+    label: "Research + events",
+    value: "Community work",
+    note: "Active across hackathons, conferences, student council, and speaker coordination.",
   },
 ];
 
 const certificationChips = [
-  "Cisco Networking Basics",
-  "Cisco Networking Devices and Initial Configuration",
-  "Cisco Enterprise Networking, Security, and Automation",
-  "Microsoft Excel for Data Analysis",
-  "Enterprise Linux System Administration",
-  "Internshala Python Programming",
-  "Quantum Computing Foundations",
-  "Blockchain Essentials",
-  "Ethical Hacking Essentials",
+  "DataCamp - Certified Data Science Associate",
+  "DataCamp - Certified Data Analyst Associate",
+  "Oracle Fusion AI Foundation Associate",
+  "CompTIA Security+",
+  "Quantum and Blockchain Lecture and Hackathon Series",
+  "NVIDIA - Elevate Emerging Technologies",
+  "Introduction Course: Python, AI, Machine Learning, Data Science",
+  "Data Engineering Pilipinas DataCamp Scholar",
+  "Security Blue Team - Blue Team Junior Analyst",
+  "OPSWAT Academy - Cybersecurity Fundamentals Associate",
+  "MySQL Querying Fundamentals",
+  "JavaScript Coding Camp",
+  "Data Visualization Workshop",
 ];
 
 function Stat({ k, v, sub }: { k: string; v: string; sub?: string }) {
@@ -323,33 +451,9 @@ function Index() {
 
       <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="03" t="More projects" />
+          <SectionLabel n="03" t="Drive folders" />
           <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            These are the additional projects from your resume that sit outside the headline work.
-          </div>
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {additionalProjects.map((project) => (
-              <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
-                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
-                <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
-                <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1 text-[11px] text-muted-foreground">{tech}</span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
-        <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="04" t="Drive folders" />
-          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Folder names recovered from the shared Drive archive, so the portfolio can reflect the broader body of work.
+            Folder names recovered from the shared Drive archive, now linked directly to each project folder.
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {driveProjectFolders.map((project) => (
@@ -371,28 +475,43 @@ function Index() {
 
       <motion.section id="experience" className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="05" t="Experience & background" />
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {backgroundHighlights.map((item) => (
-              <Stat key={item.label} k={item.label} v={item.value} sub={item.note} />
+          <SectionLabel n="04" t="Professional experience" />
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {resumeExperience.map((item) => (
+              <article key={item.title} className="border border-white/10 bg-[#141414] p-6">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{item.meta}</div>
+                <h3 className="mt-3 font-display text-2xl font-light text-foreground">{item.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span key={tag} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1 text-[11px] text-muted-foreground">{tag}</span>
+                  ))}
+                </div>
+              </article>
             ))}
           </div>
           <div className="mt-12 grid gap-10 lg:grid-cols-2">
             <div>
-              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Leadership & volunteer work</div>
-              <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
-                <li className="border-b hairline pb-3">Speaker Coordinator at DEVCON Manila, managing technical presentations and speaker communications.</li>
-                <li className="border-b hairline pb-3">Speaker Coordinator at Arduino Day Philippines, coordinating events and schedules.</li>
-                <li className="border-b hairline pb-3">Student Council Department of Archive member at Rizal Technological University.</li>
-              </ul>
+              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Volunteering & events</div>
+              <div className="space-y-4">
+                {volunteeringEvents.map((item) => (
+                  <article key={item.title} className="border-b hairline pb-4">
+                    <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{item.meta}</div>
+                    <h4 className="mt-2 font-display text-xl font-light text-foreground">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
+                  </article>
+                ))}
+              </div>
             </div>
             <div>
-              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Awards</div>
+              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Leadership activities & awards</div>
               <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
-                <li className="border-b hairline pb-3">3rd Place, KadaKareer HomeCredit Hackathon</li>
-                <li className="border-b hairline pb-3">Participant, DECODE 2024 University Capture The Flag by Trend Micro</li>
-                <li className="border-b hairline pb-3">3rd Place, PUP Programmers Guild Tech Careerscape</li>
-                <li className="border-b hairline pb-3">Champion, Robotics Contest - Technological Institute of the Philippines</li>
+                <li className="border-b hairline pb-3">(RTU) AWS Learning Club - Alpha, Co-founder & Chief Executive Officer, September 2025 - Present.</li>
+                <li className="border-b hairline pb-3">RTU Student Council Department of Archives, Member, October 2023 - August 2024.</li>
+                <li className="border-b hairline pb-3">3rd Place, KadaKareer HomeCredit Hackathon.</li>
+                <li className="border-b hairline pb-3">Participant, DECODE 2024 University Capture The Flag by Trend Micro.</li>
+                <li className="border-b hairline pb-3">3rd Place, PUP Programmers Guild Tech Careerscape.</li>
+                <li className="border-b hairline pb-3">Champion, Robotics Competition - Technological Institute of the Philippines.</li>
               </ul>
             </div>
           </div>
@@ -401,32 +520,52 @@ function Index() {
 
       <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="06" t="Education & certifications" />
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="space-y-6">
-              <div>
-                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Education</div>
-                <h3 className="font-display text-3xl font-light text-foreground">Bachelor of Information Technology</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Rizal Technological University | 2023 - Ongoing</p>
-              </div>
-              <div>
-                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Professional experience</div>
-                <p className="text-sm leading-relaxed text-muted-foreground">IT Support & Data Management Intern at the Philippine National Police (QCPD), where you managed digital documentation workflows and developed the official website for the QCPD sector.</p>
-              </div>
-            </div>
+          <SectionLabel n="05" t="Projects, education & certifications" />
+          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            This section ties together your technical participations, academic background, and completed trainings.
+          </div>
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
-              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Certifications</div>
-              <div className="flex flex-wrap gap-2">
-                {certificationChips.map((cert) => (
-                  <span key={cert} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1.5 text-[12px] text-muted-foreground">{cert}</span>
+              <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Project participations</div>
+              <div className="grid gap-4">
+                {projectParticipations.map((item) => (
+                  <article key={item.title} className="border border-white/10 bg-[#141414] p-5">
+                    <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{item.meta}</div>
+                    <h3 className="mt-3 font-display text-2xl font-light text-foreground">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1 text-[11px] text-muted-foreground">{tag}</span>
+                      ))}
+                    </div>
+                  </article>
                 ))}
               </div>
-              <div className="mt-10 border-l-2 border-accent bg-secondary/40 p-6">
+            </div>
+            <div className="space-y-10">
+              <div>
+                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Education</div>
+                <h3 className="font-display text-3xl font-light text-foreground">Rizal Technological University</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Bachelor of Science in Information Technology, 2023 - Present.</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Cumulative GWA: 1.50, Academic Achiever.</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Scholar support: Quezon City Youth Development Organization Scholar, Data Engineering Pilipinas DataCamp Scholar, and Amazon Web Services AI & ML Scholar.</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Relevant coursework: Software Development, Object Oriented Programming, Integrative Programming and Technologies, Web Systems and Technologies, Database Management, Operating Systems, and Networking.</p>
+              </div>
+              <div>
+                <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Certifications</div>
+                <div className="flex flex-wrap gap-2">
+                  {certificationChips.map((cert) => (
+                    <span key={cert} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1.5 text-[12px] text-muted-foreground">{cert}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="border-l-2 border-accent bg-secondary/40 p-6">
                 <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Contact</div>
                 <div className="space-y-3 text-sm leading-relaxed text-foreground">
                   <div><a href="mailto:notadocath@gmail.com" className="hover:underline">notadocath@gmail.com</a></div>
                   <div><a href="https://www.linkedin.com/in/catherine-notado-679a29246" className="hover:underline">linkedin.com/in/catherine-notado-679a29246</a></div>
-                  <div>09203066498</div>
+                  <div>+63 920 3066 498</div>
+                  <div>Quezon City, Philippines</div>
                 </div>
               </div>
             </div>
@@ -436,7 +575,7 @@ function Index() {
 
       <motion.section id="contact" className="border-t border-white/10 px-6 py-32 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center text-center">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">07 · Let's work together</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">06 · Let's work together</div>
           <h2 className="mt-6 font-display text-[clamp(3rem,7vw,6rem)] font-light leading-[1.05] text-foreground">
             Got an idea or <span className="italic text-accent">project?</span>
           </h2>
