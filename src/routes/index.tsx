@@ -9,8 +9,6 @@ import detailThumb from "../assets/dashboard-detail.jpg";
 
 const appconThumb = "/GENAI.jpg";
 
-const driveVideoUrl = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
-
 export const Route = createFileRoute("/")({
   component: Index,
 });
@@ -21,11 +19,16 @@ type Project = {
   period: string;
   summary: string;
   tech: string[];
-  media: {
-    type: "image" | "video";
-    src: string;
-    poster?: string;
-  };
+  media:
+    | {
+        type: "image";
+        src: string;
+      }
+    | {
+        type: "video";
+        id: string;
+        poster?: string;
+      };
 };
 
 type Highlight = {
@@ -69,7 +72,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
     media: {
       type: "video",
-      src: driveVideoUrl("1PRYsDeffIIBvqUPual322HVbgf4calIz"),
+      id: "1PRYsDeffIIBvqUPual322HVbgf4calIz",
       poster: appconThumb,
     },
   },
@@ -81,7 +84,7 @@ const featuredProjects: Project[] = [
     tech: ["Power BI", "SQL", "Excel", "Data Analysis", "Business Intelligence"],
     media: {
       type: "video",
-      src: driveVideoUrl("1IBFZoYrIVJipFDFd38E_Z2P-UVzDjmHJ"),
+      id: "1IBFZoYrIVJipFDFd38E_Z2P-UVzDjmHJ",
       poster: powerBiThumb,
     },
   },
@@ -93,7 +96,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
     media: {
       type: "video",
-      src: driveVideoUrl("16996zaO9BTqfBi2X-ChuoAlcRRaBuwRs"),
+      id: "16996zaO9BTqfBi2X-ChuoAlcRRaBuwRs",
       poster: eskwelabsThumb,
     },
   },
@@ -247,7 +250,7 @@ const additionalProjects: Project[] = [
     tech: ["Arduino", "C++", "Hardware Design", "Microcontrollers", "Prototyping"],
     media: {
       type: "video",
-      src: driveVideoUrl("1xZAUodqRJe_arx5DPSV1KjDbVHninBN7"),
+      id: "1xZAUodqRJe_arx5DPSV1KjDbVHninBN7",
       poster: appconThumb,
     },
   },
@@ -259,7 +262,7 @@ const additionalProjects: Project[] = [
     tech: ["React", "TypeScript", "Fintech", "UI Design", "Presentation"],
     media: {
       type: "video",
-      src: driveVideoUrl("1eyXYl9GuWGVHGBViCcP0n2mGQZUUbodx"),
+      id: "1eyXYl9GuWGVHGBViCcP0n2mGQZUUbodx",
       poster: detailThumb,
     },
   },
@@ -357,7 +360,16 @@ function ProjectMedia({ project }: { project: Project }) {
   const className = "mb-5 h-44 w-full rounded-[2px] object-cover opacity-90";
 
   if (project.media.type === "video") {
-    return <video className={className} src={project.media.src} poster={project.media.poster} controls playsInline preload="metadata" />;
+    return (
+      <iframe
+        className={className}
+        src={`https://drive.google.com/file/d/${project.media.id}/preview`}
+        title={project.title}
+        allow="autoplay; encrypted-media"
+        loading="lazy"
+        allowFullScreen
+      />
+    );
   }
 
   return <img src={project.media.src} alt={project.title} className={className} />;
