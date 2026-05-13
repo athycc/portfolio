@@ -94,6 +94,24 @@
   --ring: #c8f04a;
 }
 
+.dark .text-muted-foreground,
+.dark .placeholder\:text-muted-foreground::placeholder,
+.dark .text-gray-400,
+.dark .text-gray-500,
+.dark .text-gray-600,
+.dark .text-gray-700,
+.dark .text-slate-400,
+.dark .text-slate-500,
+.dark .text-neutral-400,
+.dark .text-neutral-500,
+.dark .text-zinc-400,
+.dark .text-zinc-500,
+.dark .text-stone-400,
+.dark .text-stone-500,
+.dark .text-black {
+  color: #ffffff !important;
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
