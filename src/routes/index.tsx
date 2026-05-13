@@ -87,16 +87,21 @@ const additionalProjects: Project[] = [
   },
 ];
 
-const driveProjectFolders = [
-  "APPCON CAPYCADEMY",
-  "ARDUINO ROBOTICS OURMAN",
-  "CAMP KARINGAL WEBSITE",
-  "CREDIVEST",
-  "GABAY",
-  "HOSHI BOOKSTORE",
-  "MEOWLOGY",
-  "PORO: TIME MANAGEMENT WEB APPLICATION",
-  "SKILLGAP ANALYSIS RESEARCH PRESENTATION",
+type DriveProject = {
+  name: string;
+  link: string;
+};
+
+const driveProjectFolders: DriveProject[] = [
+  { name: "APPCON CAPYCADEMY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "ARDUINO ROBOTICS OURMAN", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "CAMP KARINGAL WEBSITE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "CREDIVEST", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "GABAY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "HOSHI BOOKSTORE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "MEOWLOGY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "PORO: TIME MANAGEMENT WEB APPLICATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "SKILLGAP ANALYSIS RESEARCH PRESENTATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
 ];
 
 const backgroundHighlights: Highlight[] = [
@@ -177,7 +182,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#0a0a0a] text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0d0d0d]/85 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
           <div className="font-display text-lg font-light tracking-[0.08em] text-foreground">
@@ -348,11 +353,17 @@ function Index() {
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {driveProjectFolders.map((project) => (
-              <div key={project} className="rounded-[4px] border border-white/10 bg-[#141414] px-5 py-5 transition-transform duration-300 ease-out hover:-translate-y-[2px]">
+              <a
+                key={project.name}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-[4px] border border-white/10 bg-[#141414] px-5 py-5 transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-accent/50 hover:bg-[#1a1a1a]"
+              >
                 <div className="text-[10px] uppercase tracking-[0.3em] text-accent">Drive project</div>
-                <div className="mt-3 font-display text-2xl font-light leading-tight text-foreground">{project}</div>
-                <div className="mt-4 text-xs uppercase tracking-[0.25em] text-muted-foreground">Shared folder</div>
-              </div>
+                <div className="mt-3 font-display text-2xl font-light leading-tight text-foreground">{project.name}</div>
+                <div className="mt-4 text-xs uppercase tracking-[0.25em] text-muted-foreground">Open folder →</div>
+              </a>
             ))}
           </div>
         </div>
