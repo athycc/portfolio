@@ -72,7 +72,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
     media: {
       type: "video",
-      id: "11rvY-Y0dYcZwX01DCRW8NThZAmMDgzFv",
+      id: "1KWr_AL5FNSBgpXjz_uv3xOhh0Cb_zJgV",
       poster: appconThumb,
     },
   },
@@ -94,8 +94,9 @@ const featuredProjects: Project[] = [
     summary: "Interactive dashboard for managing and analyzing product backlog items: status, priority, blockers, and sprint planning metrics.",
     tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
     media: {
-      type: "image",
-      src: eskwelabsThumb,
+      type: "video",
+      id: "16996zaO9BTqfBi2X-ChuoAlcRRaBuwRs",
+      poster: eskwelabsThumb,
     },
   },
 ];
@@ -228,6 +229,17 @@ const additionalProjects: Project[] = [
       type: "video",
       id: "1xZAUodqRJe_arx5DPSV1KjDbVHninBN7",
       poster: appconThumb,
+    },
+  },
+  {
+    title: "Looker Financial Statement Model — Features",
+    role: "Financial analytics & reporting",
+    period: "2025",
+    summary: "Feature showcase for the Looker financial statement model: consolidated balance sheets, income statements, cash flow analysis, drill-downs by account, scheduled reports, and exportable charts.",
+    tech: ["Looker", "SQL", "ETL", "Visualization"],
+    media: {
+      type: "video",
+      id: "188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf",
     },
   },
   {
