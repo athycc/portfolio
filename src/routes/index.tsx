@@ -95,7 +95,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
     media: {
       type: "video",
-      id: "16996zaO9BTqfBi2X-ChuoAlcRRaBuwRs",
+      id: "1KWr_AL5FNSBgpXjz_uv3xOhh0Cb_zJgV",
       poster: eskwelabsThumb,
     },
   },
