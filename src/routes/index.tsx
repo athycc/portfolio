@@ -627,15 +627,6 @@ function Index() {
                   ))}
                 </div>
               </div>
-              <div className="border-l-2 border-accent bg-secondary/40 p-6">
-                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Contact</div>
-                <div className="space-y-3 text-sm leading-relaxed text-foreground">
-                  <div><a href="mailto:notadocath@gmail.com" className="hover:underline">notadocath@gmail.com</a></div>
-                  <div><a href="https://www.linkedin.com/in/catherine-notado-679a29246" className="hover:underline">linkedin.com/in/catherine-notado-679a29246</a></div>
-                  <div>+63 920 3066 498</div>
-                  <div>Quezon City, Philippines</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
