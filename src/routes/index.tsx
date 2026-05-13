@@ -72,7 +72,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
     media: {
       type: "video",
-      id: "1KWr_AL5FNSBgpXjz_uv3xOhh0Cb_zJgV",
+      id: "1TbE3MAlm5G4juQn29qu_mpF0csY3n7ER",
       poster: appconThumb,
     },
   },
