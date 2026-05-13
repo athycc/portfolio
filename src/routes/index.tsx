@@ -221,28 +221,6 @@ const projectParticipations: ResumeItem[] = [
 
 const additionalProjects: Project[] = [
   {
-    title: "Poro: Time Management Web Application",
-    role: "Web application",
-    period: "2024",
-    summary: "A time management app designed to help users organize tasks and keep a practical daily workflow with smart scheduling and task prioritization.",
-    tech: ["React", "JavaScript", "Local Storage", "Tailwind CSS", "Responsive Design"],
-    media: {
-      type: "image",
-      src: skillsThumb,
-    },
-  },
-  {
-    title: "Skill Gap Analysis Website",
-    role: "Research / web project",
-    period: "2024",
-    summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction with data visualization and actionable insights.",
-    tech: ["React", "JavaScript", "Data Visualization", "Bootstrap", "GitHub Pages"],
-    media: {
-      type: "image",
-      src: detailThumb,
-    },
-  },
-  {
     title: "Arduino Robotics Project",
     role: "Robotics",
     period: "2023 - 2024",
