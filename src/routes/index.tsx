@@ -94,14 +94,14 @@ type DriveProject = {
 
 const driveProjectFolders: DriveProject[] = [
   { name: "APPCON CAPYCADEMY", link: "https://drive.google.com/drive/folders/10Turmdj5dJxymT1nazKWnjTAuPLTrBmg" },
-  { name: "ARDUINO ROBOTICS OURMAN", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "CAMP KARINGAL WEBSITE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "CREDIVEST", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "GABAY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "HOSHI BOOKSTORE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "MEOWLOGY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "PORO: TIME MANAGEMENT WEB APPLICATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
-  { name: "SKILLGAP ANALYSIS RESEARCH PRESENTATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "ARDUINO ROBOTICS OURMAN", link: "https://drive.google.com/drive/folders/1S564VR7LJtovR2mT28XPlipMC3YsSBXH" },
+  { name: "CAMP KARINGAL WEBSITE", link: "https://drive.google.com/drive/folders/10u5YdYS1lvSJm9y4194lGQSbCq1gKOl_" },
+  { name: "CREDIVEST", link: "https://drive.google.com/drive/folders/1ozoGQhvZdlvmvb0Atjy6ZMTUtgxEi5h1" },
+  { name: "GABAY", link: "https://drive.google.com/drive/folders/1MTaMhuUPGgy8sYWmtd18Tfati9xcz0VQ" },
+  { name: "HOSHI BOOKSTORE", link: "https://drive.google.com/drive/folders/1mgokW96vT_xrzR-aBzCRgsHbyr3DOCXZ" },
+  { name: "MEOWLOGY", link: "https://drive.google.com/drive/folders/1BT7eSu4nW3QqJH5N2f4F4RREFc8Qsh6v" },
+  { name: "PORO: TIME MANAGEMENT WEB APPLICATION", link: "https://drive.google.com/drive/folders/157KtG4CGbU0aJH4nN7eNxeYS-HxjJgRr" },
+  { name: "SKILLGAP ANALYSIS RESEARCH PRESENTATION", link: "https://drive.google.com/drive/folders/1d0lsU1-cBcNqNIWLcn2RafRWIE6Thl15" },
 ];
 
 const backgroundHighlights: Highlight[] = [
