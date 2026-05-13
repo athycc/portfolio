@@ -38,7 +38,7 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
     prerender: {
-      enabled: false,
+      enabled: true,
       pages: [{ path: "/" }],
     },
   },
