@@ -43,23 +43,23 @@ const featuredProjects: Project[] = [
   {
     title: "APPCON - CapyCademy",
     role: "AI learning platform",
-    period: "Resume project",
-    summary: "An AI-powered learning platform for students, framed around accessible study support and smarter learning workflows.",
-    tech: ["AI", "Web app", "Student tools"],
+     period: "2024 - Present",
+     summary: "An AI-powered learning platform for students, framed around accessible study support and smarter learning workflows with intelligent tutoring and resource curation.",
+     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
   },
   {
-    title: "GABAY",
-    role: "Guidance system",
-    period: "Resume project",
-    summary: "A project centered on guidance and support, reflecting your interest in useful web systems for real people.",
-    tech: ["Web development", "Support flows", "UX"],
+     title: "Power BI Analytics Dashboard",
+     role: "Data visualization & analytics",
+     period: "EIF Capstone 2026",
+     summary: "Interactive product backlog dashboard tracking sprint velocity, burndown trends, and team productivity metrics with real-time data synchronization.",
+     tech: ["Power BI", "SQL", "Excel", "Data Analysis", "Business Intelligence"],
   },
   {
-    title: "Credivest",
-    role: "Investment platform",
-    period: "Resume project",
-    summary: "A fintech-style platform concept built around credibility, investment flow, and product clarity.",
-    tech: ["Fintech", "Product design", "Full stack"],
+     title: "Eskwelabs Analytics Web App",
+     role: "Full-stack data platform",
+     period: "2025 - 2026",
+     summary: "End-to-end analytics solution for student performance tracking, course enrollment analysis, and learning outcome prediction with interactive visualizations.",
+     tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
   },
 ];
 
@@ -67,23 +67,23 @@ const additionalProjects: Project[] = [
   {
     title: "Poro: Time Management Web Application",
     role: "Web application",
-    period: "Resume project",
-    summary: "A time management app designed to help users organize tasks and keep a practical daily workflow.",
-    tech: ["React", "Planning", "Productivity"],
+     period: "2024",
+     summary: "A time management app designed to help users organize tasks and keep a practical daily workflow with smart scheduling and task prioritization.",
+     tech: ["React", "JavaScript", "Local Storage", "Tailwind CSS", "Responsive Design"],
   },
   {
     title: "Skill Gap Analysis Website",
     role: "Research / web project",
-    period: "Resume project",
-    summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction.",
-    tech: ["Research", "Analysis", "Web app"],
+     period: "2024",
+     summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction with data visualization and actionable insights.",
+     tech: ["React", "JavaScript", "Data Visualization", "Bootstrap", "GitHub Pages"],
   },
   {
     title: "Arduino Robotics Project",
     role: "Robotics",
-    period: "Resume project",
-    summary: "A robotics build that reflects hands-on prototyping, hardware problem solving, and iteration.",
-    tech: ["Arduino", "Robotics", "Hardware"],
+     period: "2023 - 2024",
+     summary: "A robotics build that reflects hands-on prototyping, hardware problem solving, and iteration with motor control and sensor integration.",
+     tech: ["Arduino", "C++", "Hardware Design", "Microcontrollers", "Prototyping"],
   },
 ];
 
@@ -93,15 +93,15 @@ type DriveProject = {
 };
 
 const driveProjectFolders: DriveProject[] = [
-  { name: "APPCON CAPYCADEMY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "ARDUINO ROBOTICS OURMAN", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "CAMP KARINGAL WEBSITE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "CREDIVEST", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "GABAY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "HOSHI BOOKSTORE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "MEOWLOGY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "PORO: TIME MANAGEMENT WEB APPLICATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
-  { name: "SKILLGAP ANALYSIS RESEARCH PRESENTATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu" },
+  { name: "APPCON CAPYCADEMY", link: "https://drive.google.com/drive/folders/10Turmdj5dJxymT1nazKWnjTAuPLTrBmg" },
+  { name: "ARDUINO ROBOTICS OURMAN", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "CAMP KARINGAL WEBSITE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "CREDIVEST", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "GABAY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "HOSHI BOOKSTORE", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "MEOWLOGY", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "PORO: TIME MANAGEMENT WEB APPLICATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
+  { name: "SKILLGAP ANALYSIS RESEARCH PRESENTATION", link: "https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=sharing" },
 ];
 
 const backgroundHighlights: Highlight[] = [
