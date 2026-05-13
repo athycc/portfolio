@@ -1,44 +1,35 @@
 const fs = require('fs');
 const path = require('path');
 
-const clientAssetsDir = path.join(process.cwd(), 'dist', 'client', 'assets');
+const clientDir = path.join(process.cwd(), 'dist', 'client');
+const clientIndex = path.join(clientDir, 'index.html');
 const outIndex = path.join(process.cwd(), 'dist', 'index.html');
 
-if (!fs.existsSync(clientAssetsDir)) {
-  console.error(`Client assets directory not found: ${clientAssetsDir}`);
-  process.exit(1);
+function copyRecursive(src, dest) {
+  const stat = fs.statSync(src);
+  if (stat.isDirectory()) {
+    fs.mkdirSync(dest, { recursive: true });
+    for (const entry of fs.readdirSync(src)) {
+      if (entry === 'index.html') continue;
+      copyRecursive(path.join(src, entry), path.join(dest, entry));
+    }
+    return;
+  }
+
+  fs.copyFileSync(src, dest);
 }
-
-const files = fs.readdirSync(clientAssetsDir);
-const cssFile = files.find((f) => f.endsWith('.css'));
-const jsFiles = files.filter((f) => f.endsWith('.js'));
-
-if (jsFiles.length === 0) {
-  console.error('No JS assets found in', clientAssetsDir);
-  process.exit(1);
-}
-
-const cssTag = cssFile ? `<link rel="stylesheet" href="./client/assets/${cssFile}">` : '';
-const scripts = jsFiles.map((f) => `<script type="module" src="./client/assets/${f}"></script>`).join('\n');
-
-const html = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Portfolio</title>
-    ${cssTag}
-  </head>
-  <body>
-    <div id="root"></div>
-    ${scripts}
-  </body>
-</html>`;
 
 try {
-  fs.writeFileSync(outIndex, html, 'utf8');
-  console.log('Wrote', outIndex);
+  copyRecursive(clientDir, path.join(process.cwd(), 'dist'));
+
+  if (fs.existsSync(clientIndex)) {
+    fs.copyFileSync(clientIndex, outIndex);
+    console.log('Mirrored client output into dist/');
+  } else {
+    console.warn(`Client index not found: ${clientIndex}`);
+    console.warn('Skipped copying prerendered index.html because prerender is disabled.');
+  }
 } catch (err) {
-  console.error('Failed to write index.html:', err);
+  console.error('Failed to mirror client output:', err);
   process.exit(1);
 }

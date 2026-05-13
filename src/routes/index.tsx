@@ -1,14 +1,24 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import dashboardOverview from "@/assets/dashboard-overview.jpg";
-import dashboardDetail from "@/assets/dashboard-detail.jpg";
-import dashboardSkills from "@/assets/dashboard-skills.jpg";
-import eskwelabsAnalytics from "@/assets/eskwelabs-analytics.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
+
+type Project = {
+  title: string;
+  role: string;
+  period: string;
+  summary: string;
+  tech: string[];
+};
+
+type Highlight = {
+  label: string;
+  value: string;
+  note: string;
+};
 
 const heroContainer = {
   hidden: {},
@@ -29,38 +39,100 @@ const fadeUp = {
   },
 };
 
-function Reveal({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-120px" }}
-      variants={fadeUp}
-      transition={{ delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const featuredProjects: Project[] = [
+  {
+    title: "APPCON - CapyCademy",
+    role: "AI learning platform",
+    period: "Resume project",
+    summary: "An AI-powered learning platform for students, framed around accessible study support and smarter learning workflows.",
+    tech: ["AI", "Web app", "Student tools"],
+  },
+  {
+    title: "GABAY",
+    role: "Guidance system",
+    period: "Resume project",
+    summary: "A project centered on guidance and support, reflecting your interest in useful web systems for real people.",
+    tech: ["Web development", "Support flows", "UX"],
+  },
+  {
+    title: "Credivest",
+    role: "Investment platform",
+    period: "Resume project",
+    summary: "A fintech-style platform concept built around credibility, investment flow, and product clarity.",
+    tech: ["Fintech", "Product design", "Full stack"],
+  },
+];
 
-function VideoFigure({ src, caption, meta, poster }: { src: string; caption: string; meta: string; poster?: string }) {
-  return (
-    <figure className="border hairline bg-card overflow-hidden rounded-[4px]">
-      <video
-        src={src}
-        poster={poster}
-        controls
-        preload="metadata"
-        playsInline
-        className="w-full h-auto block bg-black"
-      />
-      <figcaption className="border-t hairline px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground flex justify-between">
-        <span>{caption}</span><span>{meta}</span>
-      </figcaption>
-    </figure>
-  );
-}
+const additionalProjects: Project[] = [
+  {
+    title: "Poro: Time Management Web Application",
+    role: "Web application",
+    period: "Resume project",
+    summary: "A time management app designed to help users organize tasks and keep a practical daily workflow.",
+    tech: ["React", "Planning", "Productivity"],
+  },
+  {
+    title: "Skill Gap Analysis Website",
+    role: "Research / web project",
+    period: "Resume project",
+    summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction.",
+    tech: ["Research", "Analysis", "Web app"],
+  },
+  {
+    title: "Arduino Robotics Project",
+    role: "Robotics",
+    period: "Resume project",
+    summary: "A robotics build that reflects hands-on prototyping, hardware problem solving, and iteration.",
+    tech: ["Arduino", "Robotics", "Hardware"],
+  },
+];
+
+const driveProjectFolders = [
+  "APPCON CAPYCADEMY",
+  "ARDUINO ROBOTICS OURMAN",
+  "CAMP KARINGAL WEBSITE",
+  "CREDIVEST",
+  "GABAY",
+  "HOSHI BOOKSTORE",
+  "MEOWLOGY",
+  "PORO: TIME MANAGEMENT WEB APPLICATION",
+  "SKILLGAP ANALYSIS RESEARCH PRESENTATION",
+];
+
+const backgroundHighlights: Highlight[] = [
+  {
+    label: "Technical focus",
+    value: "Cybersecurity + web + data",
+    note: "You work across full-stack deployment, analysis, and systems thinking.",
+  },
+  {
+    label: "Internship",
+    value: "PNP QCPD",
+    note: "IT Support & Data Management Intern from January 2022 to May 2022.",
+  },
+  {
+    label: "Education",
+    value: "RTU, BIT",
+    note: "Bachelor of Information Technology, 2023 to ongoing.",
+  },
+  {
+    label: "Community",
+    value: "Speaker coordinator",
+    note: "Volunteer leadership across DEVCON Manila and Arduino Day Philippines.",
+  },
+];
+
+const certificationChips = [
+  "Cisco Networking Basics",
+  "Cisco Networking Devices and Initial Configuration",
+  "Cisco Enterprise Networking, Security, and Automation",
+  "Microsoft Excel for Data Analysis",
+  "Enterprise Linux System Administration",
+  "Internshala Python Programming",
+  "Quantum Computing Foundations",
+  "Blockchain Essentials",
+  "Ethical Hacking Essentials",
+];
 
 function Stat({ k, v, sub }: { k: string; v: string; sub?: string }) {
   return (
@@ -73,7 +145,7 @@ function Stat({ k, v, sub }: { k: string; v: string; sub?: string }) {
     >
       <div className="font-display text-[2.5rem] font-light leading-none text-foreground">{v}</div>
       <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{k}</div>
-      {sub && <div className="text-xs text-muted-foreground mt-1">{sub}</div>}
+      {sub ? <div className="mt-1 text-xs text-muted-foreground">{sub}</div> : null}
     </motion.div>
   );
 }
@@ -118,11 +190,7 @@ function Index() {
               { label: "Experience", href: "#experience" },
               { label: "Contact", href: "#contact" },
             ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="border-b-2 border-transparent pb-1 transition-all duration-[250ms] ease-out hover:text-foreground hover:border-foreground"
-              >
+              <a key={item.href} href={item.href} className="border-b-2 border-transparent pb-1 transition-all duration-[250ms] ease-out hover:text-foreground hover:border-foreground">
                 {item.label}
               </a>
             ))}
@@ -138,7 +206,7 @@ function Index() {
             <span className="h-px w-6 bg-muted-foreground" />
           </button>
         </div>
-        {menuOpen && (
+        {menuOpen ? (
           <div id="mobile-nav" className="border-t border-white/10 bg-[#0d0d0d] md:hidden">
             <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-4 px-6 py-6 text-[13px] uppercase tracking-[0.2em] text-muted-foreground">
               {[
@@ -147,88 +215,73 @@ function Index() {
                 { label: "Experience", href: "#experience" },
                 { label: "Contact", href: "#contact" },
               ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="border-b border-white/10 pb-3 transition-colors duration-[250ms] ease-out hover:text-foreground"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <a key={item.href} href={item.href} className="border-b border-white/10 pb-3 transition-colors duration-[250ms] ease-out hover:text-foreground" onClick={() => setMenuOpen(false)}>
                   {item.label}
                 </a>
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </header>
 
-      <section
-        className="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 py-28 md:px-12"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 70% 30%, rgba(200,240,74,0.06), transparent 55%), radial-gradient(circle at 20% 80%, rgba(255,107,53,0.05), transparent 55%)",
-        }}
-      >
+      <section className="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 py-28 md:px-12" style={{ backgroundImage: "radial-gradient(circle at 70% 30%, rgba(200,240,74,0.06), transparent 55%), radial-gradient(circle at 20% 80%, rgba(255,107,53,0.05), transparent 55%)" }}>
         <div className="mx-auto w-full max-w-[1400px]">
           <motion.div variants={heroContainer} initial="hidden" animate="show" className="space-y-10">
             <motion.div variants={fadeUp} className="flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-accent">
               <span className="h-px w-8 bg-accent" />
               <span>Available for projects · Quezon City, PH</span>
             </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className="font-display text-[clamp(2.8rem,7vw,7rem)] font-light leading-[1] text-foreground"
-            >
+            <motion.h1 variants={fadeUp} className="font-display text-[clamp(2.8rem,7vw,7rem)] font-light leading-[1] text-foreground">
               Hi, I'm <span className="italic text-accent">Cath</span>.
             </motion.h1>
-            <motion.div
-              variants={fadeUp}
-              className="flex flex-col gap-6 border-t border-white/10 pt-10 text-[14px] text-muted-foreground md:flex-row md:items-end md:justify-between"
-            >
-              <p className="max-w-[380px] leading-relaxed">
-                IT student, EIF data analyst intern, and Captain of AWS Learning Club Alpha a student-led tech org. I work
-                on the projects where analytics meets product, cleaning the schema, surfacing the metric, and shipping
-                dashboards stakeholders actually open.
-              </p>
-              <div className="flex gap-12" />
+            <motion.div variants={fadeUp} className="grid gap-8 border-t border-white/10 pt-10 text-[14px] text-muted-foreground lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+              <div className="space-y-4 leading-relaxed">
+                <p>
+                  IT student specializing in cybersecurity, web development, and data science with full-stack deployment experience.
+                </p>
+                <p>
+                  I build projects that mix systems thinking with clear presentation, from research tools and learning platforms to robotics and web apps.
+                </p>
+              </div>
+              <div className="grid gap-3 text-[11px] uppercase tracking-[0.25em] text-muted-foreground sm:grid-cols-2 lg:grid-cols-1">
+                <div className="border border-white/10 bg-[#131313] px-4 py-3">Full-stack deployment</div>
+                <div className="border border-white/10 bg-[#131313] px-4 py-3">Cybersecurity + data</div>
+                <div className="border border-white/10 bg-[#131313] px-4 py-3">Web apps + research</div>
+                <div className="border border-white/10 bg-[#131313] px-4 py-3">Robotics + automation</div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      <motion.section
-        id="about"
-        className="border-t border-white/10 px-6 py-28 md:px-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-120px" }}
-        variants={fadeUp}
-      >
+      <motion.section id="about" className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto w-full max-w-[1400px]">
           <SectionLabel n="01" t="About me" />
           <div className="mt-10 grid gap-20 lg:grid-cols-2">
             <h2 className="font-display text-4xl font-light leading-[1.15] text-foreground md:text-[3.5rem]">
-              IT student turning ideas into <span className="italic text-accent">working systems</span>, and occasionally,
-              spontaneous side projects that ship.
+              My portfolio spans <span className="italic text-accent">cybersecurity, web development, data science, and systems work</span>, not just one lane.
             </h2>
             <div className="space-y-6 text-sm leading-[1.9] text-muted-foreground">
               <p>
-                Experience spans web and app development, data analytics, and operational tooling. Work tends to start with
-                the same question: <span className="text-foreground">what decision is this dashboard actually helping someone make?</span>
+                I want the site to show the full range of what I have built: AI learning platforms, guidance tools, fintech concepts, time management apps, research presentations, and hardware projects.
               </p>
               <p>
-                Outside the terminal, chief executive of a student-led tech organization founded to close opportunity and
-                resource gaps inside the school. Active across multiple tech communities. And, for full disclosure,
-                currently housing twenty-two cats.
+                I also work in student leadership and volunteering, so the portfolio needs to show both technical output and the community side of the work.
               </p>
               <div className="flex flex-wrap gap-2 pt-4">
-                {["Power BI", "Looker Studio", "SQL", "Python", "Stakeholder reporting", "Product analytics"].map((skill, index) => (
+                {[
+                  "Python",
+                  "JavaScript",
+                  "React.js",
+                  "Tailwind CSS",
+                  "Firebase",
+                  "MySQL",
+                  "Linux",
+                  "Git",
+                ].map((skill, index) => (
                   <span
                     key={skill}
-                    className={
-                      index < 2
-                        ? "rounded-[2px] border border-[#c8f04a4d] bg-[#c8f04a14] px-3 py-1.5 text-[12px] text-accent"
-                        : "rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1.5 text-[12px] text-muted-foreground"
-                    }
+                    className={index < 2 ? "rounded-[2px] border border-[#c8f04a4d] bg-[#c8f04a14] px-3 py-1.5 text-[12px] text-accent" : "rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1.5 text-[12px] text-muted-foreground"}
                   >
                     {skill}
                   </span>
@@ -239,318 +292,145 @@ function Index() {
         </div>
       </motion.section>
 
-      <motion.section
-        className="border-t border-white/10 px-6 py-28 md:px-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-120px" }}
-        variants={fadeUp}
-      >
+      <motion.section id="work" className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="02" t="EIF program" />
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-            <div className="space-y-6 lg:self-center">
-              <h3 className="font-display text-3xl font-light text-foreground">EIF Journey</h3>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  { src: "/AIM.jpg", label: "AIM" },
-                  { src: "/GENAI.jpg", label: "GENAI" },
-                  { src: "/FEU.jpg", label: "FEU" },
-                ].map((item) => (
-                  <figure
-                    key={item.label}
-                    className={
-                      item.label === "FEU"
-                        ? "group overflow-hidden rounded-[4px] border hairline bg-card transition-transform duration-300 ease-out hover:-translate-y-[3px] sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[calc(50%-0.5rem)]"
-                        : "group overflow-hidden rounded-[4px] border hairline bg-card transition-transform duration-300 ease-out hover:-translate-y-[3px]"
-                    }
-                  >
-                    <div className="aspect-[16/9] w-full overflow-hidden">
-                      <img src={item.src} alt={`${item.label} event photo`} className="h-full w-full object-cover object-center" />
-                    </div>
-                    <figcaption className="border-t hairline px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                      {item.label}
-                    </figcaption>
-                  </figure>
-                ))}
+          <SectionLabel n="02" t="Featured projects" />
+          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            The projects below come from your resume and show the broader work beyond analytics.
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {featuredProjects.map((project) => (
+              <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
+                <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
+                <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1 text-[11px] text-muted-foreground">{tech}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
+        <div className="mx-auto w-full max-w-[1400px]">
+          <SectionLabel n="03" t="More projects" />
+          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            These are the additional projects from your resume that sit outside the headline work.
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {additionalProjects.map((project) => (
+              <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
+                <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
+                <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1 text-[11px] text-muted-foreground">{tech}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
+        <div className="mx-auto w-full max-w-[1400px]">
+          <SectionLabel n="04" t="Drive folders" />
+          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Folder names recovered from the shared Drive archive, so the portfolio can reflect the broader body of work.
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {driveProjectFolders.map((project) => (
+              <div key={project} className="rounded-[4px] border border-white/10 bg-[#141414] px-5 py-5 transition-transform duration-300 ease-out hover:-translate-y-[2px]">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">Drive project</div>
+                <div className="mt-3 font-display text-2xl font-light leading-tight text-foreground">{project}</div>
+                <div className="mt-4 text-xs uppercase tracking-[0.25em] text-muted-foreground">Shared folder</div>
               </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section id="experience" className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
+        <div className="mx-auto w-full max-w-[1400px]">
+          <SectionLabel n="05" t="Experience & background" />
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {backgroundHighlights.map((item) => (
+              <Stat key={item.label} k={item.label} v={item.value} sub={item.note} />
+            ))}
+          </div>
+          <div className="mt-12 grid gap-10 lg:grid-cols-2">
+            <div>
+              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Leadership & volunteer work</div>
+              <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                <li className="border-b hairline pb-3">Speaker Coordinator at DEVCON Manila, managing technical presentations and speaker communications.</li>
+                <li className="border-b hairline pb-3">Speaker Coordinator at Arduino Day Philippines, coordinating events and schedules.</li>
+                <li className="border-b hairline pb-3">Student Council Department of Archive member at Rizal Technological University.</li>
+              </ul>
             </div>
+            <div>
+              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Awards</div>
+              <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                <li className="border-b hairline pb-3">3rd Place, KadaKareer HomeCredit Hackathon</li>
+                <li className="border-b hairline pb-3">Participant, DECODE 2024 University Capture The Flag by Trend Micro</li>
+                <li className="border-b hairline pb-3">3rd Place, PUP Programmers Guild Tech Careerscape</li>
+                <li className="border-b hairline pb-3">Champion, Robotics Contest - Technological Institute of the Philippines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
+        <div className="mx-auto w-full max-w-[1400px]">
+          <SectionLabel n="06" t="Education & certifications" />
+          <div className="mt-10 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div className="space-y-6">
-              <ul className="space-y-4 text-sm leading-relaxed text-muted-foreground">
-                <li className="border-b hairline pb-4">
-                  Built personal projects from scratch as deliberate learning experiments, picking unfamiliar tools to stress-test fundamentals.
-                </li>
-                <li className="border-b hairline pb-4">
-                  Worked structured datasets end-to-end, focused on deriving insights stakeholders could actually act on.
-                </li>
-                <li className="border-b hairline pb-4">
-                  Volunteered for Eskwelabs events, contributing to event support and coordination.
-                </li>
-                <li className="border-b hairline pb-4">
-                  Built professional connections; learned how cross-discipline teams negotiate priorities and ship together.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="work"
-        className="border-t border-white/10 px-6 py-28 md:px-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-120px" }}
-        variants={fadeUp}
-      >
-        <div className="mx-auto w-full max-w-[1400px]">
-          <div className="flex flex-wrap items-center justify-between gap-6">
-            <SectionLabel n="03" t="Selected work" />
-          </div>
-
-          <div className="mt-12 grid grid-cols-12 gap-10 mb-12">
-            <div className="col-span-12 md:col-span-5">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-accent mb-4">Capstone · Internal tool</div>
-              <h2 className="font-display text-5xl md:text-6xl leading-[0.95] text-balance">
-                Product Backlog<br />Dashboard
-              </h2>
-              <div className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] border hairline px-3 py-1.5">
-                Built for · Head of Development
+              <div>
+                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Education</div>
+                <h3 className="font-display text-3xl font-light text-foreground">Bachelor of Information Technology</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Rizal Technological University | 2023 - Ongoing</p>
+              </div>
+              <div>
+                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Professional experience</div>
+                <p className="text-sm leading-relaxed text-muted-foreground">IT Support & Data Management Intern at the Philippine National Police (QCPD), where you managed digital documentation workflows and developed the official website for the QCPD sector.</p>
               </div>
             </div>
-            <div className="col-span-12 md:col-span-7 md:pl-10 md:border-l hairline">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-3">Problem</div>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                The product team needed a centralized way to track and prioritize
-                <span className="text-foreground"> 170+ backlog items</span> spanning multiple initiatives (LXD, OPM, FrontofFunnel,
-                Ilog_Eskwelabs) and item types (workflows, tables, memos, financial models). Without visibility into urgency,
-                status, and resource allocation, the Head of Development couldn't reliably prioritize, surface blockers,
-                or detect stale work.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-12 gap-4 mb-16">
-            <figure className="col-span-12 md:col-span-7 border hairline bg-card overflow-hidden rounded-[4px] transition-transform duration-300 ease-out hover:-translate-y-[3px]">
-              <img src={dashboardOverview} alt="Power BI overview page showing Total Backlog 170, Active Items 35, Paused 93, with status pie chart and urgency bars." className="w-full h-auto block" />
-              <figcaption className="border-t hairline px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground flex justify-between">
-                <span>Fig. 01, Backlog overview</span><span>PBI · Page 1/4</span>
-              </figcaption>
-            </figure>
-            <figure className="col-span-12 md:col-span-5 border hairline bg-card overflow-hidden rounded-[4px] transition-transform duration-300 ease-out hover:-translate-y-[3px]">
-              <img src={dashboardDetail} alt="Detail page with metrics broken down by epic, type, urgency, version, and builder." className="w-full h-auto block" />
-              <figcaption className="border-t hairline px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground flex justify-between">
-                <span>Fig. 02, Initiative detail</span><span>PBI · Page 2/4</span>
-              </figcaption>
-            </figure>
-            <figure className="col-span-12 border hairline bg-card overflow-hidden rounded-[4px] transition-transform duration-300 ease-out hover:-translate-y-[3px]">
-              <img src={dashboardSkills} alt="Story-level sprint and builder views with story points and pay breakdown." className="w-full h-auto block" />
-              <figcaption className="border-t hairline px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground flex justify-between">
-                <span>Fig. 03, Sprint & resource view</span><span>PBI · Page 3-4/4</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div className="grid grid-cols-12 gap-4 mb-16">
-            <div className="col-span-12">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-4">Walkthrough</div>
-            </div>
-            <div className="col-span-12">
-              <VideoFigure src="/videos/looker-backlog.mp4" caption="Demo, Backlog dashboard walkthrough" meta="MP4 · 1:32" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-12 gap-10">
-            <div className="col-span-12 md:col-span-7">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-4">Role & Contributions</div>
-              <ul className="space-y-3 text-sm leading-relaxed">
-                {[
-                  "Owned the analytics workstream end-to-end, from raw backlog export to a stakeholder-ready Power BI + Looker Studio report set.",
-                  "Defined the metric set the HOD reviews weekly: Total Backlog, Active, Paused, High Urgency, Blockers, Stale Items, Value Points, and Initiative Completion %.",
-                  "Cleaned and modeled raw backlog data, standardized codes, types, epics, urgency, and priority fields into a consistent schema.",
-                  "Authored DAX measures for urgency-weighted value, completion %, and stale-item flags; built calculated tables for sprint and resource rollups.",
-                  "Designed a multi-page report, backlog overview, initiative & epic tracking, story-level sprint view, and a builder/resource view with pay and task load.",
-                  "Replicated the model in Looker Studio for a finance-leaning view, so non-PBI stakeholders could self-serve.",
-                  "Ran feedback loops with the Head of Development to iterate on layout, filters, and which numbers earned hero placement.",
-                ].map((line, i) => (
-                  <li key={i} className="flex gap-4 border-b hairline pb-3">
-                    <span className="text-[10px] text-muted-foreground pt-1 w-6">{String(i + 1).padStart(2, "0")}</span>
-                    <span>{line}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="col-span-12 md:col-span-5 md:pl-10 md:border-l hairline">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-4">Skills demonstrated</div>
+            <div>
+              <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-foreground">Certifications</div>
               <div className="flex flex-wrap gap-2">
-                {[
-                  "Data cleaning",
-                  "Power BI",
-                  "DAX measures",
-                  "Multi-page report design",
-                  "Slicers & filters",
-                  "Product thinking",
-                  "Agile / story points",
-                  "Stakeholder-led design",
-                ].map((s) => (
-                  <span key={s} className="text-xs px-3 py-1.5 border hairline bg-card rounded-[2px]">
-                    {s}
-                  </span>
+                {certificationChips.map((cert) => (
+                  <span key={cert} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1.5 text-[12px] text-muted-foreground">{cert}</span>
                 ))}
               </div>
-              <div className="mt-10 p-6 border-l-2 border-accent bg-secondary/40">
-                <div className="text-[10px] uppercase tracking-[0.3em] text-accent mb-2">Design intent</div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Surface blockers and high-urgency items <span className="italic">prominently</span> so the first 10 seconds on the page already answer "what should I look at today?"
-                </p>
+              <div className="mt-10 border-l-2 border-accent bg-secondary/40 p-6">
+                <div className="mb-2 text-[10px] uppercase tracking-[0.3em] text-accent">Contact</div>
+                <div className="space-y-3 text-sm leading-relaxed text-foreground">
+                  <div><a href="mailto:notadocath@gmail.com" className="hover:underline">notadocath@gmail.com</a></div>
+                  <div><a href="https://www.linkedin.com/in/catherine-notado-679a29246" className="hover:underline">linkedin.com/in/catherine-notado-679a29246</a></div>
+                  <div>09203066498</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </motion.section>
 
-      <motion.section
-        className="border-t border-white/10 px-6 py-28 md:px-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-120px" }}
-        variants={fadeUp}
-      >
-        <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="04" t="Project 02 / Looker Studio" />
-
-          <div className="mt-12 grid grid-cols-12 gap-10 mb-12">
-            <div className="col-span-12 md:col-span-5">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-accent mb-4">Capstone · Finance dashboard</div>
-              <h2 className="font-display text-5xl md:text-6xl leading-[0.95] text-balance">
-                Annual Financial<br />Dashboard
-              </h2>
-              <div className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] border hairline px-3 py-1.5">
-                Built for · Chief Finance Officer
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-7 md:pl-10 md:border-l hairline">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-3">Problem</div>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                The CFO needed a single annual view of program economics, revenue, COGS, gross profit, GM%, and per-student unit economics, sliceable by
-                <span className="text-foreground"> year, product, client type, location,</span> and <span className="text-foreground"> topic</span>.
-                Without it, finance reviews relied on stitching together exports, and cost drivers behind each program line were hard to isolate.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 border-t border-b hairline py-8 mb-12">
-            <Stat k="Programs" v="92" />
-            <Stat k="Total revenue" v="$39.1m" />
-            <Stat k="Total COGS" v="$20.4m" />
-            <Stat k="Gross profit" v="$18.7m" />
-            <Stat k="GM %" v="42.7%" />
-            <Stat k="Students enrolled" v="19,025" />
-          </div>
-
-          <div className="grid grid-cols-12 gap-4 mb-16">
-            <div className="col-span-12">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-4">Walkthrough</div>
-            </div>
-            <div className="col-span-12">
-              <VideoFigure src="/videos/financial-looker.mp4" caption="Demo, Annual Financial dashboard walkthrough" meta="MP4 · 0:56" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-12 gap-10">
-            <div className="col-span-12 md:col-span-7">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-4">Role & Contributions</div>
-              <ul className="space-y-3 text-sm leading-relaxed">
-                {[
-                  "Owned data cleaning and modeling for program revenue and cost data across cohorts.",
-                  "Built KPI summaries and unit economics views to compare GM% by segment and program.",
-                  "Designed filter architecture for year, product, location, and client type.",
-                  "Worked with finance leadership to define which numbers needed immediate visibility.",
-                ].map((line, i) => (
-                  <li key={i} className="flex gap-4 border-b hairline pb-3">
-                    <span className="text-[10px] text-muted-foreground pt-1 w-6">{String(i + 1).padStart(2, "0")}</span>
-                    <span>{line}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="col-span-12 md:col-span-5 md:pl-10 md:border-l hairline">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground mb-4">Skills demonstrated</div>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Looker Studio",
-                  "Financial modeling",
-                  "Unit economics",
-                  "Data QA",
-                  "Executive reporting",
-                ].map((s) => (
-                  <span key={s} className="text-xs px-3 py-1.5 border hairline bg-card rounded-[2px]">
-                    {s}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-10 p-6 border-l-2 border-accent bg-secondary/40">
-                <div className="text-[10px] uppercase tracking-[0.3em] text-accent mb-2">Design intent</div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Give leadership a single, clean window into revenue and margin so quarterly decisions never wait on manual spreadsheets.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="experience"
-        className="border-t border-white/10 px-6 py-28 md:px-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-120px" }}
-        variants={fadeUp}
-      >
-        <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="05" t="Project 03 / Web App" />
-          <div className="mt-12 grid grid-cols-12 gap-10">
-            <div className="col-span-12">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-accent mb-4">Website integration</div>
-              <h2 className="font-display text-5xl md:text-6xl leading-[0.95] text-balance">
-                Eskwelabs
-                <br />Dashboard
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                Started with an Event Attendance integration, then expanded into the Product Backlog website. Both focus on data analysis, metrics, performance insights, and role-based views.
-              </p>
-              <div className="mt-8 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] border hairline px-3 py-1.5">
-                Stack · React, Vite, Chart.js, Supabase
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <VideoFigure src="/videos/product-demo.mp4" caption="Demo, Event attendance" meta="MP4" />
-            <VideoFigure src="/videos/website-drafts.mp4" caption="Demo, Product backlog website" meta="MP4" />
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="contact"
-        className="border-t border-white/10 px-6 py-32 md:px-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-120px" }}
-        variants={fadeUp}
-      >
+      <motion.section id="contact" className="border-t border-white/10 px-6 py-32 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center text-center">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">06 · Let's work together</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">07 · Let's work together</div>
           <h2 className="mt-6 font-display text-[clamp(3rem,7vw,6rem)] font-light leading-[1.05] text-foreground">
-            Got a project in <span className="italic text-accent">mind?</span>
+            Got an idea or <span className="italic text-accent">project?</span>
           </h2>
-          <a
-            href="mailto:notadocath@gmail.com"
-            className="mt-6 font-display text-[1.1rem] text-muted-foreground transition-colors duration-[250ms] ease-out hover:text-foreground hover:underline"
-          >
-            notadocath@gmail.com
-          </a>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">If you want to discuss app development, AI tools, robotics, research prototypes, or community work, I'm open to projects that build something useful.</p>
+          <a href="mailto:notadocath@gmail.com" className="mt-8 font-display text-[1.1rem] text-muted-foreground transition-colors duration-[250ms] ease-out hover:text-foreground hover:underline">notadocath@gmail.com</a>
         </div>
       </motion.section>
 
