@@ -268,23 +268,6 @@ const additionalProjects: Project[] = [
   },
 ];
 
-type DriveProject = {
-  name: string;
-  link: string;
-};
-
-const driveProjectFolders: DriveProject[] = [
-  { name: "APPCON CAPYCADEMY", link: "https://drive.google.com/drive/folders/10Turmdj5dJxymT1nazKWnjTAuPLTrBmg" },
-  { name: "ARDUINO ROBOTICS OURMAN", link: "https://drive.google.com/drive/folders/1S564VR7LJtovR2mT28XPlipMC3YsSBXH" },
-  { name: "CAMP KARINGAL WEBSITE", link: "https://drive.google.com/drive/folders/10u5YdYS1lvSJm9y4194lGQSbCq1gKOl_" },
-  { name: "CREDIVEST", link: "https://drive.google.com/drive/folders/1ozoGQhvZdlvmvb0Atjy6ZMTUtgxEi5h1" },
-  { name: "GABAY", link: "https://drive.google.com/drive/folders/1MTaMhuUPGgy8sYWmtd18Tfati9xcz0VQ" },
-  { name: "HOSHI BOOKSTORE", link: "https://drive.google.com/drive/folders/1mgokW96vT_xrzR-aBzCRgsHbyr3DOCXZ" },
-  { name: "MEOWLOGY", link: "https://drive.google.com/drive/folders/1BT7eSu4nW3QqJH5N2f4F4RREFc8Qsh6v" },
-  { name: "PORO: TIME MANAGEMENT WEB APPLICATION", link: "https://drive.google.com/drive/folders/157KtG4CGbU0aJH4nN7eNxeYS-HxjJgRr" },
-  { name: "SKILLGAP ANALYSIS RESEARCH PRESENTATION", link: "https://drive.google.com/drive/folders/1d0lsU1-cBcNqNIWLcn2RafRWIE6Thl15" },
-];
-
 const backgroundHighlights: Highlight[] = [
   {
     label: "Current focus",
@@ -505,7 +488,7 @@ function Index() {
         <div className="mx-auto w-full max-w-[1400px]">
           <SectionLabel n="02" t="Featured projects" />
           <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            The projects below come from your resume and show the broader work beyond analytics.
+            These are the primary projects I want to feature first.
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {featuredProjects.map((project) => (
@@ -523,7 +506,22 @@ function Index() {
               </article>
             ))}
           </div>
-          <div className="mt-6 grid gap-5 lg:grid-cols-3">
+          <div className="mt-10 flex justify-center">
+            <a href="#other-projects" className="inline-flex items-center gap-3 border border-accent/40 bg-[#1a1a1a] px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-accent transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-accent hover:bg-[#202020]">
+              View other projects
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section id="other-projects" className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
+        <div className="mx-auto w-full max-w-[1400px]">
+          <SectionLabel n="03" t="Other projects" />
+          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Supporting projects, research work, and build experiments that round out the portfolio.
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {additionalProjects.map((project) => (
               <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
                 <ProjectMedia project={project} />
@@ -537,30 +535,6 @@ function Index() {
                   ))}
                 </div>
               </article>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section className="border-t border-white/10 px-6 py-28 md:px-12" initial="hidden" whileInView="show" viewport={{ once: true, margin: "-120px" }} variants={fadeUp}>
-        <div className="mx-auto w-full max-w-[1400px]">
-          <SectionLabel n="03" t="Drive folders" />
-          <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Folder names recovered from the shared Drive archive, now linked directly to each project folder.
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {driveProjectFolders.map((project) => (
-              <a
-                key={project.name}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-[4px] border border-white/10 bg-[#141414] px-5 py-5 transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-accent/50 hover:bg-[#1a1a1a]"
-              >
-                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">Drive project</div>
-                <div className="mt-3 font-display text-2xl font-light leading-tight text-foreground">{project.name}</div>
-                <div className="mt-4 text-xs uppercase tracking-[0.25em] text-muted-foreground">Open folder →</div>
-              </a>
             ))}
           </div>
         </div>
