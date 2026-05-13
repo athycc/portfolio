@@ -7,7 +7,7 @@ import powerBiThumb from "../assets/dashboard-overview.jpg";
 import skillsThumb from "../assets/dashboard-skills.jpg";
 import detailThumb from "../assets/dashboard-detail.jpg";
 
-const appconThumb = "/GENAI.jpg";
+const appconThumb = powerBiThumb;
 
 export const Route = createFileRoute("/")({
   component: Index,
