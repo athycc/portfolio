@@ -72,7 +72,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
     media: {
       type: "video",
-      id: "1PRYsDeffIIBvqUPual322HVbgf4calIz",
+      id: "1sf4ToLffwfynk3lagLt3bfnuVK6Yjw6n",
       poster: appconThumb,
     },
   },
@@ -83,9 +83,8 @@ const featuredProjects: Project[] = [
     summary: "Interactive data analytics feature for surfacing trends, reporting patterns, and presentation-ready insights from the capstone dataset.",
     tech: ["Power BI", "SQL", "Excel", "Data Analysis", "Business Intelligence"],
     media: {
-      type: "video",
-      id: "1IBFZoYrIVJipFDFd38E_Z2P-UVzDjmHJ",
-      poster: powerBiThumb,
+      type: "image",
+      src: detailThumb,
     },
   },
   {
