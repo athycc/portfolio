@@ -497,7 +497,7 @@ function Index() {
             ))}
           </div>
           <div className="mt-10 flex justify-center">
-            <a href="https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=drive_link" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 border border-accent/40 bg-[#1a1a1a] px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-accent transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-accent hover:bg-[#202020]">
+            <a href="https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=drive_link" className="inline-flex items-center gap-3 border border-accent/40 bg-[#1a1a1a] px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-accent transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-accent hover:bg-[#202020]">
               View other projects
               <span aria-hidden="true">→</span>
             </a>
