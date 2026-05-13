@@ -72,7 +72,7 @@ const featuredProjects: Project[] = [
     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
     media: {
       type: "video",
-      id: "1TbE3MAlm5G4juQn29qu_mpF0csY3n7ER",
+      id: "11rvY-Y0dYcZwX01DCRW8NThZAmMDgzFv",
       poster: appconThumb,
     },
   },
@@ -88,15 +88,14 @@ const featuredProjects: Project[] = [
     },
   },
   {
-    title: "Eskwelabs Analytics Web App",
-    role: "Full-stack data platform",
+    title: "Product Backlog Dashboard",
+    role: "Data visualization & backlog management",
     period: "2025 - 2026",
-    summary: "End-to-end analytics solution for student performance tracking, course enrollment analysis, and learning outcome prediction with interactive visualizations.",
+    summary: "Interactive dashboard for managing and analyzing product backlog items: status, priority, blockers, and sprint planning metrics.",
     tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
     media: {
-      type: "video",
-      id: "16996zaO9BTqfBi2X-ChuoAlcRRaBuwRs",
-      poster: eskwelabsThumb,
+      type: "image",
+      src: eskwelabsThumb,
     },
   },
 ];
