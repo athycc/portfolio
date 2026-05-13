@@ -340,22 +340,35 @@ function SectionLabel({ n, t }: { n: string; t: string }) {
 }
 
 function ProjectMedia({ project }: { project: Project }) {
-  const className = "mb-5 h-44 w-full rounded-[2px] object-cover opacity-90";
+  // shared image class for static images
+  const imgClass = "mb-5 w-full rounded-[6px] object-cover opacity-95";
 
   if (project.media.type === "video") {
     return (
-      <iframe
-        className={className}
-        src={`https://drive.google.com/file/d/${project.media.id}/preview`}
-        title={project.title}
-        allow="autoplay; encrypted-media"
-        loading="lazy"
-        allowFullScreen
-      />
+      <div className="mb-5 w-full rounded-[6px] overflow-hidden bg-[#0f0f0f]">
+        <div
+          className="relative"
+          style={{
+            paddingTop: "56.25%",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundImage: project.media.poster ? `url(${project.media.poster})` : "none",
+          }}
+        >
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={`https://drive.google.com/file/d/${project.media.id}/preview`}
+            title={project.title}
+            allow="autoplay; encrypted-media"
+            loading="lazy"
+            allowFullScreen
+          />
+        </div>
+      </div>
     );
   }
 
-  return <img src={project.media.src} alt={project.title} className={className} />;
+  return <img src={project.media.src} alt={project.title} className={imgClass} />;
 }
 
 function Index() {
@@ -492,7 +505,7 @@ function Index() {
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {featuredProjects.map((project) => (
-              <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
+              <article key={project.title} className="rounded-lg shadow-lg border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
                 <ProjectMedia project={project} />
                 <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
                 <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
@@ -523,7 +536,7 @@ function Index() {
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {additionalProjects.map((project) => (
-              <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
+              <article key={project.title} className="rounded-lg shadow-lg border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
                 <ProjectMedia project={project} />
                 <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
                 <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
