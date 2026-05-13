@@ -9,6 +9,8 @@ import detailThumb from "../assets/dashboard-detail.jpg";
 
 const appconThumb = "/GENAI.jpg";
 
+const driveVideoUrl = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
+
 export const Route = createFileRoute("/")({
   component: Index,
 });
@@ -19,7 +21,11 @@ type Project = {
   period: string;
   summary: string;
   tech: string[];
-  image: string;
+  media: {
+    type: "image" | "video";
+    src: string;
+    poster?: string;
+  };
 };
 
 type Highlight = {
@@ -58,26 +64,38 @@ const featuredProjects: Project[] = [
   {
     title: "APPCON - CapyCademy",
     role: "AI learning platform",
-     period: "2024 - Present",
-     summary: "An AI-powered learning platform for students, framed around accessible study support and smarter learning workflows with intelligent tutoring and resource curation.",
-     tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
-     image: appconThumb,
+    period: "2024 - Present",
+    summary: "An AI-powered learning platform for students, framed around accessible study support and smarter learning workflows with intelligent tutoring and resource curation.",
+    tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
+    media: {
+      type: "video",
+      src: driveVideoUrl("1PRYsDeffIIBvqUPual322HVbgf4calIz"),
+      poster: appconThumb,
+    },
   },
   {
-     title: "Power BI Analytics Dashboard",
-     role: "Data visualization & analytics",
-     period: "EIF Capstone 2026",
-     summary: "Interactive product backlog dashboard tracking sprint velocity, burndown trends, and team productivity metrics with real-time data synchronization.",
-     tech: ["Power BI", "SQL", "Excel", "Data Analysis", "Business Intelligence"],
-     image: powerBiThumb,
+    title: "Power BI Analytics Dashboard",
+    role: "Data visualization & analytics",
+    period: "EIF Capstone 2026",
+    summary: "Interactive data analytics feature for surfacing trends, reporting patterns, and presentation-ready insights from the capstone dataset.",
+    tech: ["Power BI", "SQL", "Excel", "Data Analysis", "Business Intelligence"],
+    media: {
+      type: "video",
+      src: driveVideoUrl("1IBFZoYrIVJipFDFd38E_Z2P-UVzDjmHJ"),
+      poster: powerBiThumb,
+    },
   },
   {
-     title: "Eskwelabs Analytics Web App",
-     role: "Full-stack data platform",
-     period: "2025 - 2026",
-     summary: "End-to-end analytics solution for student performance tracking, course enrollment analysis, and learning outcome prediction with interactive visualizations.",
-     tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
-     image: eskwelabsThumb,
+    title: "Eskwelabs Analytics Web App",
+    role: "Full-stack data platform",
+    period: "2025 - 2026",
+    summary: "End-to-end analytics solution for student performance tracking, course enrollment analysis, and learning outcome prediction with interactive visualizations.",
+    tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
+    media: {
+      type: "video",
+      src: driveVideoUrl("16996zaO9BTqfBi2X-ChuoAlcRRaBuwRs"),
+      poster: eskwelabsThumb,
+    },
   },
 ];
 
@@ -202,26 +220,48 @@ const additionalProjects: Project[] = [
   {
     title: "Poro: Time Management Web Application",
     role: "Web application",
-     period: "2024",
-     summary: "A time management app designed to help users organize tasks and keep a practical daily workflow with smart scheduling and task prioritization.",
-     tech: ["React", "JavaScript", "Local Storage", "Tailwind CSS", "Responsive Design"],
-    image: skillsThumb,
+    period: "2024",
+    summary: "A time management app designed to help users organize tasks and keep a practical daily workflow with smart scheduling and task prioritization.",
+    tech: ["React", "JavaScript", "Local Storage", "Tailwind CSS", "Responsive Design"],
+    media: {
+      type: "image",
+      src: skillsThumb,
+    },
   },
   {
     title: "Skill Gap Analysis Website",
     role: "Research / web project",
-     period: "2024",
-     summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction with data visualization and actionable insights.",
-     tech: ["React", "JavaScript", "Data Visualization", "Bootstrap", "GitHub Pages"],
-    image: detailThumb,
+    period: "2024",
+    summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction with data visualization and actionable insights.",
+    tech: ["React", "JavaScript", "Data Visualization", "Bootstrap", "GitHub Pages"],
+    media: {
+      type: "image",
+      src: detailThumb,
+    },
   },
   {
     title: "Arduino Robotics Project",
     role: "Robotics",
-     period: "2023 - 2024",
-     summary: "A robotics build that reflects hands-on prototyping, hardware problem solving, and iteration with motor control and sensor integration.",
-     tech: ["Arduino", "C++", "Hardware Design", "Microcontrollers", "Prototyping"],
-    image: appconThumb,
+    period: "2023 - 2024",
+    summary: "A robotics build that reflects hands-on prototyping, hardware problem solving, and iteration with motor control and sensor integration.",
+    tech: ["Arduino", "C++", "Hardware Design", "Microcontrollers", "Prototyping"],
+    media: {
+      type: "video",
+      src: driveVideoUrl("1xZAUodqRJe_arx5DPSV1KjDbVHninBN7"),
+      poster: appconThumb,
+    },
+  },
+  {
+    title: "Credivest",
+    role: "Fintech concept",
+    period: "2024",
+    summary: "A finance-oriented concept for presenting investment or lending flows with a polished product demo and clear data storytelling.",
+    tech: ["React", "TypeScript", "Fintech", "UI Design", "Presentation"],
+    media: {
+      type: "video",
+      src: driveVideoUrl("1eyXYl9GuWGVHGBViCcP0n2mGQZUUbodx"),
+      poster: detailThumb,
+    },
   },
 ];
 
@@ -311,6 +351,16 @@ function SectionLabel({ n, t }: { n: string; t: string }) {
       <span>{t}</span>
     </motion.div>
   );
+}
+
+function ProjectMedia({ project }: { project: Project }) {
+  const className = "mb-5 h-44 w-full rounded-[2px] object-cover opacity-90";
+
+  if (project.media.type === "video") {
+    return <video className={className} src={project.media.src} poster={project.media.poster} controls playsInline preload="metadata" />;
+  }
+
+  return <img src={project.media.src} alt={project.title} className={className} />;
 }
 
 function Index() {
@@ -448,7 +498,7 @@ function Index() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {featuredProjects.map((project) => (
               <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
-                <img src={project.image} alt={project.title} className="mb-5 h-44 w-full rounded-[2px] object-cover opacity-90" />
+                <ProjectMedia project={project} />
                 <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
                 <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
                 <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
@@ -464,7 +514,7 @@ function Index() {
           <div className="mt-6 grid gap-5 lg:grid-cols-3">
             {additionalProjects.map((project) => (
               <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
-                <img src={project.image} alt={project.title} className="mb-5 h-44 w-full rounded-[2px] object-cover opacity-90" />
+                <ProjectMedia project={project} />
                 <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
                 <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
                 <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
