@@ -2,6 +2,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import eskwelabsThumb from "../assets/eskwelabs-analytics.jpg";
+import powerBiThumb from "../assets/dashboard-overview.jpg";
+import skillsThumb from "../assets/dashboard-skills.jpg";
+import detailThumb from "../assets/dashboard-detail.jpg";
+
+const appconThumb = "/GENAI.jpg";
+
 export const Route = createFileRoute("/")({
   component: Index,
 });
@@ -12,6 +19,7 @@ type Project = {
   period: string;
   summary: string;
   tech: string[];
+  image: string;
 };
 
 type Highlight = {
@@ -53,6 +61,7 @@ const featuredProjects: Project[] = [
      period: "2024 - Present",
      summary: "An AI-powered learning platform for students, framed around accessible study support and smarter learning workflows with intelligent tutoring and resource curation.",
      tech: ["React", "Python", "AI/ML", "Firebase", "Tailwind CSS"],
+     image: appconThumb,
   },
   {
      title: "Power BI Analytics Dashboard",
@@ -60,6 +69,7 @@ const featuredProjects: Project[] = [
      period: "EIF Capstone 2026",
      summary: "Interactive product backlog dashboard tracking sprint velocity, burndown trends, and team productivity metrics with real-time data synchronization.",
      tech: ["Power BI", "SQL", "Excel", "Data Analysis", "Business Intelligence"],
+     image: powerBiThumb,
   },
   {
      title: "Eskwelabs Analytics Web App",
@@ -67,6 +77,7 @@ const featuredProjects: Project[] = [
      period: "2025 - 2026",
      summary: "End-to-end analytics solution for student performance tracking, course enrollment analysis, and learning outcome prediction with interactive visualizations.",
      tech: ["React", "Node.js", "MySQL", "Tailwind CSS", "Recharts"],
+     image: eskwelabsThumb,
   },
 ];
 
@@ -194,6 +205,7 @@ const additionalProjects: Project[] = [
      period: "2024",
      summary: "A time management app designed to help users organize tasks and keep a practical daily workflow with smart scheduling and task prioritization.",
      tech: ["React", "JavaScript", "Local Storage", "Tailwind CSS", "Responsive Design"],
+    image: skillsThumb,
   },
   {
     title: "Skill Gap Analysis Website",
@@ -201,6 +213,7 @@ const additionalProjects: Project[] = [
      period: "2024",
      summary: "A skills analysis website focused on identifying gaps and turning raw input into actionable direction with data visualization and actionable insights.",
      tech: ["React", "JavaScript", "Data Visualization", "Bootstrap", "GitHub Pages"],
+    image: detailThumb,
   },
   {
     title: "Arduino Robotics Project",
@@ -208,6 +221,7 @@ const additionalProjects: Project[] = [
      period: "2023 - 2024",
      summary: "A robotics build that reflects hands-on prototyping, hardware problem solving, and iteration with motor control and sensor integration.",
      tech: ["Arduino", "C++", "Hardware Design", "Microcontrollers", "Prototyping"],
+    image: appconThumb,
   },
 ];
 
@@ -434,6 +448,23 @@ function Index() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {featuredProjects.map((project) => (
               <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
+                <img src={project.image} alt={project.title} className="mb-5 h-44 w-full rounded-[2px] object-cover opacity-90" />
+                <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
+                <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
+                <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="rounded-[2px] border border-white/10 bg-[#1e1e1e] px-3 py-1 text-[11px] text-muted-foreground">{tech}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-6 grid gap-5 lg:grid-cols-3">
+            {additionalProjects.map((project) => (
+              <article key={project.title} className="border border-white/10 bg-[#141414] p-6 transition-transform duration-300 ease-out hover:-translate-y-[3px]">
+                <img src={project.image} alt={project.title} className="mb-5 h-44 w-full rounded-[2px] object-cover opacity-90" />
                 <div className="text-[10px] uppercase tracking-[0.3em] text-accent">{project.role}</div>
                 <h3 className="mt-3 font-display text-3xl font-light text-foreground">{project.title}</h3>
                 <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{project.period}</div>
