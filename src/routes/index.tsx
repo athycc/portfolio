@@ -645,10 +645,14 @@ function Index() {
         <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">06 · Let's work together</div>
           <h2 className="mt-6 font-display text-[clamp(3rem,7vw,6rem)] font-light leading-[1.05] text-foreground">
-            Got an idea or <span className="italic text-accent">project?</span>
+            <span className="italic text-accent">Contact</span>
           </h2>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">If you want to discuss app development, AI tools, robotics, research prototypes, or community work, I'm open to projects that build something useful.</p>
-          <a href="mailto:notadocath@gmail.com" className="mt-8 font-display text-[1.1rem] text-muted-foreground transition-colors duration-[250ms] ease-out hover:text-foreground hover:underline">notadocath@gmail.com</a>
+          <div className="mt-8 space-y-3 text-sm leading-relaxed text-foreground">
+            <div><a href="mailto:notadocath@gmail.com" className="hover:underline">notadocath@gmail.com</a></div>
+            <div><a href="https://www.linkedin.com/in/catherine-notado-679a29246" className="hover:underline">linkedin.com/in/catherine-notado-679a29246</a></div>
+            <div>+63 920 3066 498</div>
+            <div>Quezon City, Philippines</div>
+          </div>
         </div>
       </motion.section>
 
