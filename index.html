@@ -283,8 +283,10 @@
             </span>
           </div>
           <div class="project-gallery-toolbar">
-            <p id="project-gallery-help">Drag or swipe to explore · Select a project for details</p>
+            <p id="project-gallery-help">Auto-playing gallery · Drag, swipe, or select a project</p>
             <div class="project-gallery-arrows" role="group" aria-label="Project gallery controls">
+              <span id="project-position" class="project-position" aria-label="Current project position">01 / 12</span>
+              <button id="project-autoplay" class="gallery-autoplay" aria-label="Pause project slideshow" aria-pressed="false" aria-controls="projects"><span>Pause</span></button>
               <button class="icon-button" id="project-prev" aria-label="Previous project" aria-controls="projects">←</button>
               <button class="icon-button" id="project-next" aria-label="Next project" aria-controls="projects">→</button>
             </div>
