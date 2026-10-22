@@ -186,3 +186,12 @@ Verification uses Chromium CSS viewports, not physical devices or a cross-browse
 - About photo labels are removed. Autoplay advances through clear source photos with a 3000ms hold between pixel transitions. Pause/manual next and global reduced-motion controls are retained.
 - Six Node checks pass, covering 12 project records, seven verified folder destinations, current résumé facts, native JavaScript parsing, built resources and the restricted deployment policy. No application errors observed during checked journeys; unrelated extension metadata errors excluded.
 - Scope: Chromium viewport checks, not physical-device or cross-browser certification. No new dependencies or security policy changes.
+
+## October 23, 2026 — Automatic interactive galleries
+
+- Projects advance automatically with a four-second reading interval and native smooth scrolling. Direction reverses at either end; no cloned cards or extra animation dependency. Position counter, Pause/Play control and cycle indicator are included.
+- Autoplay stops while off screen, during hover/drag/keyboard focus, when dialogs open, in hidden tabs, and when motion is disabled. Native dragging, swipe, arrow and keyboard behavior remain available. Reduced-motion mode also disables hover lift.
+- Browser observations: automatic advance reached 02 / 12 (596px); Pause held that position, Play resumed. Mouse dragging reached 1192px without opening a dialog and suspended autoplay. Site motion pause disabled both slideshow controls.
+- About photos now change on a 1000ms cadence, including a shortened ~260ms pixel refinement. A full three-photo cycle was observed, with successive browser checks 1045ms and 1021ms apart. Pause changed the control to Play. Original image assets and manual next remain.
+- At a configured 320px Chromium viewport, document width equals scroll width (305px after scrollbar); gallery controls measure 72×48px and 48×48px. No horizontal document overflow.
+- Six Node checks pass. Timing observations include browser polling overhead and are not rendering benchmarks; QA scope remains Chromium CSS viewports.

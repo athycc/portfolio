@@ -1,5 +1,7 @@
 import { $, $$ } from './dom.js';
 
+const INTERVAL = 1000;
+
 export function initSlideshow(motion) {
   const gallery = $('.about-gallery');
   const stage = $('.photo-stage', gallery);
@@ -8,7 +10,7 @@ export function initSlideshow(motion) {
   const canvas = $('canvas', gallery);
   const context = canvas.getContext('2d');
   let index = 0, visible = false, paused = false, userStarted = false;
-  let autoplay, refinement, wipe, revision = 0;
+  let autoplay, refinement, wipe, revision = 0, lastChange = performance.now();
 
   function clearTransition() {
     clearTimeout(refinement);
@@ -44,11 +46,13 @@ export function initSlideshow(motion) {
     next = (next + images.length) % images.length;
     if (manual) { paused = true; userStarted = false; }
     try { await images[next].decode(); } catch {
+      lastChange = performance.now();
       $('#gallery-status').textContent = 'This photo could not load. Choose another photo.';
       sync();
       return;
     }
     if (current !== revision) return;
+    lastChange = performance.now();
     if (next === index || !motion.enabled() || !context || !canvas.animate) {
       display(next, manual);
       sync();
@@ -59,21 +63,21 @@ export function initSlideshow(motion) {
     wipe = canvas.animate([
       { clipPath: 'inset(0 100% 0 0)' },
       { clipPath: 'inset(0 0% 0 0)' },
-    ], { duration: 460, easing: 'ease-in-out', fill: 'forwards' });
+    ], { duration: 180, easing: 'ease-in-out', fill: 'forwards' });
     const levels = [20, 36, 64, 112];
     let step = 0;
     function sharpen() {
       if (current !== revision) return;
       if (step < levels.length) {
         drawPixels(images[next], levels[step++]);
-        refinement = setTimeout(sharpen, 120);
+        refinement = setTimeout(sharpen, 45);
       } else {
         display(next, manual);
         clearTransition();
         sync();
       }
     }
-    refinement = setTimeout(sharpen, 220);
+    refinement = setTimeout(sharpen, 80);
   }
 
   function sync() {
@@ -85,7 +89,9 @@ export function initSlideshow(motion) {
     if (!motion.enabled()) { revision++; clearTransition(); }
     const blocked = !visible || document.hidden || $('dialog[open]') ||
       (!userStarted && gallery.matches(':focus-within,:hover'));
-    if (motion.enabled() && !paused && !blocked) autoplay = setTimeout(() => select(index + 1), 3000);
+    if (motion.enabled() && !paused && !blocked) {
+      autoplay = setTimeout(() => select(index + 1), Math.max(0, INTERVAL - (performance.now() - lastChange)));
+    } else lastChange = performance.now();
   }
 
   $('.gallery-next', gallery).addEventListener('click', () => select(index + 1, true));
