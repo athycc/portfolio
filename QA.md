@@ -61,3 +61,30 @@ Illustration stacking initially intercepted project-card clicks. The full-card t
 | Build / content regressions | Existing four Node checks pass, including source parsing, project records, résumé facts and build assets. |
 
 Testing used Chromium CSS viewports in a development-only iframe harness. It does not establish physical-device compatibility, cross-browser certification, full accessibility compliance, or measured speed improvements. Original-source photos can show other community events; captions do not claim that all photos are from the 2026 event.
+
+## Immersive motion — October 23, 2026 (Philippine Time)
+
+| Check | Result |
+| --- | --- |
+| Motion-enabled layouts at 320, 375, 500, 768, 1024, 1440px | No document horizontal overflow or horizontal text clipping in the checked headings, paragraphs, certification rows, and project actions. |
+| 320 × 568 phone header/menu | Both motion and menu controls fit; all navigation links fit within the menu viewport. |
+| Scroll feedback | Reading progress updates, the current section is identified in navigation, and visible project cards complete their reveals. |
+| Metric counters | Final visual and accessible values remain 390, 52, 5, and 400+. |
+| Global motion pause | Changes to reduced mode, removes pending hidden content, and stops the hero glow; preference persists after reload. Both controls agree after re-enabling. |
+| Animated menu navigation | Link names remain unchanged; menu closes and focus moves to the destination heading. |
+| Project dialogs | Open and focus Close; Escape completes dismissal and restores focus to the project trigger on desktop and a 320px phone viewport. |
+| Paused résumé dialog | Opens the original PDF link; closes immediately. |
+| Contact validation | Blank submission focuses name; name, email, and message remain required. No email was sent. |
+| Filter updates | Data = 3, Web & QA = 4, Automation = 3 after repeated filtering; removed cards are detached from the reveal observer. |
+| Build/content | Four Node checks pass; résumé/project data preserved. |
+
+### Corrections made during QA
+
+- A decorative CSS menu arrow entered the accessible link name. It now uses an `aria-hidden` element.
+- Added a bounded exit fallback so a delayed/cancelled animation cannot leave a dialog awaiting its finish event.
+- Menu navigation now restores focus to its destination heading instead of the menu trigger.
+- Clamped photo translation to the image height and retained image overscan to avoid exposed edges.
+
+### Limits
+
+The managed browser did not expose direct pointer-hover or OS reduced-motion emulation. Tilt/glare gating and OS-preference handling were reviewed in source; actual pause/re-enable behavior was exercised. No frame-rate, battery, CPU, physical-device, or cross-browser performance claims are made.

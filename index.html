@@ -272,9 +272,69 @@
       .cert-item { grid-template-columns:1fr; gap:.25rem; }
       .cert-item time { text-align:left; }
     }
+
+    /* Motion uses transforms and opacity; the document remains in normal flow. */
+    .reading-progress{position:fixed;inset:0 0 auto;height:3px;z-index:150;pointer-events:none;background:#a8caff;transform:scaleX(var(--reading-progress,0));transform-origin:left}
+    .motion-toggle{font-size:1rem;line-height:1;letter-spacing:-.12em}
+    .motion-toggle[aria-pressed=true]{background:#ffffff35}
+    .hero:before{content:"";position:absolute;inset:-15%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 75% 20%,#75b6ff55,transparent 48%),radial-gradient(ellipse at 15% 80%,#2d72d044,transparent 55%);opacity:.6}
+    html[data-motion=full] .hero:before{animation:ambient-drift 14s ease-in-out infinite alternate}
+    html[data-motion=full] .hero-reveal .site-header{animation:soft-rise .9s .1s var(--ease) both}
+    html[data-motion=full] .hero-reveal .hero-topline{animation:soft-rise .9s .2s var(--ease) both}
+    html[data-motion=full] .hero-reveal .hero-copy{animation:soft-rise 1s .32s var(--ease) both}
+    html[data-motion=full] .hero-reveal .featured-area{animation:soft-rise 1s .48s var(--ease) both}
+    .motion-reveal{opacity:1;transform:none}
+    html[data-motion=full] .motion-reveal.is-pending{opacity:0;transform:translateY(1.8rem)}
+    html[data-motion=full] .motion-reveal.is-visible{opacity:1;transform:none;transition:opacity .75s var(--reveal-delay,0ms) var(--ease),transform .75s var(--reveal-delay,0ms) var(--ease)}
+    .project-visual{transition:transform .6s var(--ease),box-shadow .6s var(--ease);transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));isolation:isolate}
+    .project-visual:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at var(--pointer-x,50%) var(--pointer-y,50%),#ffffff50,transparent 65%);opacity:0;transition:opacity .4s}
+    .project-visual>img{transition:transform .8s var(--ease)}
+    .project h3 button{transition:color .25s}
+    .project:focus-within h3 button{color:var(--brand)}
+    .project:focus-within .visual-arrow{transform:rotate(-40deg)}
+    .project-visual:focus-within{box-shadow:0 1rem 2.5rem #0f2f6316}
+    .filter,.pill,.icon-button{transition:background-color .25s,color .25s,border-color .25s,transform .35s var(--ease)}
+    .pill:active,.icon-button:active{transform:scale(.97)}
+    .text-link .arrow{transition:transform .35s var(--ease)}
+    .text-link:focus-visible .arrow{transform:translateX(.25rem)}
+    .desktop-nav a{position:relative}
+    .desktop-nav a:after{content:"";position:absolute;bottom:.3rem;left:0;right:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+    .desktop-nav a:hover:after,.desktop-nav a:focus-visible:after,.desktop-nav a[aria-current=location]:after{transform:scaleX(1)}
+    .timeline-item .number{transition:color .3s,transform .4s var(--ease)}
+    .timeline-item:focus-within .number{color:var(--brand);transform:translateX(-.25rem)}
+    .timeline-item summary span{transition:transform .3s var(--ease)}
+    .timeline-item details[open] summary span{transform:rotate(45deg)}
+    html[data-motion=full] .timeline-item details[open] ul{animation:soft-rise .45s var(--ease) both}
+    .about-photo img,.photo-pair img{transform:translateY(var(--photo-shift,0px)) scale(1.08)}
+    html[data-motion=full] .menu-dialog[open] .menu-content a{animation:menu-link-in .65s var(--ease) both;animation-delay:calc(var(--menu-index,0) * 65ms + 80ms)}
+    .menu-content a{display:flex;gap:1rem;align-items:center;transition:color .25s,transform .4s var(--ease)}
+    .menu-content .menu-arrow{font-size:.45em;opacity:0;transform:translateX(-.5rem);transition:opacity .3s,transform .4s var(--ease)}
+    .menu-content a:hover .menu-arrow,.menu-content a:focus-visible .menu-arrow{opacity:1;transform:none}
+    html[data-motion=full] dialog[open] .dialog-body{animation:soft-rise .45s .08s var(--ease) both}
+    dialog.is-closing{pointer-events:none}
+    .stat-value{font-variant-numeric:tabular-nums}
+    @media(hover:hover) and (pointer:fine){
+      html[data-motion=full] .project-visual:hover{box-shadow:0 1.4rem 2.5rem #0f2f6320}
+      html[data-motion=full] .project-visual:hover:after{opacity:.6}
+      .project h3 button:hover{color:var(--brand)}
+      .timeline-item:hover .number{color:var(--brand);transform:translateX(-.25rem)}
+      html[data-motion=full] .pill:hover{transform:translateY(-2px)}
+    }
+    @media(max-width:700px){.site-header{gap:.75rem}.header-actions{gap:.5rem}.header-actions .icon-button{width:2.75rem;height:2.75rem}.motion-toggle{font-size:.875rem}.menu-content .menu-arrow{display:none}}
+    html[data-motion=reduced]{scroll-behavior:auto}
+    html[data-motion=reduced] *,html[data-motion=reduced] *:before,html[data-motion=reduced] *:after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    html[data-motion=reduced] .motion-reveal,html[data-motion=reduced] .reveal{opacity:1!important;transform:none!important}
+    html[data-motion=reduced] .hero-photo,html[data-motion=reduced] .about-photo img,html[data-motion=reduced] .photo-pair img,html[data-motion=reduced] .project-visual{transform:none!important}
+    html[data-motion=reduced] .project-visual:after{display:none}
+    @media(prefers-reduced-motion:reduce){.motion-reveal,.motion-reveal.is-pending{opacity:1!important;transform:none!important}.hero:before{animation:none!important}.about-photo img,.photo-pair img,.project-visual{transform:none!important}}
+    @media print{.reading-progress,[data-motion-toggle]{display:none!important}.motion-reveal{opacity:1!important;transform:none!important}}
+    @keyframes soft-rise{from{opacity:0;transform:translateY(1.2rem)}to{opacity:1;transform:none}}
+    @keyframes menu-link-in{from{opacity:0;transform:translateX(2rem)}to{opacity:1;transform:none}}
+    @keyframes ambient-drift{from{transform:translate3d(-3%,0,0) scale(1);opacity:.45}to{transform:translate3d(4%,-3%,0) scale(1.08);opacity:.8}}
   </style>
 </head>
 <body>
+<div class="reading-progress" aria-hidden="true"></div>
 <a class="skip" href="#main-content">Skip to content</a>
 <svg aria-hidden="true" style="display:none"><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol><symbol id="cross" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol></svg>
 <div class="intro" id="intro" aria-hidden="true" hidden><div class="brand"><span class="brand-mark">CN</span>CATHERINE NOTADO</div><div class="intro-track"><div class="intro-progress"></div></div></div>
@@ -284,7 +344,7 @@
     <header class="site-header wrap" style="width:100%">
       <a class="brand" href="#home" aria-label="Catherine Notado home"><span class="brand-mark" aria-hidden="true">CN</span>CATH NOTADO</a>
       <nav class="desktop-nav" aria-label="Main navigation"><a href="#about">About</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#community">Community</a></nav>
-      <div class="header-actions"><button class="header-contact" style="background:none;border:0;color:inherit;padding:.5rem" data-contact>Let’s talk ↗</button><button class="icon-button menu-button" aria-label="Open navigation menu" aria-haspopup="dialog" data-menu><span class="burger" aria-hidden="true"></span></button></div>
+      <div class="header-actions"><button class="header-contact" style="background:none;border:0;color:inherit;padding:.5rem" data-contact>Let’s talk ↗</button><button class="icon-button menu-button motion-toggle" data-motion-toggle aria-label="Pause site animations" aria-pressed="false" title="Pause site animations"><span aria-hidden="true">Ⅱ</span></button><button class="icon-button menu-button" aria-label="Open navigation menu" aria-haspopup="dialog" data-menu><span class="burger" aria-hidden="true"></span></button></div>
     </header>
     <div class="hero-body wrap" style="width:100%">
       <div class="hero-topline"><span>Development · Data · Community</span><span class="location"><span class="status-dot" aria-hidden="true"></span>Quezon City, Philippines</span></div>
@@ -319,7 +379,7 @@
   </div></section>
   <section id="community" class="section wrap" aria-labelledby="community-heading"><div class="community"><div class="community-copy reveal"><span class="eyebrow">05 / Community in practice</span><h2 id="community-heading" class="large-heading">Showing up.<br>Making room.</h2><p>Some of the most useful work happens away from a screen: coordinating speakers, keeping an event moving, helping an attendee, or making someone feel welcome.</p><a class="text-link" style="margin-top:1.5rem" href="https://www.linkedin.com/in/catherine-notado-679a29246/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a></div><div class="photo-pair"><figure><img src="/projects/scd-south-community.webp" width="1440" height="785" alt="Student volunteers at an AWS Student Community Day South event" loading="lazy"><figcaption>Student Community Day South</figcaption></figure><figure><img src="/projects/scd-builders.webp" width="880" height="660" alt="AWS student builders posing together at a community event" loading="lazy"><figcaption>Building connections<br>in the community.</figcaption></figure></div></div><div class="volunteer-list" id="volunteer-list"></div></section>
   <section id="background" class="section background" aria-labelledby="background-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">06 / Always a student</span><h2 id="background-heading">The foundation.<br>The next question.</h2></div><p>Formal study, hands-on competitions, and continuous learning support the work I do.</p></div><div class="background-grid"><div class="education"><span class="eyebrow">Education</span><h3>Rizal Technological<br>University</h3><p>BS Information Technology<br>2023–Present · Academic Achiever</p><p class="academic-score">1.46 <small>Cumulative<br>GWA</small></p><p>Scholarships: Quezon City Youth Development Organization; Data Engineering Pilipinas DataCamp; AWS AI & ML.</p><p>Coursework: Software Development, Object Oriented Programming, Integrative Programming and Technologies, Web Systems, Database Management, Operating Systems, and Networking.</p></div><div><span class="eyebrow">Certifications & training</span><div class="cert-list" id="certifications"></div></div></div><div class="skills-section"><span class="eyebrow">Technical skills</span><div class="skills" id="skills"></div></div><div class="awards"><span class="eyebrow">Competitions & participation</span><div class="awards-grid" id="awards"></div></div></div></section>
-  <footer id="contact" class="footer"><div class="wrap"><div class="footer-top"><div><span class="eyebrow light">07 / Let’s make something useful</span><h2>Got a good<br>challenge?</h2></div><button class="pill light" data-contact>Let’s talk <svg class="arrow"><use href="#arrow"/></svg></button></div><div class="footer-bottom"><div><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">CN</span>CATHERINE NOTADO</a><p>Development, data, and community.<br>Built with curiosity. Based in Quezon City.</p></div><nav aria-label="Footer navigation"><h3>Explore</h3><a href="#about">About me</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#background">Education & skills</a><button style="border:0;background:none;padding:0;color:inherit;font-size:inherit" data-resume>Full résumé ↗</button></nav><nav aria-label="Contact links"><h3>Say hello</h3><a class="footer-email" href="mailto:notadocath@gmail.com">notadocath@gmail.com ↗</a><a href="https://www.linkedin.com/in/catherine-notado-679a29246/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/athycc" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="tel:+639203066498">+63 920 306 6498</a><address>Quezon City, Philippines</address></nav></div><div class="footer-base"><span>© 2026 Catherine Notado. All rights reserved.</span><span>Personal portfolio · Development & QA roles are identified per project.</span><a href="#home">Back to top ↑</a></div></div></footer>
+  <footer id="contact" class="footer"><div class="wrap"><div class="footer-top"><div><span class="eyebrow light">07 / Let’s make something useful</span><h2>Got a good<br>challenge?</h2></div><button class="pill light" data-contact>Let’s talk <svg class="arrow"><use href="#arrow"/></svg></button></div><div class="footer-bottom"><div><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">CN</span>CATHERINE NOTADO</a><p>Development, data, and community.<br>Built with curiosity. Based in Quezon City.</p></div><nav aria-label="Footer navigation"><h3>Explore</h3><a href="#about">About me</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#background">Education & skills</a><button style="border:0;background:none;padding:0;color:inherit;font-size:inherit" data-resume>Full résumé ↗</button></nav><nav aria-label="Contact links"><h3>Say hello</h3><a class="footer-email" href="mailto:notadocath@gmail.com">notadocath@gmail.com ↗</a><a href="https://www.linkedin.com/in/catherine-notado-679a29246/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/athycc" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="tel:+639203066498">+63 920 306 6498</a><address>Quezon City, Philippines</address></nav></div><div class="footer-base"><span>© 2026 Catherine Notado. All rights reserved.</span><span>Personal portfolio · Development & QA roles are identified per project.</span><button data-motion-toggle aria-pressed="false">Pause animations</button><a href="#home">Back to top ↑</a></div></div></footer>
 </main>
 <dialog id="menu-dialog" class="menu-dialog" aria-label="Site navigation"><div class="dialog-top"><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">CN</span>CATH NOTADO</a><button class="icon-button" data-close aria-label="Close navigation menu"><svg class="arrow"><use href="#cross"/></svg></button></div><nav class="menu-content" aria-label="Expanded navigation"><a href="#about">About me</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#community">Community</a><a href="#contact">Let’s talk</a></nav><div class="menu-bottom"><span>Quezon City, Philippines</span><a href="mailto:notadocath@gmail.com">notadocath@gmail.com ↗</a></div></dialog>
 <dialog id="project-dialog" aria-labelledby="project-dialog-title"><div class="dialog-top"><p>Project notes / My role & approach</p><button class="icon-button" data-close aria-label="Close project details"><svg class="arrow"><use href="#cross"/></svg></button></div><div class="dialog-body" id="project-dialog-body"></div></dialog>
@@ -845,6 +905,12 @@
   const tagHTML = tags => tags.map(t => `<span class="tag">${esc(t)}</span>`).join('');
   let lenis, lastFocus, expanded = false, filter = 'all', feature = 0, carouselPaused = false, carouselTimer;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let motionPaused=false;
+  try{motionPaused=localStorage.getItem('cath-motion-paused')==='true';}catch{}
+  const motionEnabled=()=>!reduced.matches&&!motionPaused;
+  const seenReveals=new WeakSet(),countedStats=new WeakSet(),closingDialogs=new Map(),counterFrames=new Map();
+  let revealObserver,scrollFrame,tiltFrame,lenisFrame;
+  document.documentElement.dataset.motion=motionEnabled()?'full':'reduced';
   const projects = $('#projects');
   const projectById = id => data.projects.find(p => p.id === id);
   function artwork(p) {
@@ -863,12 +929,14 @@
     return `<div class="project-art art-${esc(p.art)}" aria-hidden="true">${illustrations[p.art] || ''}<span class="art-caption">Project illustration</span></div>`;
   }
   function renderProjects() {
+    if(revealObserver){projects.querySelectorAll('.motion-reveal').forEach(el=>revealObserver.unobserve(el));resetTilt();}
     const matching = data.projects.filter(p => filter === 'all' || p.category === filter);
     const visible = expanded || filter !== 'all' ? matching : matching.slice(0,6);
     projects.innerHTML = visible.map(p => `<article class="project" data-id="${p.id}"><div class="project-visual">${artwork(p)}${p.image ? '' : `<span class="visual-note">${esc(p.status)}</span>`}<button class="project-open" data-project="${p.id}" aria-label="Open ${esc(p.title)} project details"><span class="visual-arrow">${arrow}</span></button></div><div class="project-meta"><span>${esc(p.label)}</span><span>${esc(p.year)}</span></div><h3><button data-project="${p.id}">${esc(p.title)}</button></h3><p class="project-description">${esc(p.summary)}</p><div class="tags">${tagHTML(p.tech)}</div><div class="project-bottom"><button class="text-link" data-project="${p.id}" style="border-inline:0;border-top:0;background:none">Project notes ${arrow}</button>${p.url ? `<a class="project-url" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.url.replace('https://',''))} ↗</a>` : '<span class="project-url">'+esc(p.status)+'</span>'}</div></article>`).join('');
     $('#project-count').textContent = `${visible.length} of ${matching.length} projects`;
     $('#show-more').hidden = filter !== 'all';
     $('#show-more').textContent = expanded ? 'Show selected projects −' : `Show all ${data.projects.length} projects +`;
+    queueMicrotask(()=>{setupReveals(projects);updateScrollEffects();});
   }
   $('#timeline').innerHTML = data.experience.map((e,i) => `<article class="timeline-item"><div class="period">${esc(e.period)}</div><div><h3 class="role">${esc(e.role)}</h3><div class="org">${esc(e.org)}</div><p>${esc(e.summary)}</p><details><summary>Responsibilities & scope <span aria-hidden="true">＋</span></summary><ul>${e.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul></details></div><span class="number">0${i+1}</span></article>`).join('');
   $('#volunteer-list').innerHTML = data.volunteering.map(v => `<article class="volunteer-item"><h3>${esc(v[0])}</h3><p>${esc(v[1])}<br>${esc(v[2])}</p></article>`).join('');
@@ -879,20 +947,31 @@
   renderProjects();
   const dialogs = [...document.querySelectorAll('dialog')];
   function openDialog(dialog, trigger) {
-    for (const d of dialogs) if(d.open) d.close();
+    for (const d of dialogs){const closing=closingDialogs.get(d);if(closing){closingDialogs.delete(d);closing.animation.cancel();}if(d.open)d.close();}
     lastFocus = trigger || document.activeElement;
     if(lenis)lenis.stop();
     dialog.showModal();
     const target = dialog.id === 'contact-dialog' ? dialog.querySelector('input') : dialog.querySelector('[data-close]');
     if(target)target.focus({preventScroll:true});
   }
+  function closeDialog(dialog){
+    if(!dialog.open)return Promise.resolve();
+    if(closingDialogs.has(dialog))return closingDialogs.get(dialog).promise;
+    if(!motionEnabled()||!dialog.animate){dialog.close();return Promise.resolve();}
+    dialog.classList.add('is-closing');
+    const animation=dialog.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:dialog.id==='menu-dialog'?'translateY(-1rem)':'translateY(1rem) scale(.98)'}],{duration:220,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+    let timer;const deadline=new Promise(resolve=>{timer=setTimeout(resolve,280);});
+    const promise=Promise.race([animation.finished.catch(()=>{}),deadline]).then(()=>{clearTimeout(timer);if(closingDialogs.get(dialog)?.animation!==animation)return;closingDialogs.delete(dialog);dialog.close();dialog.classList.remove('is-closing');animation.cancel();});
+    closingDialogs.set(dialog,{animation,promise});return promise;
+  }
   for(const dialog of dialogs) {
+    dialog.addEventListener('cancel',event=>{event.preventDefault();closeDialog(dialog);});
     dialog.addEventListener('click', event => {
       if(event.target !== dialog)return;
       const r=dialog.getBoundingClientRect();
-      if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();
+      if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeDialog(dialog);
     });
-    dialog.addEventListener('close',()=>{dialog.querySelectorAll('video').forEach(v=>v.pause());if(!dialogs.some(d=>d.open)){if(lenis)lenis.start();if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});}});
+    dialog.addEventListener('close',()=>{dialog.classList.remove('is-closing');dialog.querySelectorAll('video').forEach(v=>v.pause());if(!dialogs.some(d=>d.open)){if(lenis&&motionEnabled())lenis.start();if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});}});
   }
   function openProject(id, trigger) {
     const p=projectById(id);if(!p)return;
@@ -905,11 +984,16 @@
     if(target.matches('[data-contact]'))openDialog($('#contact-dialog'),target);
     if(target.matches('[data-resume]'))openDialog($('#resume-dialog'),target);
     if(target.matches('[data-menu]'))openDialog($('#menu-dialog'),target);
-    if(target.matches('[data-close]'))target.closest('dialog').close();
+    if(target.matches('[data-close]'))closeDialog(target.closest('dialog'));
+    if(target.matches('[data-motion-toggle]')){motionPaused=!motionPaused;try{localStorage.setItem('cath-motion-paused',String(motionPaused));}catch{}applyMotionPreference();}
     if(target.matches('[data-filter]')){filter=target.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===target)));renderProjects();}
-    if(target.closest('#menu-dialog')&&target.matches('a[href^="#"]')){$('#menu-dialog').close();}
+    if(target.closest('#menu-dialog')&&target.matches('a[href^="#"]')){
+      event.preventDefault();const hash=target.getAttribute('href'),section=document.getElementById(hash.slice(1));
+      const destinationHeading=section?.querySelector('h1,h2');if(destinationHeading){destinationHeading.setAttribute('tabindex','-1');lastFocus=destinationHeading;}
+      closeDialog($('#menu-dialog')).then(()=>{if(!section)return;history.pushState(null,'',hash);section.scrollIntoView({behavior:motionEnabled()?'smooth':'instant'});const heading=section.querySelector('h1,h2');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}});
+    }
   });
-  $('#show-more').addEventListener('click',()=>{expanded=!expanded;renderProjects();if(!expanded)$('#work').scrollIntoView({behavior:reduced.matches?'instant':'smooth'});});
+  $('#show-more').addEventListener('click',()=>{expanded=!expanded;renderProjects();if(!expanded)$('#work').scrollIntoView({behavior:motionEnabled()?'smooth':'instant'});});
   $('#contact-form').addEventListener('submit',event=>{
     event.preventDefault();const f=new FormData(event.currentTarget);
     const subject=encodeURIComponent('Portfolio enquiry from '+f.get('name'));
@@ -919,25 +1003,81 @@
   });
   $('#copy-email').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('notadocath@gmail.com');$('#copy-status').textContent='Email address copied.';}catch{$('#copy-status').textContent='Copy this email address: notadocath@gmail.com';}});
   const features=[['south','S↗','Featured · Web development','AWS SCD South<br>Built. Animated. Tested.'],['sync','S.','Featured · Quality assurance','SYNC Event Platform<br>400+ users. A clearer flow.'],['backlog','170','Featured · Data analytics','Product Backlog Dashboard<br>170 items. One clear view.']];
-  function updateFeature(i){feature=i;const [id,mark,kicker,title]=features[i];$('#featured-mini').dataset.project=id;$('#mini-art').textContent=mark;$('#mini-kicker').textContent=kicker;$('#mini-title').innerHTML=title;document.querySelectorAll('[data-feature]').forEach(b=>b.setAttribute('aria-current',String(Number(b.dataset.feature)===i)));}
+  function updateFeature(i){if(motionEnabled()){$('#featured-mini').getAnimations().forEach(a=>a.cancel());$('#featured-mini').animate([{opacity:.5,transform:'translateY(7px)'},{opacity:1,transform:'none'}],{duration:400,easing:'cubic-bezier(.16,1,.3,1)'});}feature=i;const [id,mark,kicker,title]=features[i];$('#featured-mini').dataset.project=id;$('#mini-art').textContent=mark;$('#mini-kicker').textContent=kicker;$('#mini-title').innerHTML=title;document.querySelectorAll('[data-feature]').forEach(b=>b.setAttribute('aria-current',String(Number(b.dataset.feature)===i)));}
   function stopCarousel(){clearInterval(carouselTimer);carouselTimer=undefined;}
-  function startCarousel(){stopCarousel();if(!reduced.matches&&!carouselPaused&&!document.hidden){carouselTimer=setInterval(()=>{if(!dialogs.some(d=>d.open)&&!$('.featured-area').matches(':focus-within')&&!$('.featured-area').matches(':hover'))updateFeature((feature+1)%features.length);},3800);}}
+  function startCarousel(){stopCarousel();if(motionEnabled()&&!carouselPaused&&!document.hidden){carouselTimer=setInterval(()=>{if(!dialogs.some(d=>d.open)&&!$('.featured-area').matches(':focus-within')&&!$('.featured-area').matches(':hover'))updateFeature((feature+1)%features.length);},3800);}}
   document.querySelectorAll('[data-feature]').forEach(b=>b.addEventListener('click',()=>{updateFeature(Number(b.dataset.feature));startCarousel();}));
   const pause=$('#carousel-pause');pause.hidden=reduced.matches;pause.addEventListener('click',()=>{carouselPaused=!carouselPaused;pause.textContent=carouselPaused?'▷':'Ⅱ';pause.setAttribute('aria-label',carouselPaused?'Resume featured projects':'Pause featured projects');startCarousel();});
-  document.addEventListener('visibilitychange',()=>document.hidden?stopCarousel():startCarousel());
-  reduced.addEventListener('change',()=>{pause.hidden=reduced.matches;startCarousel();});
-  if('IntersectionObserver' in window&&!reduced.matches){const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.classList.remove('is-pending');e.target.classList.add('is-visible');observer.unobserve(e.target);}},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('is-pending');observer.observe(el);}});}
   const intro=$('#intro');let ready=false;
-  function reveal(){if(ready)return;ready=true;document.body.classList.add('hero-reveal');intro.classList.remove('is-active');intro.classList.add('is-exiting');if(lenis)lenis.start();setTimeout(()=>{intro.hidden=true;},reduced.matches?0:850);startCarousel();}
-  // A bounded introduction never gates the actual content or native scrolling.
-  if(location.hash && location.hash !== '#home'){reveal();}else{intro.hidden=false;intro.classList.add('is-active');setTimeout(reveal,reduced.matches?200:1400);setTimeout(reveal,2600);}
-  document.addEventListener('keydown',event=>{if(event.key==='Tab')reveal();});
+  function reveal(){if(ready)return;ready=true;document.body.classList.add('hero-reveal');intro.classList.remove('is-active');intro.classList.add('is-exiting');setTimeout(()=>{intro.hidden=true;},motionEnabled()?850:0);startCarousel();}
+
+  function finishCounter(dd){const frame=counterFrames.get(dd);if(frame)cancelAnimationFrame(frame);counterFrames.delete(dd);const number=dd.querySelector('.stat-value');if(number)number.textContent=dd.dataset.finalValue;}
+  function animateStat(stat){
+    const dd=stat.querySelector('dd');if(!dd||countedStats.has(dd))return;countedStats.add(dd);
+    const finalValue=dd.textContent.trim(),total=Number(finalValue.replace(/[^0-9.]/g,''));
+    if(!motionEnabled()||!Number.isFinite(total))return;
+    dd.dataset.finalValue=finalValue;dd.innerHTML='<span class="sr-only">'+esc(finalValue)+'</span><span class="stat-value" aria-hidden="true">0'+(finalValue.endsWith('+')?'+':'')+'</span>';
+    const number=dd.querySelector('.stat-value'),start=performance.now();
+    function tick(time){if(!motionEnabled()){finishCounter(dd);return;}const progress=Math.min((time-start)/1100,1);number.textContent=Math.round(total*(1-Math.pow(1-progress,3))).toLocaleString()+(finalValue.endsWith('+')?'+':'');if(progress<1)counterFrames.set(dd,requestAnimationFrame(tick));else finishCounter(dd);}
+    counterFrames.set(dd,requestAnimationFrame(tick));
+  }
+  function showReveal(el){el.classList.remove('is-pending');el.classList.add('is-visible');seenReveals.add(el);if(el.matches('.stat'))animateStat(el);revealObserver?.unobserve(el);}
+  function setupReveals(root=document){
+    if(!revealObserver&&'IntersectionObserver' in window)revealObserver=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)showReveal(entry.target);},{threshold:.06});
+    const targets=root.querySelectorAll('.reveal,.project,.timeline-item,.volunteer-item,.award,.skill-group,.cert-item,.about-photo,.photo-pair figure,.footer-top');
+    targets.forEach((el,index)=>{
+      el.classList.add('motion-reveal');el.style.setProperty('--reveal-delay',`${(index%2)*75}ms`);
+      if(!motionEnabled()||!revealObserver){showReveal(el);return;}if(seenReveals.has(el))return;
+      const rect=el.getBoundingClientRect();if(rect.bottom<=0){showReveal(el);return;}
+      el.classList.add('is-pending');revealObserver.observe(el);
+    });
+  }
+  // A focused item is always visible, even before its entrance animation runs.
+  document.addEventListener('focusin',event=>{let el=event.target.closest('.motion-reveal');while(el){showReveal(el);el=el.parentElement?.closest('.motion-reveal');}});
+  document.querySelectorAll('.menu-content a').forEach((el,i)=>{el.style.setProperty('--menu-index',i);el.insertAdjacentHTML('afterbegin','<span class="menu-arrow" aria-hidden="true">↗</span>');});
+  const navLinks=[...document.querySelectorAll('nav a[href^="#"]')],sections=[...document.querySelectorAll('main>section,main>footer')];
+  const depthImages=[...document.querySelectorAll('.about-photo img,.photo-pair img')];
+  function updateScrollEffects(){
+    scrollFrame=null;const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    document.documentElement.style.setProperty('--reading-progress',String(Math.min(1,Math.max(0,scrollY/maxScroll))));
+    let current=sections[0].id;for(const section of sections)if(section.getBoundingClientRect().top<=innerHeight*.4)current=section.id;
+    for(const link of navLinks){if(link.hash==='#'+current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}
+    if(!motionEnabled())return;
+    const hero=$('.hero'),photo=$('.hero-photo');if(hero.getBoundingClientRect().bottom>0)photo.style.transform=`translateY(${Math.min(scrollY*.1,hero.offsetHeight*.1)}px)`;
+    for(const img of depthImages){const rect=img.parentElement.getBoundingClientRect();if(rect.bottom>0&&rect.top<innerHeight){const limit=Math.min(10,rect.height*.03),shift=Math.max(-limit,Math.min(limit,(innerHeight/2-(rect.top+rect.height/2))*.025));img.style.setProperty('--photo-shift',shift+'px');}}
+  }
+  function scheduleScrollEffects(){if(scrollFrame==null)scrollFrame=requestAnimationFrame(updateScrollEffects);}
+  window.addEventListener('scroll',scheduleScrollEffects,{passive:true});window.addEventListener('resize',scheduleScrollEffects,{passive:true});
+  const pointerFine=matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)');
+  let tiltedVisual;
+  function resetTilt(){if(tiltFrame)cancelAnimationFrame(tiltFrame);tiltFrame=null;if(tiltedVisual){for(const key of ['--tilt-x','--tilt-y','--pointer-x','--pointer-y'])tiltedVisual.style.removeProperty(key);tiltedVisual=null;}}
+  projects.addEventListener('pointermove',event=>{
+    if(!motionEnabled()||!pointerFine.matches||event.pointerType!=='mouse')return;
+    const visual=event.target.closest('.project-visual');if(!visual){resetTilt();return;}
+    if(tiltedVisual!==visual){resetTilt();tiltedVisual=visual;}if(tiltFrame)cancelAnimationFrame(tiltFrame);
+    const x=event.clientX,y=event.clientY;
+    tiltFrame=requestAnimationFrame(()=>{tiltFrame=null;if(!visual.isConnected||!motionEnabled())return;const rect=visual.getBoundingClientRect(),px=Math.max(0,Math.min(1,(x-rect.left)/rect.width)),py=Math.max(0,Math.min(1,(y-rect.top)/rect.height));visual.style.setProperty('--tilt-x',(0.5-py)*5+'deg');visual.style.setProperty('--tilt-y',(px-0.5)*5+'deg');visual.style.setProperty('--pointer-x',px*100+'%');visual.style.setProperty('--pointer-y',py*100+'%');});
+  },{passive:true});
+  projects.addEventListener('pointerleave',resetTilt);pointerFine.addEventListener('change',resetTilt);
   let lenisAttempted=false;
-  function enableSmoothScroll(){if(lenisAttempted||reduced.matches)return;lenisAttempted=true;import('lenis').then(({default:Lenis})=>{if(reduced.matches)return;lenis=new Lenis({smoothWheel:true,prevent:node=>node.closest('dialog')});let last=0;function frame(time){if(time-last>15){lenis.raf(time);last=time;}requestAnimationFrame(frame);}requestAnimationFrame(frame);}).catch(()=>{});}
-  // Optional enhancement: navigation and content work when the CDN is unavailable.
-  window.addEventListener('pointerdown',enableSmoothScroll,{once:true,passive:true});
-  let ticking=false;
-  window.addEventListener('scroll',()=>{if(ticking||reduced.matches)return;ticking=true;requestAnimationFrame(()=>{const hero=$('.hero'),photo=$('.hero-photo');if(scrollY<hero.offsetHeight)photo.style.transform=`translateY(${Math.min(scrollY*.12,hero.offsetHeight*.12)}px)`;ticking=false;});},{passive:true});
+  function startLenisFrame(){if(!lenis||lenisFrame!=null||!motionEnabled()||document.hidden)return;function frame(time){lenisFrame=null;if(!lenis||!motionEnabled()||document.hidden)return;lenis.raf(time);lenisFrame=requestAnimationFrame(frame);}lenisFrame=requestAnimationFrame(frame);}
+  function enableSmoothScroll(){if(lenisAttempted||!motionEnabled())return;lenisAttempted=true;import('lenis').then(({default:Lenis})=>{if(!motionEnabled())return;lenis=new Lenis({smoothWheel:true,prevent:node=>node.closest('dialog')});if(dialogs.some(d=>d.open))lenis.stop();startLenisFrame();}).catch(()=>{});}
+  function applyMotionPreference(){
+    const enabled=motionEnabled();document.documentElement.dataset.motion=enabled?'full':'reduced';
+    document.querySelectorAll('[data-motion-toggle]').forEach(button=>{button.setAttribute('aria-pressed',String(!enabled));button.disabled=reduced.matches;const label=reduced.matches?'System reduced motion':enabled?'Pause site animations':'Enable site animations';button.setAttribute('aria-label',label);button.title=label;if(button.classList.contains('motion-toggle'))button.querySelector('span').textContent=enabled?'Ⅱ':'▷';else button.textContent=enabled?'Pause animations':reduced.matches?'Reduced motion':'Enable animations';});
+    pause.hidden=!enabled;
+    if(!enabled){reveal();document.getAnimations().forEach(a=>a.cancel());for(const [dialog,entry] of closingDialogs){closingDialogs.delete(dialog);entry.animation.cancel();dialog.classList.remove('is-closing');dialog.close();}for(const dd of counterFrames.keys())finishCounter(dd);document.querySelectorAll('.is-pending').forEach(el=>el.classList.remove('is-pending'));$('.hero-photo').style.removeProperty('transform');depthImages.forEach(img=>img.style.removeProperty('--photo-shift'));resetTilt();if(lenisFrame!=null){cancelAnimationFrame(lenisFrame);lenisFrame=null;}if(lenis){lenis.destroy();lenis=null;}lenisAttempted=false;}
+    setupReveals();startCarousel();if(enabled)startLenisFrame();scheduleScrollEffects();
+  }
+  reduced.addEventListener('change',applyMotionPreference);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){stopCarousel();resetTilt();if(lenisFrame!=null){cancelAnimationFrame(lenisFrame);lenisFrame=null;}for(const dd of counterFrames.keys())finishCounter(dd);}else{startCarousel();startLenisFrame();scheduleScrollEffects();}});
+  applyMotionPreference();
+  // The introduction is skipped for direct section links and paused motion.
+  if(!motionEnabled()||(location.hash&&location.hash!=='#home'))reveal();else{intro.hidden=false;intro.classList.add('is-active');setTimeout(reveal,1000);setTimeout(reveal,2000);}
+  document.addEventListener('keydown',event=>{if(event.key==='Tab')reveal();});
+  window.addEventListener('pointerdown',enableSmoothScroll,{passive:true});
+  window.addEventListener('load',scheduleScrollEffects,{once:true});
+
 })();
 </script>
 </body>
