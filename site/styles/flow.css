@@ -13,7 +13,9 @@
   overflow: hidden;
   pointer-events: none;
   contain: strict;
-  opacity: .18;
+  opacity: .55;
+  background: radial-gradient(ellipse at 5% 15%, #c3dcf7, transparent 65%),
+    radial-gradient(ellipse at 95% 85%, #cfe7fb, transparent 65%);
 }
 
 .flow-current  {
@@ -42,7 +44,7 @@ html[data-motion=full] .flow-active .flow-ribbon  {
   overflow: hidden;
 }
 
-.hero .flow-field, .leadership .flow-field  {
+.hero .flow-field, .leadership .flow-field, .footer .flow-field  {
   opacity: .85;
   background: radial-gradient(ellipse at 80% 20%, #16427488, transparent 65%);
 }
@@ -134,4 +136,20 @@ html[data-motion=full] .flow-active .flow-ribbon  {
     display: none;
   }
 
+}
+
+/* Full-bleed surfaces keep the moving field at both viewport edges. */
+@media screen {
+  main { padding: 0; }
+  .hero, .work, .leadership, .footer { border-radius: 0; }
+  .footer { margin-top: 0; }
+  .section.wrap {
+    max-width: none;
+    padding-inline: max(clamp(1.5rem, 4vw, 3.5rem), calc((100% - var(--content-width)) / 2 + clamp(1.5rem, 4vw, 3.5rem)));
+  }
+  .hero { min-height: 100svh; }
+  @media (max-width: 700px) {
+    .section.wrap { padding-inline: 1.25rem; }
+    .hero { min-height: 0; }
+  }
 }

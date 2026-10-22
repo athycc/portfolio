@@ -190,17 +190,6 @@
               </button>
             </div>
             <div class="gallery-controls">
-              <div class="gallery-options" role="group" aria-label="Choose an About photo">
-                <button data-photo="0" aria-pressed="true">
-                  Portrait
-                </button>
-                <button data-photo="1" aria-pressed="false">
-                  Building
-                </button>
-                <button data-photo="2" aria-pressed="false">
-                  Speaking
-                </button>
-              </div>
               <button class="slideshow-toggle" aria-label="Pause photo slideshow" aria-pressed="false">
                 Pause
               </button>
@@ -293,15 +282,16 @@
             <span class="project-count" id="project-count" role="status" aria-live="polite">
             </span>
           </div>
-          <div class="projects" id="projects">
+          <div class="project-gallery-toolbar">
+            <p id="project-gallery-help">Drag or swipe to explore · Select a project for details</p>
+            <div class="project-gallery-arrows" role="group" aria-label="Project gallery controls">
+              <button class="icon-button" id="project-prev" aria-label="Previous project" aria-controls="projects">←</button>
+              <button class="icon-button" id="project-next" aria-label="Next project" aria-controls="projects">→</button>
+            </div>
+          </div>
+          <div class="projects" id="projects" role="region" aria-roledescription="carousel" aria-label="Project gallery" aria-describedby="project-gallery-help" tabindex="0">
           </div>
           <div class="project-more">
-            <button class="pill outline" id="show-more">
-              Show all projects
-              <span aria-hidden="true">
-                ＋
-              </span>
-            </button>
             <a class="text-link" href="https://drive.google.com/drive/folders/1D6iUPmZkfe3pzId__xhcHJELkk_qn1Cu?usp=drive_link" target="_blank" rel="noopener noreferrer">
               Project archive ↗
             </a>

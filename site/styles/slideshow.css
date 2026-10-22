@@ -59,13 +59,7 @@
   margin-top: 1rem;
 }
 
-.gallery-options  {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .15rem;
-}
-
-.gallery-options button, .slideshow-toggle  {
+.slideshow-toggle  {
   min-height: 44px;
   padding: .5rem .65rem;
   border: 0;
@@ -73,11 +67,6 @@
   background: transparent;
   color: var(--muted);
   font-size: .75rem;
-}
-
-.gallery-options button[aria-pressed=true]  {
-  background: var(--navy);
-  color: white;
 }
 
 .slideshow-toggle  {
