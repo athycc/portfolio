@@ -138,3 +138,40 @@ Browser verification used Chromium with CSS viewport harnesses, not physical dev
 ### Scope limits
 
 This run verifies Chromium behavior and CSS viewport layouts, not the user's physical phone or laptop. No before/after FPS, CPU, load-time, or percentage speed improvement is claimed. The changes remove identified ongoing work and scrolling inertia; actual smoothness still depends on the visitor's device/browser. OS reduced motion is reviewed in source; the actual site pause control was exercised. Drive sharing was preserved; folder visibility remains governed by the original Drive permissions.
+
+## Ponytail refactor, pixel slideshow, and full-site flow — October 23, 2026
+
+### Scope and changes
+
+- Split HTML, project data, component styles and browser behavior into maintained `site/` modules. Removed 67 unused legacy source/build/configuration files and relocated four retained dashboard assets. Removed the old package dependencies and lockfile entries.
+- Removed obsolete scroll-photo logic, artwork generators, startup code, dormant progress decoration, and unused tilt/parallax styles. Repeated filtering detaches prior cards from the reveal observer.
+- Replaced the scroll-driven deck with a timed slideshow and a short, low-resolution canvas wipe followed by the clear original photo. Direct selection pauses autoplay; Play resumes it. Rapid selection cancels previous transitions. The full-resolution portrait and 1080px archive robotics photo replace smaller display sources; the speaking photo retains original source detail.
+- Added the reusable light field to all seven main sections and the footer. CSS view timelines move the field as each section scrolls; ambient animation pauses offscreen. No JavaScript scroll listener or persistent rendering loop remains.
+- Added source/deployment hardening described in SECURITY.md. The local preview uses the production resource policy with a documented same-origin framing exception for its viewport harness.
+
+### Verification
+
+| Check | Result |
+| --- | --- |
+| Pixel wipe | Manual Building selection exposed the transition canvas at 20 columns; it then disappeared and the clear 1080px photo became active. |
+| Autoplay | Observed first-photo state followed by timed advancement to Building. Explicit Play resumed advancement while its control remained focused. |
+| Direct selection / scrolling | Manual choice set Play and exposed one active image; subsequent scrolling kept the selected photo. |
+| Rapid selection | Building → Speaking → Portrait settled on 01 / 03, with one active image and no pending canvas transition. |
+| Site pause | Reduced mode disabled autoplay; manual Speaking selection completed without the pixel transition. Re-enabled afterward. |
+| Whole-site flow | Eight flow fields present. About's transform changed between native scroll positions, verifying the section-linked effect beyond the hero. |
+| Project regressions | Expansion = 18 cards / 12 folder actions; category counts remain 8, 3, 3, 4. Robotics dialog retains the correct folder. |
+| Modal keyboard behavior | Project dialog focuses Close; Escape dismisses and restores focus to the originating trigger. |
+| Phone menu | At 320 × 568, header and slideshow controls fit; the menu's scroll height equals its viewport. Selected work dismisses it and focuses work-heading. |
+| Phone project modal | Opens without horizontal overflow and dismisses with Escape. |
+| Responsive widths | Configured 320, 375, 500, 768, 1024, 1440px viewports have no horizontal document overflow. Text/certification/project-footer clipping checks pass at intermediate/wide widths; the 375px photo and controls were visually inspected. Controls are 44px minimum; next control is 48px. |
+| Contact / résumé | Name, email and message all fail a blank submission; focus returns to name. PDF URL and eight résumé summary sections retained. No email was sent. |
+| Runtime | No application errors observed during the checked project/dialog/filter journeys; browser-extension metadata errors excluded. |
+| Build / content | Six Node checks pass, including all native modules, current résumé facts, 18 project records, ten exact folder mappings, local build resources and deployment policy. |
+
+### Correction found during QA
+
+HTML formatting inserted whitespace into the textarea's initial value. The textarea is now truly empty, the browser reports all three fields as invalid on blank submit, and a regression assertion protects that behavior.
+
+### Limits
+
+Verification uses Chromium CSS viewports, not physical devices or a cross-browser matrix. Timed slideshow observations are not frame-rate benchmarks. System reduced-motion behavior is reviewed in source and the actual site pause is exercised. The focused security review is not a full audit or penetration test; provider account, firewall, rate-limit and backup settings remain outside this pass.

@@ -1,12 +1,17 @@
 import { createServer } from 'node:http';
 import { createReadStream } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import { stat, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import './build-static.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../dist');
 const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.mp4':'video/mp4','.txt':'text/plain; charset=utf-8','.xml':'application/xml'};
+const configuration=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));
+const security=Object.fromEntries(configuration.headers[0].headers.map(({key,value})=>[key,value]));
+// Local-only harness needs same-origin framing; production remains DENY.
+security['Content-Security-Policy']=security['Content-Security-Policy'].replace("frame-ancestors 'none'","frame-ancestors 'self'").replace('; upgrade-insecure-requests','');
+security['X-Frame-Options']='SAMEORIGIN';
 const port=Number(process.env.PORT||4173);
 createServer(async(req,res)=>{
   try{
@@ -24,7 +29,7 @@ createServer(async(req,res)=>{
     const target=path.resolve(root,filename);
     if(!target.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}
     const info=await stat(target);if(!info.isFile())throw new Error('Not found');
-    const headers={'content-type':types[path.extname(target)]||'application/octet-stream','cache-control':'no-store','accept-ranges':'bytes'};
+    const headers={'content-type':types[path.extname(target)]||'application/octet-stream',...security,'cache-control':'no-store','accept-ranges':'bytes'};
     if(req.headers.range){
       const match=/^bytes=(\d+)-(\d*)$/.exec(req.headers.range);
       if(!match){res.writeHead(416);res.end();return;}
