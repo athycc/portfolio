@@ -264,23 +264,6 @@
   margin-top:.8rem
 }
 
-.education .academic-score {
-  font-size:3.6rem;
-  letter-spacing:-.07em;
-  line-height:1;
-  color:var(--navy);
-  margin-block:1.8rem 1.1rem
-}
-
-.academic-score small {
-  font-size:.65rem;
-  letter-spacing:0;
-  display:inline-block;
-  margin-left:.5rem;
-  line-height:1.6;
-  color:var(--muted)
-}
-
 .skills {
   display:grid;
   gap:1.4rem;

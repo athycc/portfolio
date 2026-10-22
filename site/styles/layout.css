@@ -761,28 +761,6 @@
     line-height:1.75;
   }
 
-  .about-academic  {
-    display:flex;
-    gap:1rem;
-    align-items:center;
-    border-top:1px solid var(--line);
-    margin-top:1.5rem;
-    padding-top:1.25rem;
-  }
-
-  .about-academic strong  {
-    color:var(--navy);
-    font-size:2.5rem;
-    font-weight:500;
-    letter-spacing:-.06em;
-  }
-
-  .about-academic span  {
-    color:var(--muted);
-    font-size:.8125rem;
-    line-height:1.6;
-  }
-
   .about-copy>.text-link  {
     margin-top:1rem;
   }
@@ -1000,14 +978,6 @@
   .education>p  {
     font-size:.9375rem;
     line-height:1.75;
-  }
-
-  .education .academic-score  {
-    font-size:3.6rem;
-  }
-
-  .academic-score small  {
-    font-size:.8125rem;
   }
 
   .cert-item  {

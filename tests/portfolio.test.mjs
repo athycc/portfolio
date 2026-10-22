@@ -38,8 +38,8 @@ test('résumé corrections and contribution boundaries are retained',async()=>{
   assert.ok(html.includes('1tGHgGV_S_Psj7qlHdQhn-7bWlYJkNifQ'));
   assert.equal(data.experience.find(e=>e.org==='Edukasyon.ph').period,'Hybrid · March–June 2026');
   assert.equal(data.experience.find(e=>e.org==='Eskwelabs').period,'Hybrid · February–May 2026');
-  assert.ok(html.includes('1.46'));
-  assert.ok((await readFile(path.join(root,'site/content.js'),'utf8')).includes('Cumulative GWA: 1.46'));
+  assert.doesNotMatch(html, /1\.46|\bGWA\b/);
+  assert.doesNotMatch(await readFile(path.join(root,'site/content.js'),'utf8'), /1\.46|\bGWA\b/);
   assert.match(data.certifications.find(c=>c[0].includes('Security+'))[0],/training/);
   assert.equal(data.projects.find(p=>p.id==='sync').status,'QA contribution');
   assert.equal(data.projects.find(p=>p.id==='mega').status,'QA contribution');
@@ -49,7 +49,8 @@ test('résumé corrections and contribution boundaries are retained',async()=>{
 test('build produces an actual downloadable résumé and every local image/video target',async()=>{
   execFileSync(process.execPath,['scripts/build-static.mjs'],{cwd:root,stdio:'pipe'});
   const resume=await readFile(path.join(root,'dist/Catherine-Notado-Resume.txt'),'utf8');
-  for(const phrase of ['NOTADO, CATHERINE','1.46','12-image','August 2026','October 7, 2026','June 23, 2025','400+','52 volunteers','5 sponsors','April 2025–March 2026'])assert.ok(resume.includes(phrase),phrase);
+  assert.doesNotMatch(resume, /1\.46|\bGWA\b/);
+  for(const phrase of ['NOTADO, CATHERINE','12-image','August 2026','October 7, 2026','June 23, 2025','400+','52 volunteers','5 sponsors','April 2025–March 2026'])assert.ok(resume.includes(phrase),phrase);
   for(const p of data.projects){
     for(const file of [p.image,p.video].filter(Boolean))assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
     assert.ok(resume.includes(p.title),p.title);

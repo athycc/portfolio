@@ -51,7 +51,7 @@ export function renderContent(data) {
     </section>
     <section><h3>Education</h3>
       <p>Rizal Technological University · BS Information Technology · 2023–Present.<br>
-        Cumulative GWA: 1.46 · Academic Achiever.<br>
+        Academic Achiever.<br>
         Scholarships: Quezon City Youth Development Organization; Data Engineering Pilipinas DataCamp; AWS AI & ML.</p>
     </section>
     <section><h3>Technical skills</h3>
