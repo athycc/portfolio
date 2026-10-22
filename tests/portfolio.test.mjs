@@ -27,6 +27,8 @@ test('all project records have unique IDs and complete case-study content',()=>{
 });
 
 test('résumé corrections and contribution boundaries are retained',()=>{
+  assert.equal(data.experience.find(e=>e.org==='Exist Software Labs Inc.').period,'Hybrid · August 2026–Present');
+  assert.ok(html.includes('1tGHgGV_S_Psj7qlHdQhn-7bWlYJkNifQ'));
   assert.equal(data.experience.find(e=>e.org==='Edukasyon.ph').period,'Hybrid · March–June 2026');
   assert.equal(data.experience.find(e=>e.org==='Eskwelabs').period,'Hybrid · February–May 2026');
   assert.ok(html.includes('Cumulative GWA: 1.46'));
@@ -41,7 +43,7 @@ test('résumé corrections and contribution boundaries are retained',()=>{
 test('build produces an actual downloadable résumé and every local image/video target',async()=>{
   execFileSync(process.execPath,['scripts/build-static.mjs'],{cwd:root,stdio:'pipe'});
   const resume=await readFile(path.join(root,'dist/Catherine-Notado-Resume.txt'),'utf8');
-  for(const phrase of ['NOTADO, CATHERINE','1.46','12-image','5-hospital','6-step','400+','52 volunteers','5 sponsors','April 2025–March 2026'])assert.ok(resume.includes(phrase),phrase);
+  for(const phrase of ['NOTADO, CATHERINE','1.46','12-image','August 2026','October 7, 2026','June 23, 2025','400+','52 volunteers','5 sponsors','April 2025–March 2026'])assert.ok(resume.includes(phrase),phrase);
   for(const p of data.projects){
     for(const file of [p.image,p.video].filter(Boolean))assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
     assert.ok(resume.includes(p.title),p.title);
