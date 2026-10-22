@@ -22,7 +22,7 @@ test('all project records have unique IDs and complete case-study content',()=>{
     assert.ok(p.summary&&p.title&&p.label&&p.status&&p.note,p.id);
     assert.ok(p.details.length>0&&p.tech.length>0,p.id);
     assert.ok(['web','data','automation','exploration'].includes(p.category));
-    for(const url of [p.url,p.media].filter(Boolean))assert.equal(new URL(url).protocol,'https:');
+    for(const url of [p.url,p.media,p.archive].filter(Boolean))assert.equal(new URL(url).protocol,'https:');
   }
 });
 
@@ -49,4 +49,13 @@ test('build produces an actual downloadable résumé and every local image/video
     assert.ok(resume.includes(p.title),p.title);
   }
   for(const file of ['index.html','GENAI.jpg','AIM.jpg','FEU.jpg','monogram.svg','robots.txt','sitemap.xml'])assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
+});
+
+
+test('archive entries point to the ten verified project folders',()=>{
+  const folders=new Set(data.projects.map(p=>p.archive).filter(Boolean));
+  assert.equal(folders.size,10);
+  const expected={capycademy:'10Turmdj5dJxymT1nazKWnjTAuPLTrBmg',robotics:'1S564VR7LJtovR2mT28XPlipMC3YsSBXH',credivest:'1ozoGQhvZdlvmvb0Atjy6ZMTUtgxEi5h1',qcpd:'10u5YdYS1lvSJm9y4194lGQSbCq1gKOl_',hoshi:'1mgokW96vT_xrzR-aBzCRgsHbyr3DOCXZ',meow:'1BT7eSu4nW3QqJH5N2f4F4RREFc8Qsh6v',poro:'157KtG4CGbU0aJH4nN7eNxeYS-HxjJgRr',gabay:'1MTaMhuUPGgy8sYWmtd18Tfati9xcz0VQ',skillgap:'1d0lsU1-cBcNqNIWLcn2RafRWIE6Thl15',backlog:'122VPxokv9yFkh3wk8OUBiZoyVhNaEWN4'};
+  for(const [id,folder] of Object.entries(expected))assert.equal(new URL(data.projects.find(p=>p.id===id).archive).pathname,'/drive/folders/'+folder,id);
+  for(const id of ['robotics','credivest'])assert.equal(data.projects.find(p=>p.id===id).media,undefined,'photos must not be described as video demos');
 });

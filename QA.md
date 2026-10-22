@@ -103,3 +103,38 @@ The managed browser did not expose direct pointer-hover or OS reduced-motion emu
 | Build | Four existing Node checks pass, covering script parsing, project records, resume facts, and all built local assets. |
 
 Browser verification used Chromium with CSS viewport harnesses, not physical devices or a cross-browser matrix. System reduced-motion handling was reviewed in source; actual site pause was exercised. The supplied robotics image is 203×277px, so no additional source detail is claimed.
+
+## Flowing background, native scrolling, and archive reconciliation — October 23, 2026
+
+### Changes grounded in source and supplied references
+
+- Reviewed the supplied 32.63-second screen recording at multiple timestamps. Its flowing light-ribbon direction is implemented as original blue SVG artwork with transform-only CSS animation.
+- Removed the Lenis import and perpetual requestAnimationFrame loop, wheel smoothing, pointer-driven tilt/glare, photo parallax, scroll-time section geometry scans, root progress-variable writes, and startup overlay.
+- The scroll listener is passive and schedules a single frame only when the About photo deck is visible and motion is enabled. Reading progress uses a browser scroll timeline when supported. Navigation uses IntersectionObserver.
+- Backgrounds and the featured carousel pause offscreen; backgrounds also pause in dialogs and hidden tabs. Phones render one ribbon layer rather than two. Reveals were shortened from 750ms to 350ms.
+- Listed all ten folders in the supplied Drive archive, then inspected their children. Downloaded and inspected source images and rendered the backlog and skills-gap PDFs before using their first pages.
+- Added six missing archive projects and corrected Credivest's title/contribution from the résumé and original Home Credit screenshot. The resulting list has 18 unique projects, including 12 folder-linked cards across 10 unique folders.
+- Replaced email automation artwork with the uploaded repository screenshot. Replaced CapyCademy, robotics, Credivest, and backlog artwork with actual source images; added archive images for the six new entries.
+- Corrected original robotics and Credivest file links: Drive metadata identifies them as JPEG photos, so they no longer appear as video demos.
+
+### Browser and build verification
+
+| Check | Observed result |
+| --- | --- |
+| Hero background | SVG layers loaded; computed transforms changed while running. Hero ran while visible and paused after scrolling out of view. Leadership ran when its section entered view. |
+| Scroll journey | Exercised native scrolling from hero through About into work; document position advanced and the photo deck changed. Source contains no wheel/touch interception or continuous scrolling renderer. |
+| Motion controls | Pause changed to reduced mode and removed all active flow surfaces; re-enable restored motion. |
+| Complete project list | Expansion rendered 18 distinct titles and 12 folder actions without horizontal overflow. Expansion did not jump to the newly relocated bottom button. |
+| Filters | Web & QA: 8; Data: 3; Automation & AI: 3; Other builds: 4. |
+| Email automation dialog | Uses the attached screenshot; repository URL remains correct. Opens focused on Close; Escape dismisses and restores focus to the project trigger. |
+| Robotics dialog | Shows the original team photo and its matching robotics folder; no mislabeled demo action. |
+| CapyCademy dialog | Shows its matching project folder and original MKV presentation link; dialog fits horizontally. |
+| CSS viewport widths 320, 375, 500, 768, 1024, 1440px | No document horizontal overflow. Checked horizontal clipping in headings, paragraphs, certification rows, and project footers at intermediate and large widths. |
+| 320 × 568 menu | Header controls fit; all menu links fit the 568px dialog. Selected work closes menu, navigates, and focuses work-heading. |
+| Phone work layout | Visually inspected at configured 375px width; filters wrap, project images fit, text and actions remain available. |
+| Runtime errors | No application errors in the collected browser error log; extension metadata errors excluded. |
+| Build/content checks | Five Node checks pass: script parsing, unique/complete projects, résumé boundaries, real build/assets, and exact matching against the ten verified Drive folder IDs. |
+
+### Scope limits
+
+This run verifies Chromium behavior and CSS viewport layouts, not the user's physical phone or laptop. No before/after FPS, CPU, load-time, or percentage speed improvement is claimed. The changes remove identified ongoing work and scrolling inertia; actual smoothness still depends on the visitor's device/browser. OS reduced motion is reviewed in source; the actual site pause control was exercised. Drive sharing was preserved; folder visibility remains governed by the original Drive permissions.

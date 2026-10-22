@@ -18,7 +18,7 @@ const resume = [
   '', 'TECHNICAL SKILLS',
   ...data.skills.map(([title,...items]) => `${title}: ${items.join(', ')}`),
   '', 'PROJECTS & PARTICIPATION',
-  ...data.projects.flatMap(p => ['', `${p.title} — ${p.status}`, p.year, p.summary, `Technologies / methods: ${p.tech.join(', ')}`, ...(p.url ? [p.url] : []), ...(p.media ? [`Original demo: ${p.media}`] : [])]),
+  ...data.projects.flatMap(p => ['', `${p.title} — ${p.status}`, p.year, p.summary, `Technologies / methods: ${p.tech.join(', ')}`, ...(p.url ? [p.url] : []), ...(p.archive ? [`Project folder: ${p.archive}`] : []), ...(p.media ? [`Original demo: ${p.media}`] : [])]),
   '', 'LEADERSHIP EXPERIENCE',
   'Founder & CEO — AWS Student Builder Group Alpha | September 2025–Present',
   '- Founded RTU’s AWS Learning Club, leading chapter strategy, operations, partnerships, and student engagement.',
