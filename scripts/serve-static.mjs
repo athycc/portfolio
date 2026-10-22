@@ -13,9 +13,11 @@ createServer(async(req,res)=>{
     const url=new URL(req.url,'http://localhost');
     // Development-only viewport harness; never copied into the production build.
     if(url.pathname==='/__qa'){
-      const width=[375,768,1440].includes(Number(url.searchParams.get('width')))?Number(url.searchParams.get('width')):375;
+      const width=[320,375,500,768,1024,1440].includes(Number(url.searchParams.get('width')))?Number(url.searchParams.get('width')):375;
+      const height=[568,667,844].includes(Number(url.searchParams.get('height')))?Number(url.searchParams.get('height')):844;
+      const section=['home','about','work','experience','leadership','community','background','contact'].includes(url.searchParams.get('section'))?url.searchParams.get('section'):'home';
       res.writeHead(200,{'content-type':'text/html; charset=utf-8'});
-      res.end(`<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Portfolio viewport QA</title><style>body{margin:0;background:#e1e5ec;font:14px system-ui;padding:16px}p{margin:0 0 12px}iframe{display:block;background:white;border:0;width:${width}px;height:844px;max-width:none}</style></head><body><p>Development preview · ${width}px browser viewport · <a href="/__qa?width=375">Mobile</a> · <a href="/__qa?width=768">Tablet</a> · <a href="/">Desktop</a></p><iframe title="Portfolio responsive viewport" src="/"></iframe></body></html>`);
+      res.end(`<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Portfolio viewport QA</title><style>body{margin:0;background:#e1e5ec;font:14px system-ui;padding:16px}p{margin:0 0 12px}iframe{display:block;background:white;border:0;width:${width}px;height:${height}px;max-width:none}</style></head><body><p>Development preview · ${width}px browser viewport · <a href="/__qa?width=375">Mobile</a> · <a href="/__qa?width=768">Tablet</a> · <a href="/">Desktop</a></p><iframe title="Portfolio responsive viewport" src="/#${section}"></iframe></body></html>`);
       return;
     }
     const filename=decodeURIComponent(url.pathname)==='/'?'index.html':decodeURIComponent(url.pathname).replace(/^\/+/, '');

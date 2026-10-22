@@ -36,6 +36,242 @@
     @media(max-width:767px){main{padding:.5rem}.hero{height:auto;min-height:calc(100svh - 1rem);border-radius:1.5rem}.site-header{padding:1.3rem 1.25rem}.header-contact{display:none}.brand{font-size:.7rem}.hero-body{padding:2rem 1.25rem 1.5rem}.hero-topline{font-size:.56rem;letter-spacing:.08em}.hero-topline>span{max-width:9rem;line-height:1.6}.hero h1{font-size:17vw;margin-top:3rem}.hero-bottom{grid-template-columns:1fr;gap:2rem;padding-top:2.5rem}.hero-copy h2{font-size:2rem}.hero-copy p{font-size:.8rem}.hero-links{gap:1rem;flex-wrap:wrap}.featured-area{margin-left:auto;width:100%;max-width:23rem}.featured-mini{width:100%;grid-template-columns:3rem 1fr auto;padding:.8rem}.mini-art{height:3rem}.featured-mini strong{font-size:.8rem}.hero-photo{object-position:58% center}.mini-footer{font-size:.6rem}.section{padding:4rem 1.25rem}.context-bar{padding:1.7rem 1.25rem;gap:1rem}.org-list{gap:1rem 1.4rem;font-size:.77rem}.context-bar>p{font-size:.6rem}.section-head{display:block;margin-bottom:2rem}.section-head>p{margin-top:1.2rem;max-width:100%;font-size:.82rem}.section-head h2,.large-heading{font-size:2.8rem}.about-top{gap:1.2rem}.gwa{width:5.3rem;height:5.3rem}.gwa strong{font-size:1.8rem}.gwa span{font-size:.48rem}.about-copy h2{font-size:1.05rem}.about-copy p{font-size:.79rem}.about-stage{min-height:25rem;margin-top:1rem}.ghost-type{font-size:11vw;gap:9rem;line-height:1.1}.story-photo{width:13rem}.about-bottom{display:block;margin-top:1.5rem}.about-bottom p{font-size:.8rem}.about-bottom .text-link{margin-top:1rem}.projects{grid-template-columns:1fr;gap:2.5rem}.project-art{padding:2rem}.art-type{font-size:3rem!important}.project h3{font-size:1.5rem}.project-description{font-size:.8rem}.project-meta{font-size:.59rem}.filters{gap:.4rem}.filter{font-size:.65rem;padding:.55rem .85rem}.project-count{width:100%;margin-top:.6rem}.project-bottom{align-items:start}.project-url{max-width:60%}.work{border-radius:1.5rem}.project-visual{aspect-ratio:1.4}.project-more{flex-direction:column;gap:1rem}.timeline-item{grid-template-columns:1fr auto;gap:.6rem;padding:1.5rem 0}.timeline-item .period{grid-column:1;grid-row:1;font-size:.65rem}.timeline-item>div:nth-child(2){grid-column:1;grid-row:2}.timeline-item .number{grid-column:2;grid-row:1}.timeline-item .role{font-size:1.3rem}.timeline-item p{font-size:.8rem}.experience-footer{align-items:start;flex-direction:column;gap:1rem}.leadership{border-radius:1.5rem}.stats{grid-template-columns:1fr 1fr;gap:2.2rem 1.2rem}.stat dd{font-size:3.8rem}.stat dt{font-size:.7rem}.leadership-foot{grid-template-columns:1fr;gap:1.8rem;margin-top:2.5rem}.leadership-foot p{font-size:.8rem}.community{grid-template-columns:1fr;gap:2rem}.photo-pair{max-width:30rem;margin:auto;gap:.8rem}.community-copy>p{max-width:none;font-size:.81rem}.volunteer-list{grid-template-columns:1fr;gap:0;margin-top:2rem}.background{border-radius:1.5rem}.background-grid{grid-template-columns:1fr;gap:3rem}.education h3{font-size:1.6rem}.education>p{font-size:.8rem}.awards-grid{grid-template-columns:1fr 1fr;gap:.7rem}.award{padding:1rem}.award .placing{font-size:1.6rem}.award h3{font-size:.74rem}.award p{font-size:.65rem}.footer{border-radius:1.5rem;padding:3rem 1.25rem 1.5rem}.footer-top{align-items:start;flex-direction:column;gap:2rem}.footer-top h2{font-size:3.5rem}.footer-bottom{grid-template-columns:1fr 1fr;gap:2rem 1rem}.footer-bottom>div:first-child{grid-column:1/-1}.footer-base{font-size:.6rem;flex-direction:column;gap:1rem}.menu-dialog .dialog-top{padding:1.3rem 1.25rem}.menu-content{padding:1.5rem;min-height:62svh}.menu-bottom{padding:1.5rem}.dialog-body{padding:1.5rem}.dialog-body h2{font-size:2rem}.dialog-body>p{font-size:.82rem}.dialog-actions .pill{width:100%}.cert-item{gap:1rem;font-size:.72rem}.eyebrow{font-size:.6rem}.pill{font-size:.7rem}.projects .project-visual .ticket-copy strong{font-size:2.2rem}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.hero-photo{transform:none!important}.reveal,.reveal.is-pending{opacity:1;transform:none}.intro.is-exiting{display:none}}
     @media print{main{padding:0}.hero{height:auto;min-height:0;background:white;color:black;padding:1rem}.hero-photo,.hero:after,.intro,.site-header,.featured-area,.hero-links,.scroll-cue,.filters,.project-more,.footer,dialog{display:none!important}.hero-body{padding:0}.hero h1{font-size:3rem;margin-top:1rem}.hero h1 .surname{color:black}.hero-topline{color:black}.hero-bottom{display:block}.hero-copy h2{font-size:1.5rem}.hero-copy p{color:black}.section{padding:2rem 0;break-inside:auto}.project{break-inside:avoid}.project-visual{max-height:10rem}.stats{color:black}.leadership{background:white;color:black}.leadership .eyebrow,.leadership .section-head>p,.stat dt,.leadership-foot p,.leadership-foot strong,.leadership-foot small{color:black}.reveal,.reveal.is-pending{opacity:1;transform:none}}
+
+    /* Layout refinement: shared reading sizes, bounded columns, and touch targets. */
+    @media screen {
+      :root { --muted:#4d5868; --content-width:76rem; }
+      .wrap { max-width:var(--content-width); }
+      .section { padding:5rem clamp(1.5rem,4vw,3.5rem); }
+      section,footer { scroll-margin-top:1.5rem; }
+      .section-head { align-items:flex-start; gap:2.5rem; margin-bottom:2.5rem; }
+      .section-head>div { flex:1; min-width:0; }
+      .section-head>p { flex:0 1 21rem; padding-top:2rem; font-size:1rem; line-height:1.7; }
+      .section-head h2,.large-heading { font-size:clamp(2.25rem,4.2vw,3.5rem); line-height:1.08; letter-spacing:-.055em; text-wrap:balance; }
+      .eyebrow { font-size:.75rem; letter-spacing:.12em; line-height:1.6; }
+      .text-link { min-height:2.75rem; font-size:.875rem; }
+      .pill { min-height:3rem; font-size:.875rem; }
+      .tag { font-size:.75rem; padding:.4rem .65rem; }
+      .hero { height:auto; min-height:max(44rem,calc(100svh - 1.5rem)); max-height:none; }
+      .site-header { padding:1.75rem clamp(1.5rem,4vw,3.5rem); }
+      .brand { font-size:.8125rem; }
+      .desktop-nav { font-size:.875rem; gap:1.5rem; }
+      .desktop-nav a { padding-block:.75rem; }
+      .header-contact { font-size:.875rem; }
+      .hero-body { padding:2rem clamp(1.5rem,4vw,3.5rem) 2.25rem; }
+      .hero-topline { font-size:.75rem; line-height:1.6; }
+      .hero h1 { font-size:clamp(4rem,10.3vw,9rem); margin-top:2rem; }
+      .hero-bottom { padding-top:3rem; gap:2rem; }
+      .hero-copy { max-width:33rem; }
+      .hero-copy h2 { font-size:clamp(1.8rem,2.7vw,2.5rem); }
+      .hero-copy p { font-size:1rem; line-height:1.65; max-width:30rem; }
+      .hero-links { gap:1.5rem; }
+      .featured-mini { width:20rem; }
+      .featured-mini small { font-size:.6875rem; }
+      .featured-mini strong { font-size:.9375rem; }
+      .mini-footer { font-size:.75rem; }
+      .dots { gap:0; }
+      .dot { min-width:2.75rem; min-height:2.75rem; }
+      .context-bar { padding:1.75rem clamp(1.5rem,4vw,3.5rem); gap:1.5rem; }
+      .context-bar>p { font-size:.75rem; }
+      .org-list { gap:1rem 1.75rem; font-size:1rem; }
+      .about-layout { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); align-items:center; gap:clamp(2rem,6vw,5rem); }
+      .about-photo { position:relative; min-width:0; aspect-ratio:1/1.05; border-radius:1.5rem; overflow:hidden; background:var(--surface); }
+      .about-photo img { width:100%; height:100%; object-fit:cover; object-position:53% center; }
+      .about-photo figcaption { position:absolute; inset:auto 1rem 1rem; padding:1rem; border-radius:.75rem; background:#0b2854ed; color:white; font-size:.875rem; line-height:1.5; }
+      .about-copy { min-width:0; max-width:none; }
+      .about-copy h2 { font-size:clamp(2rem,3.4vw,3rem); line-height:1.12; letter-spacing:-.05em; margin-top:1rem; }
+      .about-copy p,.about-note { font-size:1rem; line-height:1.75; }
+      .about-academic { display:flex; gap:1rem; align-items:center; border-top:1px solid var(--line); margin-top:1.5rem; padding-top:1.25rem; }
+      .about-academic strong { color:var(--navy); font-size:2.5rem; font-weight:500; letter-spacing:-.06em; }
+      .about-academic span { color:var(--muted); font-size:.8125rem; line-height:1.6; }
+      .about-copy>.text-link { margin-top:1rem; }
+      .about-note { color:var(--muted); max-width:47rem; margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+      .work { padding-bottom:5rem; }
+      .filters { gap:.5rem; margin-bottom:1.75rem; }
+      .filter { font-size:.8125rem; min-height:2.75rem; }
+      .project-count { font-size:.8125rem; }
+      .projects { gap:2.75rem 1.75rem; align-items:stretch; }
+      .project { display:flex; flex-direction:column; min-width:0; }
+      .project-visual { aspect-ratio:16/10; flex:none; }
+      .project-visual>img.project-brand { object-fit:contain; background:white; }
+      .project-visual:has(.project-brand) { border:1px solid var(--line); }
+      .project-meta { font-size:.6875rem; letter-spacing:.07em; line-height:1.6; align-items:flex-start; }
+      .project-meta>span:first-child { max-width:72%; }
+      .project-meta>span:last-child { text-align:right; }
+      .project h3 { font-size:1.625rem; line-height:1.25; }
+      .project-description { font-size:.9375rem; line-height:1.7; }
+      .project .tags { margin-bottom:1rem; }
+      .project-bottom { margin-top:auto; padding-top:.75rem; border-top:1px solid #d7dce4; flex-wrap:wrap; gap:.5rem 1rem; }
+      .project-url { font-size:.8125rem; max-width:100%; line-height:1.6; min-height:2.75rem; display:inline-flex; align-items:center; }
+      .visual-note,.art-caption { font-size:.6875rem; }
+      .timeline-item { grid-template-columns:12rem minmax(0,1fr) 1.5rem; gap:2rem; padding:1.75rem 0; }
+      .timeline-item .period { font-size:.875rem; }
+      .timeline-item .role { font-size:1.5rem; }
+      .timeline-item .org { font-size:1rem; }
+      .timeline-item p,.timeline-item details ul { font-size:.9375rem; line-height:1.75; }
+      .timeline-item summary { font-size:.875rem; min-height:2.75rem; align-items:center; }
+      .timeline-item .number { font-size:.8125rem; }
+      .experience-footer { font-size:.875rem; }
+      .stats { gap:1.5rem; margin-top:2.75rem; }
+      .stat dt { font-size:.875rem; }
+      .stat dd { font-size:clamp(3rem,5.5vw,5rem); }
+      .leadership-foot { gap:2.5rem; margin-top:3rem; }
+      .leadership-foot p { font-size:.9375rem; line-height:1.75; }
+      .leadership-foot small { display:block; font-size:.8125rem; margin-top:.75rem; }
+      .community { gap:3rem; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+      .community-copy>p { font-size:1rem; line-height:1.75; }
+      .photo-pair { width:100%; min-width:0; grid-template-columns:1fr; gap:1rem; }
+      .photo-pair figure { aspect-ratio:16/9; }
+      .photo-pair figure+figure { margin-bottom:0; }
+      .photo-pair img { object-position:center 40%; }
+      .photo-pair figcaption { font-size:.8125rem; }
+      .volunteer-item h3 { font-size:1rem; }
+      .volunteer-item p { font-size:.875rem; line-height:1.75; }
+      .background-grid { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:3rem; }
+      .education h3 { font-size:2rem; }
+      .education>p { font-size:.9375rem; line-height:1.75; }
+      .education .academic-score { font-size:3.6rem; }
+      .academic-score small { font-size:.8125rem; }
+      .cert-item { display:grid; grid-template-columns:minmax(0,1fr) 6.5rem; gap:1rem; font-size:.875rem; }
+      .cert-item time { font-size:.8125rem; text-align:right; }
+      .skills-section,.awards { border-top:1px solid #d7dce4; margin-top:3rem; padding-top:2.5rem; }
+      .skills { grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.75rem 2rem; margin-top:1.5rem; }
+      .skill-group { min-width:0; }
+      .skill-group h3 { font-size:.9375rem; margin-bottom:.75rem; }
+      .award { padding:1.5rem; }
+      .award h3 { font-size:.9375rem; }
+      .award p { font-size:.8125rem; }
+      .footer { padding:4rem clamp(1.5rem,4vw,3.5rem) 2rem; }
+      .footer-bottom { grid-template-columns:1.25fr .8fr 1fr; gap:2rem; }
+      .footer-bottom p,.footer-bottom nav,.footer address { font-size:.9375rem; }
+      .footer-bottom h3 { font-size:.75rem; }
+      .footer-bottom nav { gap:.35rem; min-width:0; }
+      .footer-bottom nav>a,.footer-bottom nav>button { min-height:2.75rem; display:inline-flex; align-items:center; max-width:100%; }
+      .footer-base { font-size:.75rem; flex-wrap:wrap; }
+      .dialog-top { gap:.75rem; }
+      .dialog-top .icon-button { width:2.75rem; height:2.75rem; }
+      .dialog-top p { font-size:.75rem; }
+      .dialog-body>p,.dialog-body ul { font-size:1rem; line-height:1.75; }
+      .dialog-body h3,.contact-form label { font-size:.9375rem; }
+      .contact-form input,.contact-form textarea { font-size:1rem; }
+      .dialog-actions .pill,.form-note,.project-stage-note,.copy-status { font-size:.875rem; }
+      .resume-preview h3 { font-size:1rem; }
+      .resume-preview p { font-size:.9375rem; line-height:1.8; }
+      .menu-dialog { display:none; }
+      .menu-dialog[open] { display:flex; flex-direction:column; }
+      .menu-content { flex:1; min-height:0; gap:.5rem; }
+      .menu-content a { font-size:clamp(2rem,6vw,4rem); }
+      .menu-bottom { font-size:.875rem; }
+    }
+    @media screen and (max-width:1000px) {
+      .hero { min-height:44rem; }
+      .hero-bottom { grid-template-columns:minmax(0,1fr) 18rem; }
+      .featured-mini { width:100%; grid-template-columns:2.5rem minmax(0,1fr) 1rem; gap:.7rem; padding:.875rem; }
+      .mini-art { height:2.75rem; }
+      .about-layout { gap:2rem; }
+      .section-head { display:block; }
+      .section-head>p { max-width:40rem; padding-top:0; margin-top:1.25rem; }
+      .timeline-item { grid-template-columns:10rem minmax(0,1fr) 1rem; gap:1.25rem; }
+      .community { gap:2rem; }
+      .skills { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .background-grid { gap:2rem; }
+    }
+    @media screen and (max-width:700px) {
+      main { padding:.5rem; }
+      .section { padding:3.5rem 1.25rem; }
+      .hero { min-height:0; height:auto; border-radius:1.5rem; }
+      .site-header { padding:1.25rem; }
+      .brand { font-size:.75rem; }
+      .hero-body { padding:1.5rem 1.25rem; }
+      .hero-topline { flex-direction:column; align-items:flex-start; gap:.5rem; font-size:.6875rem; }
+      .hero-topline>span { max-width:none; }
+      .hero h1 { font-size:clamp(3.25rem,15.2vw,6.5rem); margin-top:2rem; }
+      .hero-bottom { grid-template-columns:1fr; gap:2rem; padding-top:2rem; }
+      .hero-copy h2 { font-size:1.875rem; }
+      .hero-copy p { font-size:.9375rem; }
+      .hero-links { gap:1rem; flex-wrap:wrap; }
+      .featured-area { max-width:none; margin:0; }
+      .featured-mini { grid-template-columns:3rem minmax(0,1fr) 1.25rem; }
+      .featured-mini strong { font-size:.875rem; }
+      .mini-footer { font-size:.6875rem; }
+      .context-bar { padding:1.5rem 1.25rem; }
+      .org-list { font-size:.875rem; gap:.75rem 1.25rem; }
+      .about-layout { grid-template-columns:1fr; gap:1.75rem; }
+      .about-copy { grid-row:1; }
+      .about-photo { aspect-ratio:4/3; }
+      .about-copy h2 { font-size:2.25rem; }
+      .about-copy p,.about-note { font-size:.9375rem; }
+      .section-head h2,.large-heading { font-size:2.25rem; }
+      .eyebrow { font-size:.6875rem; }
+      .section-head>p { font-size:.9375rem; }
+      .projects { grid-template-columns:1fr; gap:2.5rem; }
+      .project-count { width:100%; margin-top:.5rem; }
+      .project-visual { aspect-ratio:1.5; }
+      .project-art { padding:1.5rem; }
+      .project h3 { font-size:1.5rem; }
+      .project-url { max-width:100%; }
+      .project-more { flex-direction:column; }
+      .timeline-item { grid-template-columns:minmax(0,1fr) 1.5rem; gap:.6rem; }
+      .timeline-item .period { grid-column:1; grid-row:1; font-size:.8125rem; }
+      .timeline-item>div:nth-child(2) { grid-column:1/-1; grid-row:2; }
+      .timeline-item .number { grid-column:2; grid-row:1; }
+      .timeline-item .role { font-size:1.375rem; }
+      .experience-footer { flex-direction:column; align-items:flex-start; gap:.75rem; }
+      .stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem 1rem; }
+      .stat dd { font-size:3.5rem; }
+      .stat dt { font-size:.8125rem; }
+      .leadership-foot { grid-template-columns:1fr; gap:1.75rem; }
+      .community { grid-template-columns:1fr; }
+      .community-copy>p { font-size:.9375rem; }
+      .photo-pair { max-width:none; }
+      .photo-pair figcaption { font-size:.75rem; padding:.6rem; }
+      .volunteer-list { grid-template-columns:1fr; gap:0; }
+      .background-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .education h3 { font-size:1.75rem; }
+      .skills { grid-template-columns:1fr; gap:1.5rem; }
+      .awards-grid { grid-template-columns:1fr; }
+      .award { padding:1.25rem; }
+      .award .placing { font-size:1.75rem; }
+      .footer { padding:3rem 1.25rem 1.5rem; }
+      .footer-top { flex-direction:column; align-items:flex-start; gap:1.5rem; }
+      .footer-top h2 { font-size:3rem; }
+      .footer-bottom { grid-template-columns:1fr; gap:2rem; }
+      .footer-bottom>div:first-child { grid-column:auto; }
+      .footer-base { flex-direction:column; gap:1rem; }
+      .dialog-body { padding:1.25rem; }
+      .dialog-body h2 { font-size:2rem; }
+      .dialog-top { padding:1rem 1.25rem; }
+      .dialog-top p { font-size:.6875rem; letter-spacing:.08em; }
+      .dialog-actions .pill { width:100%; }
+      .menu-content { padding:1.25rem; }
+      .menu-content a { font-size:clamp(1.75rem,8vw,3rem); }
+      .menu-bottom { padding:1.25rem; font-size:.8125rem; }
+      .menu-dialog .dialog-top { padding:1rem 1.25rem; }
+      .cert-item { grid-template-columns:minmax(0,1fr) 7rem; gap:.75rem; }
+    }
+    @media screen and (min-width:701px) and (max-width:767px) {
+      .projects { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .community { grid-template-columns:1fr; }
+      .photo-pair { max-width:36rem; }
+      .awards-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media screen and (max-width:380px) {
+      .hero h1 { font-size:15vw; }
+      .hero-links { align-items:flex-start; gap:.5rem; }
+      .hero-links .pill { padding-inline:1rem; }
+      .project-meta { flex-direction:column; gap:.25rem; }
+      .project-meta>span:first-child { max-width:none; }
+      .project-meta>span:last-child { text-align:left; }
+      .sync-panel { width:95%; padding:1rem; }
+      .mega-ticket { width:100%; }
+      .ticket-copy { padding:1rem; }
+      .agent-flow { width:100%; }
+      .email-envelope { width:100%; padding:1.25rem; }
+      .email-envelope strong { font-size:2.25rem; }
+      .learning-window { width:100%; padding:1rem; }
+      .cert-item { grid-template-columns:1fr; gap:.25rem; }
+      .cert-item time { text-align:left; }
+    }
   </style>
 </head>
 <body>
@@ -60,9 +296,11 @@
   </section>
   <div class="context-bar wrap"><p>Experience across teams</p><ul class="org-list" aria-label="Organizations in my experience"><li>Exist</li><li>Edukasyon.ph</li><li>Eskwelabs</li><li>AWS SBG Alpha</li><li>RTU</li></ul></div>
   <section id="about" class="section about wrap" aria-labelledby="about-heading">
-    <div class="about-top"><div class="gwa"><strong>1.46</strong><span>Cumulative GWA</span></div><div class="about-copy reveal"><span class="eyebrow">01 / A little about me</span><h2 id="about-heading">Curious by nature.<br>Hands-on by choice.</h2><p>I’m Catherine, an Information Technology student at Rizal Technological University. I turn messy information into clear dashboards, ideas into working websites, and shared interests into communities.</p><p>My work spans internships in marketing and analytics, practical QA, automation prototypes, research, and leading AWS student initiatives.</p></div></div>
-    <div class="about-stage"><div class="ghost-type" aria-hidden="true"><div><span>BUILD</span><span>WITH</span></div><div><span class="ink">PEOPLE.</span><span>PURPOSE.</span></div></div><figure class="story-photo"><img src="/AIM.jpg" width="2048" height="995" alt="A technology workshop with students collaborating around tables" loading="lazy"><figcaption>Learning together. Building together.<br>Technology is a team effort.</figcaption></figure></div>
-    <div class="about-bottom reveal"><p>From a Python script to a student summit, I care about how the work functions, how it feels, and who it helps.</p><a class="text-link" href="#experience">My experience <svg class="arrow"><use href="#arrow"/></svg></a></div>
+    <div class="about-layout">
+      <figure class="about-photo"><img src="/AIM.jpg" width="2048" height="995" alt="A technology workshop with students collaborating around tables" loading="lazy"><figcaption>Learning together. Building together.</figcaption></figure>
+      <div class="about-copy reveal"><span class="eyebrow">01 / A little about me</span><h2 id="about-heading">Curious by nature.<br>Hands-on by choice.</h2><p>I’m Catherine, an Information Technology student at Rizal Technological University. I turn messy information into clear dashboards, ideas into working websites, and shared interests into communities.</p><p>My work spans internships in marketing and analytics, practical QA, automation prototypes, research, and leading AWS student initiatives.</p><div class="about-academic"><strong>1.46</strong><span>Cumulative GWA<br>BS Information Technology · RTU</span></div><a class="text-link" href="#experience">My experience <svg class="arrow"><use href="#arrow"/></svg></a></div>
+    </div>
+    <p class="about-note">From a Python script to a student summit, I care about how the work functions, how it feels, and who it helps.</p>
   </section>
   <section id="work" class="section work" aria-labelledby="work-heading"><div class="wrap">
     <div class="section-head reveal"><div><span class="eyebrow">02 / Selected work</span><h2 id="work-heading">Different disciplines.<br>One curious mind.</h2></div><p>Websites I built, platforms I tested, dashboards I designed, and ideas I’m developing. Open a project for my role, methods, and details.</p></div>
@@ -79,75 +317,521 @@
     <dl class="stats"><div class="stat reveal"><dd>390</dd><dt>Attendees at SCD<br>Mega Manila 2026</dt></div><div class="stat reveal"><dd>52</dd><dt>Volunteers coordinated<br>for the event</dt></div><div class="stat reveal"><dd>5</dd><dt>Sponsors supporting<br>the community</dt></div><div class="stat reveal"><dd>400+</dd><dt>Users on SYNC,<br>a platform I QA tested</dt></div></dl>
     <div class="leadership-foot"><div><strong>AWS Student Builder Group Alpha</strong><p>Founded RTU’s AWS Learning Club; lead chapter strategy, operations, partnerships, and student engagement.</p><small>Founder & CEO · September 2025–Present<br>AWS Student Builder Group Lead · November 2025–Present</small></div><div><strong>AWS Student Community Day Mega Manila</strong><p>Oversaw speaker coordination, volunteer assignments, registration, logistics, and post-event reporting.</p><small>Event Head · September 11, 2026 · Asia Pacific College</small></div></div>
   </div></section>
-  <section id="community" class="section wrap" aria-labelledby="community-heading"><div class="community"><div class="community-copy reveal"><span class="eyebrow">05 / Community in practice</span><h2 id="community-heading" class="large-heading">Showing up.<br>Making room.</h2><p>Some of the most useful work happens away from a screen: coordinating speakers, keeping an event moving, helping an attendee, or making someone feel welcome.</p><a class="text-link" style="margin-top:1.5rem" href="https://www.linkedin.com/in/catherine-notado-679a29246/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a></div><div class="photo-pair"><figure><img src="/FEU.jpg" width="2048" height="995" alt="Community members talking at an event information table" loading="lazy"><figcaption>Conversations that<br>open possibilities.</figcaption></figure><figure><img src="/GENAI.jpg" width="2048" height="995" alt="Students exploring technology and career booths" loading="lazy"><figcaption>Learning beyond<br>the classroom.</figcaption></figure></div></div><div class="volunteer-list" id="volunteer-list"></div></section>
-  <section id="background" class="section background" aria-labelledby="background-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">06 / Always a student</span><h2 id="background-heading">The foundation.<br>The next question.</h2></div><p>Formal study, hands-on competitions, and continuous learning support the work I do.</p></div><div class="background-grid"><div class="education"><span class="eyebrow">Education & skills</span><h3>Rizal Technological<br>University</h3><p>BS Information Technology<br>2023–Present · Academic Achiever</p><p class="academic-score">1.46 <small>Cumulative<br>GWA</small></p><p>Scholarships: Quezon City Youth Development Organization; Data Engineering Pilipinas DataCamp; AWS AI & ML.</p><p>Coursework: Software Development, Object Oriented Programming, Integrative Programming and Technologies, Web Systems, Database Management, Operating Systems, and Networking.</p><div class="skills" id="skills"></div></div><div><span class="eyebrow">Certifications & training</span><div class="cert-list" id="certifications"></div></div></div><div class="awards"><span class="eyebrow">Competitions & participation</span><div class="awards-grid" id="awards"></div></div></div></section>
+  <section id="community" class="section wrap" aria-labelledby="community-heading"><div class="community"><div class="community-copy reveal"><span class="eyebrow">05 / Community in practice</span><h2 id="community-heading" class="large-heading">Showing up.<br>Making room.</h2><p>Some of the most useful work happens away from a screen: coordinating speakers, keeping an event moving, helping an attendee, or making someone feel welcome.</p><a class="text-link" style="margin-top:1.5rem" href="https://www.linkedin.com/in/catherine-notado-679a29246/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a></div><div class="photo-pair"><figure><img src="/projects/scd-south-community.webp" width="1440" height="785" alt="Student volunteers at an AWS Student Community Day South event" loading="lazy"><figcaption>Student Community Day South</figcaption></figure><figure><img src="/projects/scd-builders.webp" width="880" height="660" alt="AWS student builders posing together at a community event" loading="lazy"><figcaption>Building connections<br>in the community.</figcaption></figure></div></div><div class="volunteer-list" id="volunteer-list"></div></section>
+  <section id="background" class="section background" aria-labelledby="background-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">06 / Always a student</span><h2 id="background-heading">The foundation.<br>The next question.</h2></div><p>Formal study, hands-on competitions, and continuous learning support the work I do.</p></div><div class="background-grid"><div class="education"><span class="eyebrow">Education</span><h3>Rizal Technological<br>University</h3><p>BS Information Technology<br>2023–Present · Academic Achiever</p><p class="academic-score">1.46 <small>Cumulative<br>GWA</small></p><p>Scholarships: Quezon City Youth Development Organization; Data Engineering Pilipinas DataCamp; AWS AI & ML.</p><p>Coursework: Software Development, Object Oriented Programming, Integrative Programming and Technologies, Web Systems, Database Management, Operating Systems, and Networking.</p></div><div><span class="eyebrow">Certifications & training</span><div class="cert-list" id="certifications"></div></div></div><div class="skills-section"><span class="eyebrow">Technical skills</span><div class="skills" id="skills"></div></div><div class="awards"><span class="eyebrow">Competitions & participation</span><div class="awards-grid" id="awards"></div></div></div></section>
   <footer id="contact" class="footer"><div class="wrap"><div class="footer-top"><div><span class="eyebrow light">07 / Let’s make something useful</span><h2>Got a good<br>challenge?</h2></div><button class="pill light" data-contact>Let’s talk <svg class="arrow"><use href="#arrow"/></svg></button></div><div class="footer-bottom"><div><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">CN</span>CATHERINE NOTADO</a><p>Development, data, and community.<br>Built with curiosity. Based in Quezon City.</p></div><nav aria-label="Footer navigation"><h3>Explore</h3><a href="#about">About me</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#background">Education & skills</a><button style="border:0;background:none;padding:0;color:inherit;font-size:inherit" data-resume>Full résumé ↗</button></nav><nav aria-label="Contact links"><h3>Say hello</h3><a class="footer-email" href="mailto:notadocath@gmail.com">notadocath@gmail.com ↗</a><a href="https://www.linkedin.com/in/catherine-notado-679a29246/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/athycc" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="tel:+639203066498">+63 920 306 6498</a><address>Quezon City, Philippines</address></nav></div><div class="footer-base"><span>© 2026 Catherine Notado. All rights reserved.</span><span>Personal portfolio · Development & QA roles are identified per project.</span><a href="#home">Back to top ↑</a></div></div></footer>
 </main>
 <dialog id="menu-dialog" class="menu-dialog" aria-label="Site navigation"><div class="dialog-top"><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">CN</span>CATH NOTADO</a><button class="icon-button" data-close aria-label="Close navigation menu"><svg class="arrow"><use href="#cross"/></svg></button></div><nav class="menu-content" aria-label="Expanded navigation"><a href="#about">About me</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#community">Community</a><a href="#contact">Let’s talk</a></nav><div class="menu-bottom"><span>Quezon City, Philippines</span><a href="mailto:notadocath@gmail.com">notadocath@gmail.com ↗</a></div></dialog>
 <dialog id="project-dialog" aria-labelledby="project-dialog-title"><div class="dialog-top"><p>Project notes / My role & approach</p><button class="icon-button" data-close aria-label="Close project details"><svg class="arrow"><use href="#cross"/></svg></button></div><div class="dialog-body" id="project-dialog-body"></div></dialog>
 <dialog id="contact-dialog" aria-labelledby="contact-heading"><div class="dialog-top"><p>Start a conversation</p><button class="icon-button" data-close aria-label="Close contact"><svg class="arrow"><use href="#cross"/></svg></button></div><div class="dialog-body"><span class="eyebrow">Let’s talk</span><h2 id="contact-heading" style="margin-top:1rem">What are you<br>working on?</h2><p>Tell me about your project, opportunity, or community idea.</p><form class="contact-form" id="contact-form"><label>Your name<input name="name" autocomplete="name" placeholder="Your name" required maxlength="100"></label><label>Your email<input name="email" type="email" autocomplete="email" placeholder="you@company.com" required maxlength="200"></label><label>Your message<textarea name="message" placeholder="I’d love to talk about…" required maxlength="4000"></textarea></label><p class="form-note">This opens a draft in your email app. Your message is sent only when you send that email.</p><button class="pill" type="submit">Open email draft <svg class="arrow"><use href="#arrow"/></svg></button></form><div class="contact-secondary"><a class="text-link" href="mailto:notadocath@gmail.com">Email directly ↗</a><button class="text-link" id="copy-email" style="background:none;border-inline:0;border-top:0">Copy email address</button></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></div></dialog>
-<dialog id="resume-dialog" aria-labelledby="resume-heading"><div class="dialog-top"><p>Résumé / Updated October 2026</p><button class="icon-button" data-close aria-label="Close résumé"><svg class="arrow"><use href="#cross"/></svg></button></div><div class="dialog-body"><h2 id="resume-heading">Catherine Notado</h2><p>Information Technology · Development · Data · Marketing Operations<br>Quezon City, Philippines</p><div class="dialog-actions"><a class="pill" href="/Catherine-Notado-Resume.txt" download>Download text résumé ↓</a><a class="pill outline" href="mailto:notadocath@gmail.com">Get in touch ↗</a></div><div class="resume-preview" id="resume-preview"></div></div></dialog>
+<dialog id="resume-dialog" aria-labelledby="resume-heading"><div class="dialog-top"><p>Résumé / Updated October 2026</p><button class="icon-button" data-close aria-label="Close résumé"><svg class="arrow"><use href="#cross"/></svg></button></div><div class="dialog-body"><h2 id="resume-heading">Catherine Notado</h2><p>Information Technology · Development · Data · Marketing Operations<br>Quezon City, Philippines</p><p class="form-note">Experience and dates follow my October 2026 résumé. The summary below also includes project details from this portfolio.</p><div class="dialog-actions"><a class="pill" href="https://drive.google.com/file/d/1tGHgGV_S_Psj7qlHdQhn-7bWlYJkNifQ/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">View original résumé PDF ↗</a><a class="pill outline" href="/Catherine-Notado-Resume.txt" download>Download portfolio summary ↓</a></div><div class="resume-preview" id="resume-preview"></div></div></dialog>
 <noscript><style>.projects{display:none}.project-more{display:none}</style><p style="padding:2rem">For project details and the complete résumé, <a href="/Catherine-Notado-Resume.txt">download the text résumé</a>. You can also <a href="mailto:notadocath@gmail.com">email Catherine directly</a>.</p></noscript>
 <script id="portfolio-data" type="application/json">
 {
-  "projects":[
-    {"id":"south","category":"web","label":"Website development & QA","title":"AWS SCD South","year":"2026","art":"south","status":"Website development","summary":"Built an interactive event website with React, TypeScript, Vite, and Tailwind CSS, with Playwright checks across 3 viewport sizes and axe-core accessibility checks.","tech":["React","TypeScript","Vite","Tailwind CSS","Playwright","axe-core"],"url":"https://aws.scd-south.cloud/","details":["Developed reusable components and centralized typed event content for desktop, tablet, and mobile layouts.","Implemented the animated entrance, scroll-driven interactions, themes, speaker and sponsor showcases, venue details, FAQs, and external Luma registration and SYNC links.","Implemented Playwright/Chromium checks at 375, 768, and 1440 pixels for registration links, theme persistence, overflow, image loading, and runtime errors.","Integrated axe-core scans, keyboard focus checks, reduced-motion checks, TypeScript validation, and Node tests."],"note":"QA scope: automated Chromium viewport checks. This does not imply physical-device certification or complete accessibility compliance."},
-    {"id":"sync","category":"web","label":"Functional & usability QA","title":"SYNC Event Platform","year":"2026","art":"sync","status":"QA contribution","summary":"Performed functional and usability QA for a platform serving 400+ users, reviewing navigation, schedule access, and mobile interactions.","tech":["Functional QA","Mobile usability","User journeys"],"url":"https://sync.aws-scd.cloud/","details":["Reviewed attendee-facing navigation, schedule access, page transitions, and mobile usability.","Compared loading and interaction behavior with the SCD Mega Manila website to identify responsiveness and performance differences."],"note":"My contribution was quality assurance, rather than development of the platform."},
-    {"id":"mega","category":"web","label":"Website quality assurance","title":"SCD Mega Manila","year":"2026","art":"mega","status":"QA contribution","summary":"Tested responsiveness, performance, navigation, and content across 4 Android devices with 2–8 GB RAM and Android 10–14.","tech":["Real-device QA","Content validation","Bug reporting"],"url":"https://www.aws-scd.cloud/","details":["Checked four Android configurations: 2 GB / Android 10, 3 GB / Android 11, 8 GB / Android 13, and 4 GB / Android 14.","Identified lag on lower-memory devices and interaction issues during rapid swiping.","Reviewed layout readability, spacing, navigation, registration links, maps, speaker information, and schedule consistency."],"note":"Physical-device findings belong to this project; they are separate from the SCD South Chromium viewport checks."},
-    {"id":"backlog","category":"data","label":"Data analytics · Eskwelabs","title":"Product Backlog Dashboard","year":"2026","image":"/assets/eskwelabs-analytics.jpg","status":"Internship output","summary":"Built a Power BI dashboard tracking 170 backlog items across 9 initiatives and 40 epics, with reporting across 36 stories and 427.33 story points.","tech":["Power BI","KPI tracking","Backlog analysis"],"media":"https://drive.google.com/file/d/1KWr_AL5FNSBgpXjz_uv3xOhh0Cb_zJgV/view","video":"/videos/product-demo.mp4","details":["Organized backlog status, urgency, priority, and sprint progress for stakeholder reporting.","Built views covering 170 items, 9 initiatives, 40 epics, and 36 stories totaling 427.33 story points."],"note":"Dashboard metrics describe the dataset and reporting scope, rather than a measured productivity improvement."},
-    {"id":"healthcare","category":"automation","label":"Healthcare intelligence · Exist","title":"Healthcare Outreach Agent","year":"In development","art":"agent","status":"Proof of concept","summary":"Developing a 5-hospital pilot workflow for public DOH research, verified contacts, lead tracking, and outreach drafts with human approval.","tech":["Workflow design","Google Sheets","Source validation","Human approval"],"details":["Define public hospital research and contact verification, with an initial 5-hospital pilot and a nationwide research scope.","Maintain a Google Sheets tracking workflow and define audit history, outreach review, and email approval controls.","Document source-access and integration limitations while developing the pilot."],"note":"Proof of concept. Reliable nationwide extraction, unattended operation, and production email scheduling are not claimed."},
-    {"id":"email","category":"automation","label":"Python automation · AWS Alpha","title":"Community Email Automation","year":"2025–2026","art":"email","status":"Repository project","summary":"Developed a Python email sender with 5 reusable HTML templates for applicant decisions, partnerships, sponsorships, and speaker communications.","tech":["Python","HTML email","Reusable templates"],"url":"https://github.com/athycc/aws-email-automation","details":["Created template-based communication for applicant acceptance, applicant rejection, partnerships, sponsorships, and speakers.","Integrated reusable layouts and image support so organization communications share a consistent presentation."],"note":"The repository is available for review. No delivery-volume or time-saving figures are asserted."},
-    {"id":"aegis","category":"web","label":"Capstone · AlphaExplora Inc.","title":"AegisLearn","year":"In development","art":"learning","status":"Capstone prototype","summary":"Developing requirements, workflows, and UI/UX revisions for an internship learning and secure document management system.","tech":["Requirements","Workflow diagrams","UI/UX","Prototyping"],"details":["Develop requirements and workflow diagrams for the internship learning and document management prototype.","Revise the interface around AlphaExplora Inc.’s needs and client branding."],"note":"Capstone prototype in development; a production deployment or final implementation stack is not claimed."},
-    {"id":"financial","category":"data","label":"Financial analytics · Eskwelabs","title":"Financial Dashboard","year":"2026","image":"/assets/dashboard-detail.jpg","status":"Internship output","summary":"Developed financial reporting covering 92 programs, $39.1M in revenue, 19,025 students, and a 42.7% gross margin.","tech":["Power BI","P&L analysis","Cost analysis"],"details":["Created financial, P&L, and cost analysis dashboards for stakeholder reporting and business decisions.","Analyzed a dataset spanning 92 programs, $39.1M revenue, 19,025 students, and a 42.7% gross margin."],"note":"Figures describe the analyzed dataset; they do not represent revenue generated by my work."},
-    {"id":"capycademy","category":"automation","label":"Team lead · APPCON 2024","title":"CapyCademy","year":"75 / 178 teams","art":"academy","status":"Competition application","summary":"Led development of a skills gap application, qualifying 75th among 178 teams in APPCON 2024.","tech":["React","FastAPI","Supabase","AI services"],"media":"https://drive.google.com/file/d/1TbE3MAlm5G4juQn29qu_mpF0csY3n7ER/view","details":["Led the team developing an application addressing skills gaps.","Worked with React, ShadCN, Tailwind CSS, Zustand, TanStack Query, Axios, Python, FastAPI, Supabase, and AI services."],"note":"Open the original project demo for the application presentation. The card is a project illustration."},
-    {"id":"robotics","category":"exploration","label":"Robotics competition · TIP","title":"Autonomous Sumobot","year":"Champion · 2023","art":"robot","status":"Competition build","summary":"Built a championship-winning Arduino sumobot with motor control, edge detection, and opponent tracking.","tech":["Arduino Uno","IR sensors","L298N","Motor control"],"media":"https://drive.google.com/file/d/1xZAUodqRJe_arx5DPSV1KjDbVHninBN7/view","details":["Built and programmed an autonomous sumobot using Arduino Uno, DC motors, an L298N driver, IR sensors, and a lightweight chassis.","Tested and iterated to improve speed, responsiveness, and stability during matches."],"note":"Champion, Technological Institute of the Philippines Robotics Competition, May 6, 2023."},
-    {"id":"looker","category":"data","label":"Financial reporting","title":"Looker Financial Model","year":"2025","image":"/assets/dashboard-skills.jpg","status":"Portfolio showcase","summary":"A financial statement model showcase covering consolidated statements, account drill-downs, reporting, and exportable charts.","tech":["Looker Studio","SQL","Visualization"],"media":"https://drive.google.com/file/d/188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf/view","video":"/videos/financial-looker.mp4","details":["Showcased financial statements, balance sheets, income statements, cash flow views, and account-level drill-downs.","Presented reporting and exportable chart features in the original project demo."],"note":"Preserved from the existing portfolio. View the demo for the original presentation."},
-    {"id":"credivest","category":"exploration","label":"Fintech concept","title":"Credivest","year":"2024","art":"credivest","status":"Concept prototype","summary":"A fintech concept exploring investment or lending journeys through a product demo and clear data presentation.","tech":["React","TypeScript","UI design"],"media":"https://drive.google.com/file/d/1eyXYl9GuWGVHGBViCcP0n2mGQZUUbodx/view","details":["Explored finance-oriented product journeys and presented them through a prototype demo.","Combined interface design, TypeScript, React, and data storytelling."],"note":"Concept prototype, rather than a live lending or investment service."}
+  "projects": [
+    {
+      "id": "south",
+      "category": "web",
+      "label": "Website development & QA",
+      "title": "AWS Student Community Day South Summit",
+      "year": "October 7, 2026",
+      "art": "south",
+      "status": "Website development",
+      "summary": "Built an interactive event website with React, TypeScript, Vite, and Tailwind CSS, with Playwright checks across 3 viewport sizes and axe-core accessibility checks.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Playwright",
+        "axe-core"
+      ],
+      "url": "https://aws.scd-south.cloud/",
+      "details": [
+        "Developed reusable components and centralized typed event content for desktop, tablet, and mobile layouts.",
+        "Implemented the animated entrance, scroll-driven interactions, themes, speaker and sponsor showcases, venue details, FAQs, and external Luma registration and SYNC links.",
+        "Implemented Playwright/Chromium checks at 375, 768, and 1440 pixels for registration links, theme persistence, overflow, image loading, and runtime errors.",
+        "Integrated axe-core scans, keyboard focus checks, reduced-motion checks, TypeScript validation, and Node tests."
+      ],
+      "note": "QA scope: automated Chromium viewport checks. This does not imply physical-device certification or complete accessibility compliance.",
+      "image": "/projects/scd-south.png",
+      "imageAlt": "Official AWS Student Community Day South Summit event artwork",
+      "brandImage": true
+    },
+    {
+      "id": "mega",
+      "category": "web",
+      "label": "Website quality assurance",
+      "title": "SCD Mega Manila",
+      "year": "September 11, 2026",
+      "art": "mega",
+      "status": "QA contribution",
+      "summary": "Tested responsiveness, performance, navigation, and content across 4 Android devices with 2–8 GB RAM and Android 10–14.",
+      "tech": [
+        "Real-device QA",
+        "Content validation",
+        "Bug reporting"
+      ],
+      "url": "https://www.aws-scd.cloud/",
+      "details": [
+        "Checked four Android configurations: 2 GB / Android 10, 3 GB / Android 11, 8 GB / Android 13, and 4 GB / Android 14.",
+        "Identified lag on lower-memory devices and interaction issues during rapid swiping.",
+        "Reviewed layout readability, spacing, navigation, registration links, maps, speaker information, and schedule consistency."
+      ],
+      "note": "Physical-device findings belong to this project; they are separate from the SCD South Chromium viewport checks.",
+      "image": "/projects/scd-mega-manila.png",
+      "imageAlt": "Official AWS Student Community Day Mega Manila event artwork",
+      "brandImage": true
+    },
+    {
+      "id": "sync",
+      "category": "web",
+      "label": "Functional & usability QA",
+      "title": "SYNC Event Platform",
+      "year": "September 11, 2026",
+      "art": "sync",
+      "status": "QA contribution",
+      "summary": "Performed functional and usability QA for a platform serving 400+ users, reviewing navigation, schedule access, and mobile interactions.",
+      "tech": [
+        "Functional QA",
+        "Mobile usability",
+        "User journeys"
+      ],
+      "url": "https://sync.aws-scd.cloud/",
+      "details": [
+        "Reviewed attendee-facing navigation, schedule access, page transitions, and mobile usability.",
+        "Compared loading and interaction behavior with the SCD Mega Manila website to identify responsiveness and performance differences."
+      ],
+      "note": "My contribution was quality assurance, rather than development of the platform.",
+      "image": "/projects/sync.png",
+      "imageAlt": "Current SYNC event platform branding",
+      "brandImage": true
+    },
+    {
+      "id": "email",
+      "category": "automation",
+      "label": "Python automation · AWS Alpha",
+      "title": "Community Email Automation",
+      "year": "June 23, 2025",
+      "art": "email",
+      "status": "Repository project",
+      "summary": "Developed a Python email sender with 5 reusable HTML templates for applicant decisions, partnerships, sponsorships, and speaker communications.",
+      "tech": [
+        "Python",
+        "HTML email",
+        "Reusable templates"
+      ],
+      "url": "https://github.com/athycc/aws-email-automation",
+      "details": [
+        "Created template-based communication for applicant acceptance, applicant rejection, partnerships, sponsorships, and speakers.",
+        "Integrated reusable layouts and image support so organization communications share a consistent presentation."
+      ],
+      "note": "The repository is available for review. No delivery-volume or time-saving figures are asserted."
+    },
+    {
+      "id": "backlog",
+      "category": "data",
+      "label": "Data analytics · Eskwelabs",
+      "title": "Product Backlog Dashboard",
+      "year": "2026",
+      "image": "/assets/eskwelabs-analytics.jpg",
+      "status": "Internship output",
+      "summary": "Built a Power BI dashboard tracking 170 backlog items across 9 initiatives and 40 epics, with reporting across 36 stories and 427.33 story points.",
+      "tech": [
+        "Power BI",
+        "KPI tracking",
+        "Backlog analysis"
+      ],
+      "media": "https://drive.google.com/file/d/1KWr_AL5FNSBgpXjz_uv3xOhh0Cb_zJgV/view",
+      "video": "/videos/product-demo.mp4",
+      "details": [
+        "Organized backlog status, urgency, priority, and sprint progress for stakeholder reporting.",
+        "Built views covering 170 items, 9 initiatives, 40 epics, and 36 stories totaling 427.33 story points."
+      ],
+      "note": "Dashboard metrics describe the dataset and reporting scope, rather than a measured productivity improvement."
+    },
+    {
+      "id": "financial",
+      "category": "data",
+      "label": "Financial analytics · Eskwelabs",
+      "title": "Financial Dashboard",
+      "year": "2026",
+      "image": "/assets/dashboard-detail.jpg",
+      "status": "Internship output",
+      "summary": "Developed financial reporting covering 92 programs, $39.1M in revenue, 19,025 students, and a 42.7% gross margin.",
+      "tech": [
+        "Power BI",
+        "P&L analysis",
+        "Cost analysis"
+      ],
+      "details": [
+        "Created financial, P&L, and cost analysis dashboards for stakeholder reporting and business decisions.",
+        "Analyzed a dataset spanning 92 programs, $39.1M revenue, 19,025 students, and a 42.7% gross margin."
+      ],
+      "note": "Figures describe the analyzed dataset; they do not represent revenue generated by my work."
+    },
+    {
+      "id": "capycademy",
+      "category": "automation",
+      "label": "Team lead · APPCON 2024",
+      "title": "CapyCademy",
+      "year": "75 / 178 teams",
+      "art": "academy",
+      "status": "Competition application",
+      "summary": "Led development of a skills gap application, qualifying 75th among 178 teams in APPCON 2024.",
+      "tech": [
+        "React",
+        "FastAPI",
+        "Supabase",
+        "AI services"
+      ],
+      "media": "https://drive.google.com/file/d/1TbE3MAlm5G4juQn29qu_mpF0csY3n7ER/view",
+      "details": [
+        "Led the team developing an application addressing skills gaps.",
+        "Worked with React, ShadCN, Tailwind CSS, Zustand, TanStack Query, Axios, Python, FastAPI, Supabase, and AI services."
+      ],
+      "note": "Open the original project demo for the application presentation. The card is a project illustration."
+    },
+    {
+      "id": "robotics",
+      "category": "exploration",
+      "label": "Robotics competition · TIP",
+      "title": "Autonomous Sumobot",
+      "year": "Champion · 2023",
+      "art": "robot",
+      "status": "Competition build",
+      "summary": "Built a championship-winning Arduino sumobot with motor control, edge detection, and opponent tracking.",
+      "tech": [
+        "Arduino Uno",
+        "IR sensors",
+        "L298N",
+        "Motor control"
+      ],
+      "media": "https://drive.google.com/file/d/1xZAUodqRJe_arx5DPSV1KjDbVHninBN7/view",
+      "details": [
+        "Built and programmed an autonomous sumobot using Arduino Uno, DC motors, an L298N driver, IR sensors, and a lightweight chassis.",
+        "Tested and iterated to improve speed, responsiveness, and stability during matches."
+      ],
+      "note": "Champion, Technological Institute of the Philippines Robotics Competition, May 6, 2023."
+    },
+    {
+      "id": "looker",
+      "category": "data",
+      "label": "Financial reporting",
+      "title": "Looker Financial Model",
+      "year": "2025",
+      "image": "/assets/dashboard-skills.jpg",
+      "status": "Portfolio showcase",
+      "summary": "A financial statement model showcase covering consolidated statements, account drill-downs, reporting, and exportable charts.",
+      "tech": [
+        "Looker Studio",
+        "SQL",
+        "Visualization"
+      ],
+      "media": "https://drive.google.com/file/d/188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf/view",
+      "video": "/videos/financial-looker.mp4",
+      "details": [
+        "Showcased financial statements, balance sheets, income statements, cash flow views, and account-level drill-downs.",
+        "Presented reporting and exportable chart features in the original project demo."
+      ],
+      "note": "Preserved from the existing portfolio. View the demo for the original presentation."
+    },
+    {
+      "id": "credivest",
+      "category": "exploration",
+      "label": "Fintech concept",
+      "title": "Credivest",
+      "year": "2024",
+      "art": "credivest",
+      "status": "Concept prototype",
+      "summary": "A fintech concept exploring investment or lending journeys through a product demo and clear data presentation.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "UI design"
+      ],
+      "media": "https://drive.google.com/file/d/1eyXYl9GuWGVHGBViCcP0n2mGQZUUbodx/view",
+      "details": [
+        "Explored finance-oriented product journeys and presented them through a prototype demo.",
+        "Combined interface design, TypeScript, React, and data storytelling."
+      ],
+      "note": "Concept prototype, rather than a live lending or investment service."
+    },
+    {
+      "id": "healthcare",
+      "category": "automation",
+      "label": "Healthcare intelligence · Exist",
+      "title": "Healthcare Outreach Agent",
+      "year": "In development",
+      "art": "agent",
+      "status": "Proof of concept",
+      "summary": "Developing a 5-hospital pilot workflow for public DOH research, verified contacts, lead tracking, and outreach drafts with human approval.",
+      "tech": [
+        "Workflow design",
+        "Google Sheets",
+        "Source validation",
+        "Human approval"
+      ],
+      "details": [
+        "Define public hospital research and contact verification, with an initial 5-hospital pilot and a nationwide research scope.",
+        "Maintain a Google Sheets tracking workflow and define audit history, outreach review, and email approval controls.",
+        "Document source-access and integration limitations while developing the pilot."
+      ],
+      "note": "Proof of concept. Reliable nationwide extraction, unattended operation, and production email scheduling are not claimed."
+    },
+    {
+      "id": "aegis",
+      "category": "web",
+      "label": "Capstone · AlphaExplora Inc.",
+      "title": "AegisLearn",
+      "year": "In development",
+      "art": "learning",
+      "status": "Capstone prototype",
+      "summary": "Developing requirements, workflows, and UI/UX revisions for an internship learning and secure document management system.",
+      "tech": [
+        "Requirements",
+        "Workflow diagrams",
+        "UI/UX",
+        "Prototyping"
+      ],
+      "details": [
+        "Develop requirements and workflow diagrams for the internship learning and document management prototype.",
+        "Revise the interface around AlphaExplora Inc.’s needs and client branding."
+      ],
+      "note": "Capstone prototype in development; a production deployment or final implementation stack is not claimed."
+    }
   ],
-  "experience":[
-    {"role":"Marketing Intern","org":"Exist Software Labs Inc.","period":"2026–Present","summary":"Healthcare content, industry research, and automation prototypes connecting marketing with business development.","bullets":["Prepare healthcare content for a 12-image LinkedIn campaign, translating hospital information system concepts into accessible messaging.","Research events across 6 sectors in the Philippines and ASEAN: healthcare, banking, retail, energy, AI, and API management.","Develop requirements and workflows for a healthcare outreach AI agent with an initial 5-hospital pilot.","Prototype a 6-step monthly payment reminder workflow with Google Workspace Studio and Gemini."]},
-    {"role":"Marketing Intern","org":"Edukasyon.ph","period":"Hybrid · March–June 2026","summary":"Automated outreach with Apps Script and built a social media KPI dashboard tracking a 280K quarterly target.","bullets":["Automated email workflows using Google Apps Script, Gmail, and Google Sheets.","Built a social media KPI dashboard to monitor campaign performance against a 280K quarterly target.","Researched EDCOM, financial literacy, LGBTQ+ inclusion, marketing strategies, and AWS re/Start.","Managed community engagement, social monitoring, and content execution."]},
-    {"role":"Data Analyst Intern","org":"Eskwelabs","period":"Hybrid · February–May 2026","summary":"Built backlog reporting across 170 items and financial dashboards covering 92 programs and $39.1M in analyzed revenue.","bullets":["Built a Power BI Product Backlog Dashboard across 170 items, 9 initiatives, and 40 epics.","Reported backlog urgency and sprint progress across 36 stories totaling 427.33 story points.","Developed a Financial Dashboard analyzing 92 programs, $39.1M revenue, 19,025 students, and a 42.7% gross margin.","Created P&L and cost analysis dashboards for stakeholder reporting."]},
-    {"role":"Research Intern","org":"Heartful Hospitality","period":"Remote · June–October 2025","summary":"Reviewed Alzheimer’s care interventions and developed evidence-based recommendations for senior wellness.","bullets":["Conducted a systematic literature review using PubMed, Google Scholar, and WHO sources.","Authored a research paper comparing community, technology-based, and hybrid dementia care models.","Produced recommendations supporting senior wellness initiatives."]},
-    {"role":"IT Support & Data Management","org":"Philippine National Police (QCPD)","period":"Onsite · January–May 2022","summary":"Developed a QCPD sector website and managed digital documentation workflows supporting departmental operations.","bullets":["Developed and deployed a QCPD sector website.","Managed digital documentation workflows for departmental operations."]}
+  "experience": [
+    {
+      "role": "Marketing Intern",
+      "org": "Exist Software Labs Inc.",
+      "period": "Hybrid · August 2026–Present",
+      "summary": "Create healthcare marketing content, research industry events, and develop requirements and workflows for AI agent automation.",
+      "bullets": [
+        "Prepare healthcare content for a 12-image LinkedIn campaign, translating hospital information system concepts into accessible messaging.",
+        "Research events across 6 sectors in the Philippines and ASEAN: healthcare, banking, retail, energy, AI, and API management.",
+        "Develop requirements and workflows using AI agent automation for the marketing department."
+      ]
+    },
+    {
+      "role": "Marketing Intern",
+      "org": "Edukasyon.ph",
+      "period": "Hybrid · March–June 2026",
+      "summary": "Automated outreach with Apps Script and built a social media KPI dashboard tracking a 280K quarterly target.",
+      "bullets": [
+        "Automated email workflows using Google Apps Script, Gmail, and Google Sheets.",
+        "Built a social media KPI dashboard to monitor campaign performance against a 280K quarterly target.",
+        "Researched EDCOM, financial literacy, LGBTQ+ inclusion, marketing strategies, and AWS re/Start.",
+        "Managed community engagement, social monitoring, and content execution."
+      ]
+    },
+    {
+      "role": "Data Analyst Intern",
+      "org": "Eskwelabs",
+      "period": "Hybrid · February–May 2026",
+      "summary": "Built backlog reporting across 170 items and financial dashboards covering 92 programs and $39.1M in analyzed revenue.",
+      "bullets": [
+        "Built a Power BI Product Backlog Dashboard across 170 items, 9 initiatives, and 40 epics.",
+        "Reported backlog urgency and sprint progress across 36 stories totaling 427.33 story points.",
+        "Developed a Financial Dashboard analyzing 92 programs, $39.1M revenue, 19,025 students, and a 42.7% gross margin.",
+        "Created P&L and cost analysis dashboards for stakeholder reporting."
+      ]
+    },
+    {
+      "role": "Research Intern",
+      "org": "Heartful Hospitality",
+      "period": "Remote · June–October 2025",
+      "summary": "Reviewed Alzheimer’s care interventions and developed evidence-based recommendations for senior wellness.",
+      "bullets": [
+        "Conducted a systematic literature review using PubMed, Google Scholar, and WHO sources.",
+        "Authored a research paper comparing community, technology-based, and hybrid dementia care models.",
+        "Produced recommendations supporting senior wellness initiatives."
+      ]
+    },
+    {
+      "role": "IT Support & Data Management",
+      "org": "Philippine National Police (QCPD)",
+      "period": "Onsite · January–May 2022",
+      "summary": "Developed a QCPD sector website and managed digital documentation workflows supporting departmental operations.",
+      "bullets": [
+        "Developed and deployed a QCPD sector website.",
+        "Managed digital documentation workflows for departmental operations."
+      ]
+    }
   ],
-  "volunteering":[
-    ["Speaker Coordinator · DEVCON Manila","Hybrid · April 2025–March 2026","Coordinated technical presentations, speakers, and program schedules."],
-    ["Host · CaffeineAI","Onsite · October 2025","Interviewed hackathon guests, mentors, participants, and volunteers."],
-    ["Stage Manager & Usher · UNLEASH Philippines","Onsite · September 2025","Coordinated stage flow, performers, and technical cues."],
-    ["Secretariat & Usher · IoT Conference of the Philippines","Onsite · September 2025","Supported documentation, scheduling, communication, and attendee guidance."],
-    ["Program Manager · DEVCON Manila Game On Game Jam","Onsite · August 2025","Coordinated facilities, staff, speakers, schedules, resources, and activities."],
-    ["Speaker Coordinator · Arduino Day Philippines","Hybrid · January–March 2025","Coordinated technical presentations and speaker communications."]
+  "volunteering": [
+    [
+      "Speaker Coordinator · DEVCON Manila",
+      "Hybrid · April 2025–March 2026",
+      "Coordinated technical presentations, speakers, and program schedules."
+    ],
+    [
+      "Host · CaffeineAI",
+      "Onsite · October 2025",
+      "Interviewed hackathon guests, mentors, participants, and volunteers."
+    ],
+    [
+      "Stage Manager & Usher · UNLEASH Philippines",
+      "Onsite · September 2025",
+      "Coordinated stage flow, performers, and technical cues."
+    ],
+    [
+      "Secretariat & Usher · IoT Conference of the Philippines",
+      "Onsite · September 2025",
+      "Supported documentation, scheduling, communication, and attendee guidance."
+    ],
+    [
+      "Program Manager · DEVCON Manila Game On Game Jam",
+      "Onsite · August 2025",
+      "Coordinated facilities, staff, speakers, schedules, resources, and activities."
+    ],
+    [
+      "Speaker Coordinator · Arduino Day Philippines",
+      "Hybrid · January–March 2025",
+      "Coordinated technical presentations and speaker communications."
+    ]
   ],
-  "skills":[
-    ["Frontend","TypeScript","JavaScript","React","Next.js","React Native","Tailwind CSS","CSS animations"],
-    ["Backend & data","Python","FastAPI","Pandas","PHP","Java","MySQL","Supabase","Firebase"],
-    ["Analytics & visualization","Power BI","Looker Studio","KPI tracking","P&L analysis","Business reporting"],
-    ["Automation & AI","Google Apps Script","Workspace Studio","Gmail","Google Sheets","Gemini prototyping","Prompt & context design","Human approval workflows"],
-    ["Testing & security","Playwright","axe-core","Functional QA","Responsive testing","Bug reporting","Network traffic analysis","Vulnerability management"],
-    ["Build & collaboration","Git & GitHub","Docker","GitHub Actions","Vercel","Netlify","Vite","Node.js","Figma","Canva","Trello","Bash","PowerShell","Arduino IDE"],
-    ["Marketing & operations","Industry research","B2B content","Email campaigns","Community engagement","Stakeholder communication","Event coordination"]
+  "skills": [
+    [
+      "Frontend",
+      "TypeScript",
+      "JavaScript",
+      "React.js",
+      "Next.js",
+      "React Native",
+      "Tailwind CSS"
+    ],
+    [
+      "Backend & databases",
+      "Python",
+      "FastAPI",
+      "PHP",
+      "Java",
+      "MySQL",
+      "Supabase",
+      "Firebase"
+    ],
+    [
+      "Analytics & visualization",
+      "Power BI",
+      "Looker Studio",
+      "Data visualization",
+      "KPI tracking",
+      "P&L analysis",
+      "Business reporting"
+    ],
+    [
+      "Automation",
+      "Google Apps Script",
+      "Google Workspace",
+      "Google AI Studio",
+      "AI workflow design"
+    ],
+    [
+      "Testing & security",
+      "Playwright",
+      "Responsive testing",
+      "Network traffic analysis",
+      "Vulnerability management"
+    ],
+    [
+      "Build & collaboration",
+      "Git & GitHub",
+      "Docker",
+      "GitHub Actions",
+      "Vercel",
+      "Node.js",
+      "Figma",
+      "Canva",
+      "Trello",
+      "Bash",
+      "PowerShell",
+      "Arduino IDE"
+    ],
+    [
+      "Marketing & operations",
+      "B2B content development",
+      "Email campaigns",
+      "Event coordination"
+    ]
   ],
-  "certifications":[
-    ["DataCamp · Certified Data Science Associate","June 2025"],
-    ["DataCamp · Certified Data Analyst Associate","June 2025"],
-    ["Oracle · Oracle Fusion AI Foundation Associate","March 2025"],
-    ["KodeKloud · CompTIA Security+ training","May 2025"],
-    ["QCSP, DOST-ASTI & DLSU-DCT · Quantum and Blockchain Lecture and Hackathon Series","March 2025"],
-    ["NVIDIA · Elevate Emerging Technologies","January 2025"],
-    ["DataCamp · Introductory Python, AI, Machine Learning & Data Science courses","December 2024"],
-    ["Data Engineering Pilipinas · DataCamp Scholar","December 2025"],
-    ["Security Blue Team · Blue Team Junior Analyst","October 2024"],
-    ["OPSWAT Academy · Cybersecurity Fundamentals Associate","October 2024"],
-    ["Data Analytics Philippines · MySQL Querying Fundamentals","October 2024"]
+  "certifications": [
+    [
+      "DataCamp · Certified Data Science Associate",
+      "June 2025"
+    ],
+    [
+      "DataCamp · Certified Data Analyst Associate",
+      "June 2025"
+    ],
+    [
+      "Oracle · Oracle Fusion AI Foundation Associate",
+      "March 2025"
+    ],
+    [
+      "KodeKloud · CompTIA Security+ training",
+      "May 2025"
+    ],
+    [
+      "QCSP, DOST-ASTI & DLSU-DCT · Quantum and Blockchain Lecture and Hackathon Series",
+      "March 2025"
+    ],
+    [
+      "NVIDIA · Elevate Emerging Technologies",
+      "January 2025"
+    ],
+    [
+      "DataCamp · Introductory Python, AI, Machine Learning & Data Science courses",
+      "December 2024"
+    ],
+    [
+      "Data Engineering Pilipinas · DataCamp Scholar",
+      "December 2025"
+    ],
+    [
+      "Security Blue Team · Blue Team Junior Analyst",
+      "October 2024"
+    ],
+    [
+      "OPSWAT Academy · Cybersecurity Fundamentals Associate",
+      "October 2024"
+    ],
+    [
+      "Data Analytics Philippines · MySQL Querying Fundamentals",
+      "October 2024"
+    ]
   ],
-  "awards":[
-    ["75 / 178","APPCON 2024 · OTIS Japan Incorporation","April 21, 2025 · Team lead, skills gap application."],
-    ["11th","SEEN 2025 CTF · GDG PUP × CyberPH","August 20, 2025 · Network analysis and digital forensics."],
-    ["116 / 199","Trend University CTF · Trend Micro","August 22, 2025 · Reverse engineering and OSINT."],
-    ["3rd Runner-Up","Home Credit Hackada · KadaKareer","November 18, 2024 · Lead programmer, customer engagement and loyalty platform. React, TypeScript, JavaScript, Tailwind CSS, Figma."],
-    ["3rd Runner-Up","Tech Careerscape · PUP Programmers Guild","September 16, 2023 · Skills gap research and assessment prototype."],
-    ["Champion","Robotics Competition · TIP","May 6, 2023 · Autonomous Arduino sumobot."]
+  "awards": [
+    [
+      "75 / 178",
+      "APPCON 2024 · OTIS Japan Incorporation",
+      "April 21, 2025 · Team lead, skills gap application."
+    ],
+    [
+      "11th",
+      "SEEN 2025 CTF · GDG PUP × CyberPH",
+      "August 20, 2025 · Network analysis and digital forensics."
+    ],
+    [
+      "116 / 199",
+      "Trend University CTF · Trend Micro",
+      "August 22, 2025 · Reverse engineering and OSINT."
+    ],
+    [
+      "3rd Runner-Up",
+      "Home Credit Hackada · KadaKareer",
+      "November 18, 2024 · Lead programmer, customer engagement and loyalty platform. React, TypeScript, JavaScript, Tailwind CSS, Figma."
+    ],
+    [
+      "3rd Runner-Up",
+      "Tech Careerscape · PUP Programmers Guild",
+      "September 16, 2023 · Skills gap research and assessment prototype."
+    ],
+    [
+      "Champion",
+      "Robotics Competition · TIP",
+      "May 6, 2023 · Autonomous Arduino sumobot."
+    ]
   ]
 }
 </script>
@@ -164,7 +848,7 @@
   const projects = $('#projects');
   const projectById = id => data.projects.find(p => p.id === id);
   function artwork(p) {
-    if (p.image) return `<img src="${esc(p.image)}" alt="${esc(p.title)} portfolio image" width="1200" height="800" loading="lazy"${p.id === 'backlog' || p.id === 'financial' ? ' class="contain"' : ''}>`;
+    if (p.image) return `<img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title + " portfolio image")}" width="1200" height="800" loading="lazy"${p.brandImage ? ' class="project-brand"' : p.id === 'backlog' || p.id === 'financial' ? ' class="contain"' : ''}>`;
     const illustrations = {
       academy:'<div class="learning-window"><strong>CapyCademy.</strong><div class="learning-progress"></div><small>Turning learning into possibility.</small><div class="learning-blocks"><span>Learning support</span><span>Skills assessment</span></div></div>',
       south:'<div class="art-type"><small>AWS STUDENT COMMUNITY DAY</small>SOUTH<br>SUMMIT.<em>BUILD. GROW. LEAD.</em></div>',
@@ -181,7 +865,7 @@
   function renderProjects() {
     const matching = data.projects.filter(p => filter === 'all' || p.category === filter);
     const visible = expanded || filter !== 'all' ? matching : matching.slice(0,6);
-    projects.innerHTML = visible.map(p => `<article class="project" data-id="${p.id}"><div class="project-visual">${artwork(p)}<span class="visual-note">${esc(p.status)}</span><button class="project-open" data-project="${p.id}" aria-label="Open ${esc(p.title)} project details"><span class="visual-arrow">${arrow}</span></button></div><div class="project-meta"><span>${esc(p.label)}</span><span>${esc(p.year)}</span></div><h3><button data-project="${p.id}">${esc(p.title)}</button></h3><p class="project-description">${esc(p.summary)}</p><div class="tags">${tagHTML(p.tech)}</div><div class="project-bottom"><button class="text-link" data-project="${p.id}" style="border-inline:0;border-top:0;background:none">Project notes ${arrow}</button>${p.url ? `<a class="project-url" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.url.replace('https://',''))} ↗</a>` : '<span class="project-url">'+esc(p.status)+'</span>'}</div></article>`).join('');
+    projects.innerHTML = visible.map(p => `<article class="project" data-id="${p.id}"><div class="project-visual">${artwork(p)}${p.image ? '' : `<span class="visual-note">${esc(p.status)}</span>`}<button class="project-open" data-project="${p.id}" aria-label="Open ${esc(p.title)} project details"><span class="visual-arrow">${arrow}</span></button></div><div class="project-meta"><span>${esc(p.label)}</span><span>${esc(p.year)}</span></div><h3><button data-project="${p.id}">${esc(p.title)}</button></h3><p class="project-description">${esc(p.summary)}</p><div class="tags">${tagHTML(p.tech)}</div><div class="project-bottom"><button class="text-link" data-project="${p.id}" style="border-inline:0;border-top:0;background:none">Project notes ${arrow}</button>${p.url ? `<a class="project-url" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.url.replace('https://',''))} ↗</a>` : '<span class="project-url">'+esc(p.status)+'</span>'}</div></article>`).join('');
     $('#project-count').textContent = `${visible.length} of ${matching.length} projects`;
     $('#show-more').hidden = filter !== 'all';
     $('#show-more').textContent = expanded ? 'Show selected projects −' : `Show all ${data.projects.length} projects +`;
@@ -212,7 +896,7 @@
   }
   function openProject(id, trigger) {
     const p=projectById(id);if(!p)return;
-    $('#project-dialog-body').innerHTML = `<span class="eyebrow">${esc(p.label)}</span><h2 id="project-dialog-title" style="margin-top:1rem">${esc(p.title)}</h2><p>${esc(p.summary)}</p><div class="tags">${tagHTML(p.tech)}</div><h3>My contribution</h3><ul>${p.details.map(d=>`<li>${esc(d)}</li>`).join('')}</ul>${p.image?`<div class="project-modal-media"><img src="${esc(p.image)}" alt="${esc(p.title)} portfolio image"></div>`:''}${p.video?`<div class="project-modal-media"><video controls preload="none" playsinline ${p.image?'poster="'+esc(p.image)+'"':''}><source src="${esc(p.video)}" type="video/mp4">Your browser does not support this video. Please use the original demo link.</video></div>`:''}<p class="project-stage-note">${esc(p.note)}</p><div class="dialog-actions">${p.url?`<a class="pill" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${p.url.includes('github.com')?'View repository':'Visit website'} ↗</a>`:''}${p.media?`<a class="pill outline" href="${esc(p.media)}" target="_blank" rel="noopener noreferrer">Open original demo ↗</a>`:''}</div>${p.url?`<p class="external-label" style="font-size:.7rem"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.url)}</a></p>`:''}`;
+    $('#project-dialog-body').innerHTML = `<span class="eyebrow">${esc(p.label)}</span><h2 id="project-dialog-title" style="margin-top:1rem">${esc(p.title)}</h2><p>${esc(p.summary)}</p><div class="tags">${tagHTML(p.tech)}</div><h3>My contribution</h3><ul>${p.details.map(d=>`<li>${esc(d)}</li>`).join('')}</ul>${p.image?`<div class="project-modal-media"><img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title + " portfolio image")}"></div>`:''}${p.video?`<div class="project-modal-media"><video controls preload="none" playsinline ${p.image?'poster="'+esc(p.image)+'"':''}><source src="${esc(p.video)}" type="video/mp4">Your browser does not support this video. Please use the original demo link.</video></div>`:''}<p class="project-stage-note">${esc(p.note)}</p><div class="dialog-actions">${p.url?`<a class="pill" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${p.url.includes('github.com')?'View repository':'Visit website'} ↗</a>`:''}${p.media?`<a class="pill outline" href="${esc(p.media)}" target="_blank" rel="noopener noreferrer">Open original demo ↗</a>`:''}</div>${p.url?`<p class="external-label" style="font-size:.7rem"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.url)}</a></p>`:''}`;
     openDialog($('#project-dialog'),trigger);
   }
   document.addEventListener('click',event=>{
@@ -246,7 +930,7 @@
   const intro=$('#intro');let ready=false;
   function reveal(){if(ready)return;ready=true;document.body.classList.add('hero-reveal');intro.classList.remove('is-active');intro.classList.add('is-exiting');if(lenis)lenis.start();setTimeout(()=>{intro.hidden=true;},reduced.matches?0:850);startCarousel();}
   // A bounded introduction never gates the actual content or native scrolling.
-  intro.hidden=false;intro.classList.add('is-active');setTimeout(reveal,reduced.matches?200:1400);setTimeout(reveal,2600);
+  if(location.hash && location.hash !== '#home'){reveal();}else{intro.hidden=false;intro.classList.add('is-active');setTimeout(reveal,reduced.matches?200:1400);setTimeout(reveal,2600);}
   document.addEventListener('keydown',event=>{if(event.key==='Tab')reveal();});
   let lenisAttempted=false;
   function enableSmoothScroll(){if(lenisAttempted||reduced.matches)return;lenisAttempted=true;import('lenis').then(({default:Lenis})=>{if(reduced.matches)return;lenis=new Lenis({smoothWheel:true,prevent:node=>node.closest('dialog')});let last=0;function frame(time){if(time-last>15){lenis.raf(time);last=time;}requestAnimationFrame(frame);}requestAnimationFrame(frame);}).catch(()=>{});}

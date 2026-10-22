@@ -37,3 +37,24 @@ The previous React/TanStack implementation remains in `src/` for reference. The 
 ## Verification
 
 Run the static assertions with `npm test`. Browser validation should cover desktop and mobile viewport widths, keyboard navigation, dialog focus and Escape behavior, project filters, external links, résumé download, and reduced motion. Chromium emulation does not establish physical-device certification.
+
+## October 2026 layout refinement
+
+Shared reading sizes are now 15–16px for body copy, with bounded desktop columns, aligned project actions, and single-column phone layouts. The About section uses a normal photo/content grid. Skills sit in their own grid below education and certifications. Navigation uses a flex layout that fits short phone viewports.
+
+Content dates and the original résumé link were reconciled with Catherine's supplied October 22 PDF:
+https://drive.google.com/file/d/1tGHgGV_S_Psj7qlHdQhn-7bWlYJkNifQ/view?usp=drivesdk
+
+The generated text download is labeled a portfolio summary because it also contains supplementary project notes. Development and QA contributions remain labeled per project.
+
+### Image sources
+
+The existing portfolio's photos, dashboard images, and demo links are retained. The following public assets were copied locally with Catherine's instruction to use imagery from these project websites:
+
+- `public/projects/scd-south.png`: https://aws.scd-south.cloud/assets/social/south-summit-card.png
+- `public/projects/scd-mega-manila.png`: https://www.aws-scd.cloud/og.png
+- `public/projects/sync.png`: https://sync.aws-scd.cloud/opengraph-image.png?opengraph-image.0b1c6zzqz7er5.png
+- `public/projects/scd-south-community.webp`: https://aws.scd-south.cloud/assets/story/community-team.webp
+- `public/projects/scd-builders.webp`: https://www.aws-scd.cloud/photography/story-work.webp
+
+These are official project artwork/community photos, rather than screenshots of an application UI. Dates and roles belong to the résumé; current website branding can change independently.
