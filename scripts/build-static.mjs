@@ -34,7 +34,7 @@ const resume = [
   '- Managed document distribution and archives; supported event planning and coordination.',
   '', 'EDUCATION',
   'Rizal Technological University | Bachelor of Science in Information Technology | 2023–Present',
-  'Cumulative GWA: 1.46 | Academic Achiever',
+  'Academic Achiever',
   'Scholarships: Quezon City Youth Development Organization; Data Engineering Pilipinas DataCamp; AWS AI & ML.',
   'Coursework: Software Development, Object Oriented Programming, Integrative Programming and Technologies, Web Systems, Database Management, Operating Systems, Networking.',
   '', 'CERTIFICATIONS & TRAINING',

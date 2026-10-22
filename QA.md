@@ -205,3 +205,11 @@ Verification uses Chromium CSS viewports, not physical devices or a cross-browse
 - Configured 375px and 320px Chromium viewports have no horizontal document overflow (360/360px and 305/305px after scrollbar). The perspective stream, counter and arrow controls were visually inspected on mobile.
 - Data filtering returns two cards. Looker Financial Model details open with the correct financial folder/demo links and no modal overflow (328/328px); Escape dismisses it.
 - All six Node checks pass. Geometry is cached on resize; one animation loop runs only for visible project motion or a short manual transition. The photo scroll listener is passive, coalesced by animation frame and detached outside the visible section. No framework or animation dependency added. Browser checks are not a physical-device, cross-browser or FPS certification.
+
+## October 23, 2026 — About photo stack and GWA removal
+
+- Removed the GWA number/labels from About and Education, the résumé dialog and generated text download. Academic Achiever, degree and education dates remain. The externally linked original PDF is not modified.
+- About now displays three real photo cards: one at the front and two tilted behind it, each with its own border and shadow. Scroll and manual-next selection rotate the three depth positions while retaining the brief pixel transition and original image files.
+- Browser observations: all three cards have distinct depth values 0/1/2; manual selection and scrolling reorder them with exactly one front card. Desktop About was visually inspected. Public page text and the opened résumé preview have no GWA text; Academic Achiever remains in the preview.
+- At configured Chromium widths 375px and 320px there is no horizontal document overflow (360/360px and 305/305px after scrollbar). All transformed card bounds fit inside the viewport; the layered photos were visually inspected at 375px.
+- Six Node checks pass, including no GWA in public HTML, résumé preview source or generated text résumé. Responsive checks are CSS viewport tests, not physical-device or cross-browser certification.

@@ -15,6 +15,7 @@ export function initSlideshow(motion) {
   function display(next, manual) {
     index = next;
     images.forEach((image, position) => {
+      image.dataset.stackDepth = String((position - index + images.length) % images.length);
       image.classList.toggle('is-active', position === index);
       image.setAttribute('aria-hidden', String(position !== index));
     });
