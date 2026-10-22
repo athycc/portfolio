@@ -49,7 +49,7 @@ await rm(dist, {recursive:true,force:true});
 await mkdir(path.join(dist,'assets'), {recursive:true});
 await cp(path.join(root,'public'),dist,{recursive:true,filter:source=>!path.basename(source).startsWith('.')});
 await cp(path.join(root,'site'),path.join(dist,'assets/site'),{recursive:true});
-const styles = await Promise.all(['base','hero','about','projects','sections','dialogs','layout','motion','slideshow','flow'].map(name => readFile(path.join(root,'site/styles',name+'.css'),'utf8')));
+const styles = await Promise.all(['base','hero','about','projects','sections','dialogs','layout','motion','slideshow','flow','gallery'].map(name => readFile(path.join(root,'site/styles',name+'.css'),'utf8')));
 await writeFile(path.join(dist,'assets/site.css'), styles.join('\n'));
 await rm(path.join(dist,'assets/site/styles'), {recursive:true});
 await writeFile(path.join(dist,'index.html'),html);

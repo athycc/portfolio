@@ -4,7 +4,6 @@ export function initSlideshow(motion) {
   const gallery = $('.about-gallery');
   const stage = $('.photo-stage', gallery);
   const images = $$('[data-slide]', gallery);
-  const choices = $$('[data-photo]', gallery);
   const toggle = $('.slideshow-toggle', gallery);
   const canvas = $('canvas', gallery);
   const context = canvas.getContext('2d');
@@ -24,9 +23,8 @@ export function initSlideshow(motion) {
       image.classList.toggle('is-active', position === index);
       image.setAttribute('aria-hidden', String(position !== index));
     });
-    choices.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
     $('.gallery-count', gallery).textContent = `0${index + 1} / 03`;
-    if (manual) $('#gallery-status').textContent = `Photo ${index + 1} of 3: ${choices[index].textContent.trim()}.`;
+    if (manual) $('#gallery-status').textContent = `Photo ${index + 1} of 3: ${images[index].alt}.`;
   }
 
   function drawPixels(image, columns) {
@@ -87,10 +85,9 @@ export function initSlideshow(motion) {
     if (!motion.enabled()) { revision++; clearTransition(); }
     const blocked = !visible || document.hidden || $('dialog[open]') ||
       (!userStarted && gallery.matches(':focus-within,:hover'));
-    if (motion.enabled() && !paused && !blocked) autoplay = setTimeout(() => select(index + 1), 4200);
+    if (motion.enabled() && !paused && !blocked) autoplay = setTimeout(() => select(index + 1), 3000);
   }
 
-  choices.forEach((button) => button.addEventListener('click', () => select(Number(button.dataset.photo), true)));
   $('.gallery-next', gallery).addEventListener('click', () => select(index + 1, true));
   toggle.addEventListener('click', () => { paused = !paused; userStarted = !paused; sync(); });
   ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach((event) => gallery.addEventListener(event, sync));

@@ -175,3 +175,14 @@ HTML formatting inserted whitespace into the textarea's initial value. The texta
 ### Limits
 
 Verification uses Chromium CSS viewports, not physical devices or a cross-browser matrix. Timed slideshow observations are not frame-rate benchmarks. System reduced-motion behavior is reviewed in source and the actual site pause is exercised. The focused security review is not a full audit or penetration test; provider account, firewall, rate-limit and backup settings remain outside this pass.
+
+## October 23, 2026 — Full-bleed layout and project gallery
+
+- All eight animated section surfaces reach both viewport edges; outer main padding and rounded section corners are removed. Reading columns remain bounded.
+- Native horizontal gallery contains 12 projects after removing Meowlogy, Healthcare Outreach Agent, AegisLearn, QCPD Website and Hoshi Bookstore. Financial Dashboard is consolidated into Looker Financial Model with the requested financial image, metrics and contribution details.
+- Browser checks: next arrow advanced from 4px to 600px; mouse drag advanced to 1196px without opening a dialog; Data filter showed exactly Product Backlog Dashboard and Looker Financial Model. Financial dialog displayed the expected image/content and original folder/demo actions.
+- Keyboard End reached the gallery's 5920px endpoint with Next disabled; Home returned to the beginning. Project dialog opens and dismisses with Escape.
+- Configured Chromium widths 320, 375, 768 and desktop (1363px) have no horizontal document overflow. All eight surfaces remain full width; 375px gallery and controls visually inspected. Phone next arrow advances the gallery.
+- About photo labels are removed. Autoplay advances through clear source photos with a 3000ms hold between pixel transitions. Pause/manual next and global reduced-motion controls are retained.
+- Six Node checks pass, covering 12 project records, seven verified folder destinations, current résumé facts, native JavaScript parsing, built resources and the restricted deployment policy. No application errors observed during checked journeys; unrelated extension metadata errors excluded.
+- Scope: Chromium viewport checks, not physical-device or cross-browser certification. No new dependencies or security policy changes.
