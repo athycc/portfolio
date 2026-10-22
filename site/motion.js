@@ -2,9 +2,7 @@ import { $, $$ } from './dom.js';
 
 export function createMotion() {
   const system = matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = false;
-  try { paused = localStorage.getItem('cath-motion-paused') === 'true'; } catch {}
-  const enabled = () => !system.matches && !paused;
+  const enabled = () => !system.matches;
   const surfaces = $$('[data-flow]');
   const seen = new WeakSet();
   const navigation = $$('nav a[href^="#"]');
@@ -41,16 +39,6 @@ export function createMotion() {
 
   function apply() {
     document.documentElement.dataset.motion = enabled() ? 'full' : 'reduced';
-    $$('[data-motion-toggle]').forEach((button) => {
-      const label = system.matches ? 'System reduced motion'
-        : enabled() ? 'Pause site animations' : 'Enable site animations';
-      button.disabled = system.matches;
-      button.setAttribute('aria-label', label);
-      button.setAttribute('aria-pressed', String(!enabled()));
-      button.title = label;
-      if (button.classList.contains('motion-toggle')) $('span', button).textContent = enabled() ? 'Ⅱ' : '▷';
-      else button.textContent = enabled() ? 'Pause animations' : 'Enable animations';
-    });
     if (!enabled()) $$('.is-pending').forEach((item) => item.classList.remove('is-pending'));
     syncFlow();
     document.dispatchEvent(new Event('motionchange'));
@@ -74,12 +62,6 @@ export function createMotion() {
     surfaces.forEach((surface) => sections.observe(surface));
   } else surfaces.forEach((surface) => { surface.dataset.inView = 'true'; });
 
-  document.addEventListener('click', (event) => {
-    if (!event.target.closest('[data-motion-toggle]')) return;
-    paused = !paused;
-    try { localStorage.setItem('cath-motion-paused', String(paused)); } catch {}
-    apply();
-  });
   document.addEventListener('focusin', (event) => {
     const pending = event.target.closest('.is-pending');
     pending?.classList.remove('is-pending');

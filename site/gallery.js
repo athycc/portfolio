@@ -1,110 +1,131 @@
 import { $ } from './dom.js';
 
-const HOLD = 4000;
+const CYCLE = 4200;
+const wrap = (value, size) => ((value % size) + size) % size;
 
-// Native overflow handles touch/trackpads; only mouse dragging needs pointer logic.
-export function initGallery(track, motion) {
-  const root = track.closest('#work');
-  const previous = $('#project-prev'), next = $('#project-next');
-  const toggle = $('#project-autoplay'), position = $('#project-position');
-  let drag, timer, suppressClick = false, paused = false, visible = false, direction = 1;
-  const step = () => track.firstElementChild?.getBoundingClientRect().width +
-    parseFloat(getComputedStyle(track).columnGap) || track.clientWidth;
+// One visible-only animation loop; geometry is cached on resize, never read per frame.
+export function initGallery(track, motion, onChange) {
+  const summary = $('#project-summary');
+  const previous = $('#project-prev'), next = $('#project-next'), position = $('#project-position');
+  let cards = [], phase = 0, spacing = 300, visible = false, drag, tween;
+  let frameId = 0, lastTime = 0, selected = -1, suppressClick = false;
 
-  function update() {
-    previous.disabled = track.scrollLeft <= 6;
-    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
-    const index = Math.min(track.children.length, Math.round(track.scrollLeft / step()) + 1);
-    position.textContent = `${String(index).padStart(2, '0')} / ${String(track.children.length).padStart(2, '0')}`;
+  function canPlay() {
+    return visible && cards.length > 1 && motion.enabled() && !document.hidden && !drag &&
+      !$('dialog[open]') && !track.matches(':hover,:focus-within') && !summary.matches(':hover,:focus-within');
   }
-  function advance(value) {
-    track.scrollBy({ left: step() * value, behavior: motion.enabled() ? 'smooth' : 'instant' });
+  function render() {
+    const count = cards.length;
+    if (!count) return;
+    cards.forEach((card, index) => {
+      const distance = wrap(index - phase + count / 2, count) - count / 2;
+      const shown = Math.abs(distance) < 2.05;
+      card.inert = !shown;
+      card.style.visibility = shown ? 'visible' : 'hidden';
+      if (!shown) return;
+      const depth = Math.abs(distance);
+      card.style.transform = `translateX(calc(-50% + ${distance * spacing}px)) translateZ(${-depth * 110}px) rotateY(${-distance * 18}deg) scale(${1 - Math.min(depth, 2) * .06})`;
+      card.style.opacity = Math.min(1, (2.05 - depth) * 1.4);
+      card.style.zIndex = String(10 - Math.round(depth * 3));
+    });
+    const index = wrap(Math.round(phase), count);
+    if (index !== selected) {
+      selected = index;
+      track.dataset.activeProject = cards[index].dataset.id;
+      position.textContent = `${String(index + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
+      onChange(index);
+    }
+  }
+  function frame(now) {
+    frameId = 0;
+    const delta = Math.min(now - (lastTime || now), 48);
+    lastTime = now;
+    if (tween) {
+      const progress = Math.min(1, (now - tween.start) / 550);
+      phase = tween.from + (tween.to - tween.from) * (1 - (1 - progress) ** 3);
+      if (progress === 1) tween = null;
+    } else if (canPlay()) phase += delta / CYCLE;
+    render();
+    if (tween || canPlay()) frameId = requestAnimationFrame(frame);
   }
   function sync() {
-    clearTimeout(timer);
-    timer = null;
-    toggle.classList.remove('is-playing');
-    toggle.disabled = !motion.enabled();
-    toggle.setAttribute('aria-label', paused ? 'Play project slideshow' : 'Pause project slideshow');
-    toggle.setAttribute('aria-pressed', String(paused));
-    $('span', toggle).textContent = paused ? 'Play' : 'Pause';
-    const focused = root.contains(document.activeElement) && document.activeElement !== toggle;
-    if (paused || !motion.enabled() || !visible || document.hidden || drag ||
-        $('dialog[open]') || track.matches(':hover') || focused ||
-        track.scrollWidth <= track.clientWidth + 2) return;
-    // A fresh CSS animation marks the same four-second interval as the timer.
-    toggle.style.setProperty('--cycle', `${HOLD}ms`);
-    requestAnimationFrame(() => {
-      if (timer) toggle.classList.add('is-playing');
-    });
-    timer = setTimeout(() => {
-      timer = null;
-      if (next.disabled) direction = -1;
-      if (previous.disabled) direction = 1;
-      advance(direction);
-      sync();
-    }, HOLD);
+    if (!motion.enabled() && tween) { phase = tween.to; tween = null; render(); }
+    if (tween || canPlay()) {
+      if (!frameId) { lastTime = 0; frameId = requestAnimationFrame(frame); }
+    } else {
+      cancelAnimationFrame(frameId);
+      frameId = 0;
+      lastTime = 0;
+    }
   }
-  previous.addEventListener('click', () => { advance(-1); sync(); });
-  next.addEventListener('click', () => { advance(1); sync(); });
-  toggle.addEventListener('click', () => { paused = !paused; sync(); });
-  track.addEventListener('scroll', update, { passive: true });
-  // Restart after direct scrolling, so autoplay never interrupts an unfinished swipe.
-  track.addEventListener('wheel', sync, { passive: true });
-  track.addEventListener('touchstart', () => { clearTimeout(timer); timer = null; toggle.classList.remove('is-playing'); }, { passive: true });
-  track.addEventListener('touchend', sync, { passive: true });
-  track.addEventListener('touchcancel', sync, { passive: true });
-  track.addEventListener('scrollend', sync);
-  new ResizeObserver(() => { update(); sync(); }).observe(track);
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); },
-      { threshold: .25 }).observe(track);
-  } else visible = true;
-  ['pointerenter', 'pointerleave'].forEach(event => track.addEventListener(event, sync));
-  ['focusin', 'focusout'].forEach(event => root.addEventListener(event, sync));
-  ['motionchange', 'visibilitychange', 'dialogchange'].forEach(event => document.addEventListener(event, sync));
-  track.addEventListener('keydown', (event) => {
+  function go(target) {
+    if (!cards.length) return;
+    if (motion.enabled()) tween = { from: phase, to: target, start: performance.now() };
+    else { phase = target; render(); }
+    sync();
+  }
+  previous.addEventListener('click', () => go(Math.round(phase) - 1));
+  next.addEventListener('click', () => go(Math.round(phase) + 1));
+  track.addEventListener('keydown', event => {
     if (event.target !== track || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
-    if (event.key.startsWith('Arrow')) advance(event.key === 'ArrowRight' ? 1 : -1);
-    else track.scrollTo({ left: event.key === 'Home' ? 0 : track.scrollWidth, behavior: 'instant' });
+    go(event.key === 'Home' ? 0 : event.key === 'End' ? cards.length - 1 :
+      Math.round(phase) + (event.key === 'ArrowRight' ? 1 : -1));
   });
-  track.addEventListener('dragstart', (event) => event.preventDefault());
-  track.addEventListener('pointerdown', (event) => {
-    if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a')) return;
+  track.addEventListener('dragstart', event => event.preventDefault());
+  track.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('a')) return;
     suppressClick = false;
-    drag = { id: event.pointerId, x: event.clientX, left: track.scrollLeft, moved: false };
+    tween = null;
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, phase, moved: false };
     sync();
   });
-  track.addEventListener('pointermove', (event) => {
-    if (!drag || event.pointerId !== drag.id) return;
-    const distance = event.clientX - drag.x;
-    if (!drag.moved && Math.abs(distance) < 8) return;
+  track.addEventListener('pointermove', event => {
+    if (!drag || drag.id !== event.pointerId) return;
+    const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+    if (!drag.moved && Math.abs(dy) > Math.max(8, Math.abs(dx))) { drag = null; sync(); return; }
+    if (!drag.moved && Math.abs(dx) < 8) return;
     if (!drag.moved) {
       drag.moved = true;
-      track.classList.add('is-dragging');
       track.setPointerCapture(drag.id);
+      track.classList.add('is-dragging');
     }
     event.preventDefault();
-    track.scrollLeft = drag.left - distance;
+    phase = drag.phase - dx / spacing;
+    render();
   });
   function finish() {
     if (!drag) return;
-    suppressClick = drag.moved;
-    if (track.hasPointerCapture(drag.id)) track.releasePointerCapture(drag.id);
+    const current = drag;
     drag = null;
+    suppressClick = current.moved;
+    if (track.hasPointerCapture(current.id)) track.releasePointerCapture(current.id);
     track.classList.remove('is-dragging');
-    sync();
+    if (current.moved) go(Math.round(phase));
+    else sync();
   }
-  track.addEventListener('pointerup', finish);
-  track.addEventListener('pointercancel', finish);
-  track.addEventListener('lostpointercapture', finish);
-  track.addEventListener('pointerleave', () => { if (drag && !drag.moved) finish(); });
-  track.addEventListener('click', (event) => {
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(event => track.addEventListener(event, finish));
+  track.addEventListener('pointerleave', () => { if (drag && !drag.moved) finish(); sync(); });
+  track.addEventListener('click', event => {
     if (!suppressClick) return;
-    event.preventDefault();
-    event.stopPropagation();
-    suppressClick = false;
+    event.preventDefault(); event.stopPropagation(); suppressClick = false;
   }, true);
-  return { reset() { finish(); direction = 1; track.scrollLeft = 0; update(); sync(); } };
+  ['pointerenter', 'focusin', 'focusout'].forEach(event => track.addEventListener(event, sync));
+  ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach(event => summary.addEventListener(event, sync));
+  ['motionchange', 'visibilitychange', 'dialogchange'].forEach(event => document.addEventListener(event, sync));
+  new ResizeObserver(() => {
+    spacing = track.firstElementChild ? track.firstElementChild.offsetWidth * .98 : 300;
+    render();
+  }).observe(track);
+  if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting; sync();
+  }, { threshold: .15 }).observe(track);
+  else visible = true;
+  return { reset() {
+    finish(); tween = null; phase = 0; selected = -1;
+    cards = [...track.children];
+    previous.disabled = next.disabled = cards.length < 2;
+    spacing = cards[0] ? cards[0].offsetWidth * .98 : 300;
+    render(); sync();
+  } };
 }

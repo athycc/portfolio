@@ -59,20 +59,6 @@
   margin-top: 1rem;
 }
 
-.slideshow-toggle  {
-  min-height: 44px;
-  padding: .5rem .65rem;
-  border: 0;
-  border-radius: 99rem;
-  background: transparent;
-  color: var(--muted);
-  font-size: .75rem;
-}
-
-.slideshow-toggle  {
-  border: 1px solid var(--line);
-}
-
 .gallery-count  {
   color: var(--muted);
   font-size: .6875rem;
@@ -105,3 +91,5 @@
   }
 
 }
+
+.scroll-photo-hint { color: var(--muted); font-size: .75rem; }

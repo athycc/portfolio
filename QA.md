@@ -195,3 +195,13 @@ Verification uses Chromium CSS viewports, not physical devices or a cross-browse
 - About photos now change on a 1000ms cadence, including a shortened ~260ms pixel refinement. A full three-photo cycle was observed, with successive browser checks 1045ms and 1021ms apart. Pause changed the control to Play. Original image assets and manual next remain.
 - At a configured 320px Chromium viewport, document width equals scroll width (305px after scrollbar); gallery controls measure 72×48px and 48×48px. No horizontal document overflow.
 - Six Node checks pass. Timing observations include browser polling overhead and are not rendering benchmarks; QA scope remains Chromium CSS viewports.
+
+## October 23, 2026 — Reference-matched card stream and scroll photos
+
+- Inspected the supplied `Recording 2026-10-23 022308(1).mp4` (15.07 seconds): a horizontal card stream with perspective, angled neighbors and centered emphasis. Replaced the interval-based flat gallery with continuous circular movement and matching depth treatment. Original project images are retained; descriptions, stacks and actions appear in a synchronized summary below the centered card.
+- Removed every visible pause control (header, footer, featured cards, About photos and projects), related handlers/styles and persisted site-pause state. System reduced motion remains the motion gate.
+- Photo changes now follow scroll distance rather than a timer. Browser observations: at y=880 photo 2; scrolling down to y=1048 changed to photo 0; scrolling upward to y=880 restored photo 2. Another stationary observation retained photo 2 at the same scroll position. Manual next remains available.
+- Continuous gallery movement was observed through changing perspective transforms and active-project state. Mouse drag changed the centered project from Mega Manila to Email without opening a dialog. Next moves smoothly; keyboard End followed by ArrowRight wraps the last project back to South (01 / 12).
+- Configured 375px and 320px Chromium viewports have no horizontal document overflow (360/360px and 305/305px after scrollbar). The perspective stream, counter and arrow controls were visually inspected on mobile.
+- Data filtering returns two cards. Looker Financial Model details open with the correct financial folder/demo links and no modal overflow (328/328px); Escape dismisses it.
+- All six Node checks pass. Geometry is cached on resize; one animation loop runs only for visible project motion or a short manual transition. The photo scroll listener is passive, coalesced by animation frame and detached outside the visible section. No framework or animation dependency added. Browser checks are not a physical-device, cross-browser or FPS certification.
