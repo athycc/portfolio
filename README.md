@@ -23,9 +23,9 @@ The development server listens on port 4173. `dist/` is generated and is not sou
 | `site/app.js` | Initialization, menu navigation and the mailto contact workflow |
 | `site/content.js` | Experience lists and the résumé preview |
 | `site/projects.js` | Project filters, cards and case-study content |
-| `site/gallery.js` | Native horizontal gallery, mouse drag, arrows and keyboard navigation |
+| `site/gallery.js` | Continuous 3D project stream, pointer drag, arrows and keyboard navigation |
 | `site/dialogs.js` | Native modal focus, Escape and dismissal |
-| `site/slideshow.js` | Timed photo selection, pixel wipe, pause and direct controls |
+| `site/slideshow.js` | Scroll-distance photo selection, pixel wipe and manual next |
 | `site/featured.js` | The hero's featured-project selector |
 | `site/motion.js` | Reduced motion, viewport reveals, current navigation and visible flow layers |
 | `site/styles/` | Styles grouped by component and layout; composed into one stylesheet at build time |
@@ -38,9 +38,9 @@ The unused React/TanStack tree, build adapters, framework configuration and depe
 
 Every main section and the footer has the same reusable flowing light field. CSS view timelines move it through the scroll journey where supported; ambient motion continues without a JavaScript scroll loop. Only visible sections animate. Native wheel/touch scrolling is retained.
 
-The About gallery advances on a timer rather than scroll position. Its brief canvas wipe starts pixelated and resolves to the actual source photo. Manual selection pauses autoplay; Play resumes it. Motion pauses offscreen, with hidden tabs, in dialogs, and with system/site reduced motion. Manual choices remain available. The portrait uses its 1302px original; Building uses the 1080px robotics photo from the supplied archive; the speaking image retains its 425px source detail. No generated facial detail is added.
+The About photos change as the visitor scrolls: each 96px of travel requests the next or previous photo, with one coalesced update per animation frame while the gallery is visible. The short canvas wipe resolves to the original image; there is no idle timer. Manual next remains available. The portrait uses its 1302px original, robotics uses the supplied 1080px photo, and speaking retains its 425px source detail.
 
-Project filters expose 4 Web & QA, 2 Data, 2 Automation & AI and 4 Other builds. All 12 projects are available in a native horizontal gallery with touch/trackpad scrolling, mouse dragging, arrow buttons and keyboard navigation. Projects automatically advance every four seconds while visible, reverse at the ends, and pause for hover, keyboard focus, dialogs, hidden tabs and reduced motion. A dedicated Pause/Play control includes a cycle indicator. Live websites/repository URLs and seven matching Drive folders are retained. The About photos change on a one-second cycle with a brief pixel transition, with manual next and pause controls. Full-bleed flow fields cover every section edge. The original résumé PDF stays linked. The generated text download is a portfolio summary that also includes archive projects.
+Project filters expose 4 Web & QA, 2 Data, 2 Automation & AI and 4 Other builds. The reference-inspired continuous 3D stream uses a larger center card, angled side cards, perspective depth and circular wrapping. It supports horizontal pointer drag on mouse/touch, arrows, keyboard navigation and click-through details. The centered project's summary, stack and live/archive links appear beneath it. A single visible-only frame loop uses cached geometry; interaction, dialogs, hidden tabs and system reduced motion suspend automatic movement. No cards are cloned. All visible pause controls and their persisted state are removed; the operating system's reduced-motion preference remains respected. Full-bleed flow fields, the original résumé PDF, generated text résumé and seven verified Drive folders are retained.
 
 Contact opens a mailto draft. It does not send email or store submitted content. Security scope and deployment policy are documented in [SECURITY.md](SECURITY.md); browser checks and limitations are in [QA.md](QA.md).
 

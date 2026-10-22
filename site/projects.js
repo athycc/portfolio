@@ -4,7 +4,19 @@ import { initGallery } from './gallery.js';
 export function initProjects(data, dialogs, motion) {
   const container = $('#projects');
   let filter = 'all';
-  const gallery = initGallery(container, motion);
+  let matching = data.projects;
+  const gallery = initGallery(container, motion, (index) => {
+    const project = matching[index];
+    if (!project) return;
+    $('#project-summary').innerHTML = `
+      <div><span class="eyebrow">${esc(project.label)} · ${esc(project.year)}</span>
+      <h3><button class="plain-button" data-project="${project.id}">${esc(project.title)} ${arrow}</button></h3>
+      <p>${esc(project.summary)}</p><div class="tags">${tags(project.tech)}</div></div>
+      <div class="project-summary-actions">
+        <button class="pill" data-project="${project.id}">Explore project ${arrow}</button>
+        ${project.archive ? link(project.archive, 'Project folder') : project.url ? link(project.url, project.url.replace('https://', '')) : ''}
+      </div>`;
+  });
   function artwork(project) {
     return `<img src="${esc(project.image)}" alt="${esc(project.imageAlt || project.title + ' portfolio image')}"
       width="${project.imageWidth || 1200}" height="${project.imageHeight || 800}" loading="lazy" decoding="async"
@@ -14,22 +26,14 @@ export function initProjects(data, dialogs, motion) {
     return `<a class="${className}" aria-label="${esc(accessibleName)}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`;
   }
   function render() {
-    const matching = data.projects.filter((project) => filter === 'all' || project.category === filter);
+    matching = data.projects.filter((project) => filter === 'all' || project.category === filter);
     motion.clear(container);
     container.innerHTML = matching.map((project) => `
       <article class="project" data-id="${project.id}" aria-label="${esc(project.title)}">
         <div class="project-visual">${artwork(project)}
           <button class="project-open" data-project="${project.id}" aria-label="Open ${esc(project.title)} project details"><span class="visual-arrow">${arrow}</span></button>
         </div>
-        <div class="project-meta"><span>${esc(project.label)}</span><span>${esc(project.year)}</span></div>
         <h3><button data-project="${project.id}">${esc(project.title)}</button></h3>
-        <p class="project-description">${esc(project.summary)}</p>
-        <div class="tags">${tags(project.tech)}</div>
-        <div class="project-bottom">
-          <button class="text-link plain-button" data-project="${project.id}">Project notes ${arrow}</button>
-          ${project.archive ? link(project.archive, 'Project folder', 'project-url', 'Open '+project.title+' project folder') : project.url
-            ? link(project.url, project.url.replace('https://', '')) : `<span class="project-url">${esc(project.status)}</span>`}
-        </div>
       </article>`).join('');
     $('#project-count').textContent = `${matching.length} projects`;
     gallery.reset();

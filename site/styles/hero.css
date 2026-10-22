@@ -245,10 +245,6 @@
   transition:width .3s
 }
 
-#carousel-pause:before {
-  display:none
-}
-
 .dot[aria-current=true]:before {
   width:1.25rem;
   background:white

@@ -1,24 +1,17 @@
 import { $, $$ } from './dom.js';
 
-const INTERVAL = 1000;
-
 export function initSlideshow(motion) {
-  const gallery = $('.about-gallery');
-  const stage = $('.photo-stage', gallery);
-  const images = $$('[data-slide]', gallery);
-  const toggle = $('.slideshow-toggle', gallery);
-  const canvas = $('canvas', gallery);
+  const gallery = $('.about-gallery'), stage = $('.photo-stage', gallery);
+  const images = $$('[data-slide]', gallery), canvas = $('canvas', gallery);
   const context = canvas.getContext('2d');
-  let index = 0, visible = false, paused = false, userStarted = false;
-  let autoplay, refinement, wipe, revision = 0, lastChange = performance.now();
+  let index = 0, requested = 0, revision = 0, refinement, wipe;
+  let lastY = window.scrollY, distance = 0, scrollFrame = 0, visible = false;
 
   function clearTransition() {
     clearTimeout(refinement);
-    wipe?.cancel();
-    wipe = null;
+    wipe?.cancel(); wipe = null;
     stage.classList.remove('is-transitioning');
   }
-
   function display(next, manual) {
     index = next;
     images.forEach((image, position) => {
@@ -28,7 +21,6 @@ export function initSlideshow(motion) {
     $('.gallery-count', gallery).textContent = `0${index + 1} / 03`;
     if (manual) $('#gallery-status').textContent = `Photo ${index + 1} of 3: ${images[index].alt}.`;
   }
-
   function drawPixels(image, columns) {
     canvas.width = columns;
     canvas.height = Math.round(columns * stage.clientHeight / stage.clientWidth);
@@ -38,68 +30,53 @@ export function initSlideshow(motion) {
     const width = image.naturalWidth * scale, height = image.naturalHeight * scale;
     context.drawImage(image, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
   }
-
   async function select(next, manual = false) {
-    clearTimeout(autoplay);
     clearTransition();
+    requested = ((next % images.length) + images.length) % images.length;
+    next = requested;
     const current = ++revision;
-    next = (next + images.length) % images.length;
-    if (manual) { paused = true; userStarted = false; }
-    try { await images[next].decode(); } catch {
-      lastChange = performance.now();
-      $('#gallery-status').textContent = 'This photo could not load. Choose another photo.';
-      sync();
-      return;
-    }
+    try { await images[next].decode(); } catch { return; }
     if (current !== revision) return;
-    lastChange = performance.now();
-    if (next === index || !motion.enabled() || !context || !canvas.animate) {
-      display(next, manual);
-      sync();
-      return;
-    }
+    if (next === index || !motion.enabled() || !context || !canvas.animate) { display(next, manual); return; }
     drawPixels(images[next], 12);
     stage.classList.add('is-transitioning');
-    wipe = canvas.animate([
-      { clipPath: 'inset(0 100% 0 0)' },
-      { clipPath: 'inset(0 0% 0 0)' },
-    ], { duration: 180, easing: 'ease-in-out', fill: 'forwards' });
-    const levels = [20, 36, 64, 112];
+    wipe = canvas.animate([{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0)' }],
+      { duration: 180, easing: 'ease-out', fill: 'forwards' });
+    const levels = [24, 48, 96];
     let step = 0;
     function sharpen() {
       if (current !== revision) return;
       if (step < levels.length) {
         drawPixels(images[next], levels[step++]);
-        refinement = setTimeout(sharpen, 45);
-      } else {
-        display(next, manual);
-        clearTransition();
-        sync();
-      }
+        refinement = setTimeout(sharpen, 40);
+      } else { display(next, manual); clearTransition(); }
     }
     refinement = setTimeout(sharpen, 80);
   }
-
-  function sync() {
-    clearTimeout(autoplay);
-    toggle.disabled = !motion.enabled();
-    toggle.textContent = paused ? 'Play' : 'Pause';
-    toggle.setAttribute('aria-label', paused ? 'Play photo slideshow' : 'Pause photo slideshow');
-    toggle.setAttribute('aria-pressed', String(paused));
-    if (!motion.enabled()) { revision++; clearTransition(); }
-    const blocked = !visible || document.hidden || $('dialog[open]') ||
-      (!userStarted && gallery.matches(':focus-within,:hover'));
-    if (motion.enabled() && !paused && !blocked) {
-      autoplay = setTimeout(() => select(index + 1), Math.max(0, INTERVAL - (performance.now() - lastChange)));
-    } else lastChange = performance.now();
+  function onScroll() {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = 0;
+      const currentY = window.scrollY;
+      distance += currentY - lastY; lastY = currentY;
+      if (!motion.enabled() || document.hidden || $('dialog[open]')) { distance = 0; return; }
+      const steps = Math.trunc(distance / 96);
+      if (steps) { distance -= steps * 96; select(requested + Math.sign(steps)); }
+    });
   }
-
-  $('.gallery-next', gallery).addEventListener('click', () => select(index + 1, true));
-  toggle.addEventListener('click', () => { paused = !paused; userStarted = !paused; sync(); });
-  ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach((event) => gallery.addEventListener(event, sync));
-  ['visibilitychange', 'motionchange', 'dialogchange'].forEach((event) => document.addEventListener(event, sync));
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: 0.15 }).observe(gallery);
-  } else visible = true;
+  function sync() {
+    window.removeEventListener('scroll', onScroll);
+    cancelAnimationFrame(scrollFrame); scrollFrame = 0;
+    lastY = window.scrollY; distance = 0;
+    if (visible && motion.enabled() && !document.hidden && !$('dialog[open]'))
+      window.addEventListener('scroll', onScroll, { passive: true });
+    if (!motion.enabled()) { revision++; clearTransition(); }
+  }
+  $('.gallery-next', gallery).addEventListener('click', () => select(requested + 1, true));
+  ['visibilitychange', 'motionchange', 'dialogchange'].forEach(event => document.addEventListener(event, sync));
+  if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting; sync();
+  }, { threshold: .05 }).observe(gallery);
+  else visible = true;
   sync();
 }

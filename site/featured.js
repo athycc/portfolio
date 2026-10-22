@@ -6,8 +6,7 @@ export function initFeatured(motion) {
     ['sync', 'S.', 'Featured · Quality assurance', 'SYNC Event Platform', '400+ users. A clearer flow.'],
     ['backlog', '170', 'Featured · Data analytics', 'Product Backlog Dashboard', '170 items. One clear view.'],
   ];
-  const control = $('#carousel-pause');
-  let selected = 0, paused = false, visible = false, timer;
+  let selected = 0, visible = false, timer;
   function update(index) {
     selected = index;
     const [id, mark, kicker, title, subtitle] = features[index];
@@ -19,8 +18,7 @@ export function initFeatured(motion) {
   }
   function sync() {
     clearInterval(timer);
-    control.hidden = !motion.enabled();
-    if (!motion.enabled() || paused || !visible || document.hidden || $('dialog[open]')) return;
+    if (!motion.enabled() || !visible || document.hidden || $('dialog[open]')) return;
     timer = setInterval(() => {
       if (!$('.featured-area').matches(':focus-within,:hover')) update((selected + 1) % features.length);
     }, 4200);
@@ -28,12 +26,6 @@ export function initFeatured(motion) {
   $$('[data-feature]').forEach((button) => button.addEventListener('click', () => {
     update(Number(button.dataset.feature)); sync();
   }));
-  control.addEventListener('click', () => {
-    paused = !paused;
-    control.textContent = paused ? '▷' : 'Ⅱ';
-    control.setAttribute('aria-label', paused ? 'Resume featured projects' : 'Pause featured projects');
-    sync();
-  });
   if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting; sync();
   }).observe($('#home'));
