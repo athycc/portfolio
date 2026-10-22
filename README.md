@@ -58,3 +58,9 @@ The existing portfolio's photos, dashboard images, and demo links are retained. 
 - `public/projects/scd-builders.webp`: https://www.aws-scd.cloud/photography/story-work.webp
 
 These are official project artwork/community photos, rather than screenshots of an application UI. Dates and roles belong to the résumé; current website branding can change independently.
+
+## Immersive motion
+
+The portfolio now uses coordinated hero entrances, staggered viewport reveals, photo parallax, metric counters, a reading-progress line, and fine-pointer project-card tilt/glare. Menu links enter in sequence; project, contact, and résumé dialogs have short exit transitions with a 280ms completion fallback. Keyboard menu navigation moves focus to the destination heading.
+
+The pause button in the hero header and footer stops site animation and saves the visitor's choice locally. System reduced-motion preferences take priority. Paused motion restores all pending content and final metric values; no information depends on animation. Reveals and counters run once, removed project nodes are unobserved, and optional Lenis frame work stops when paused or when the page is hidden. Tilt is restricted to fine mouse pointers on wider screens.
