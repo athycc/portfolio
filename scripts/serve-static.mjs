@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import './build-static.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../dist');
-const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.mp4':'video/mp4','.txt':'text/plain; charset=utf-8','.xml':'application/xml'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.mp4':'video/mp4','.txt':'text/plain; charset=utf-8','.xml':'application/xml'};
 const port=Number(process.env.PORT||4173);
 createServer(async(req,res)=>{
   try{
