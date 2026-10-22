@@ -5,9 +5,13 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
-const match = html.match(/<script id="portfolio-data" type="application\/json">([\s\S]*?)<\/script>/);
-if (!match) throw new Error('Portfolio data is missing');
-const data = JSON.parse(match[1]);
+const data = (await import('../site/data.js')).default;
+for (const project of data.projects) {
+  if (!/^[a-z][a-z0-9-]*$/.test(project.id)) throw new Error('Invalid project ID');
+  for (const url of [project.url, project.archive, project.media].filter(Boolean)) {
+    if (new URL(url).protocol !== 'https:') throw new Error('Project links must use HTTPS');
+  }
+}
 const resume = [
   'NOTADO, CATHERINE',
   'Quezon City, Philippines | +63 920 306 6498 | notadocath@gmail.com',
@@ -44,7 +48,10 @@ const resume = [
 await rm(dist, {recursive:true,force:true});
 await mkdir(path.join(dist,'assets'), {recursive:true});
 await cp(path.join(root,'public'),dist,{recursive:true,filter:source=>!path.basename(source).startsWith('.')});
-await cp(path.join(root,'src/assets'),path.join(dist,'assets'),{recursive:true});
+await cp(path.join(root,'site'),path.join(dist,'assets/site'),{recursive:true});
+const styles = await Promise.all(['base','hero','about','projects','sections','dialogs','layout','motion','slideshow','flow'].map(name => readFile(path.join(root,'site/styles',name+'.css'),'utf8')));
+await writeFile(path.join(dist,'assets/site.css'), styles.join('\n'));
+await rm(path.join(dist,'assets/site/styles'), {recursive:true});
 await writeFile(path.join(dist,'index.html'),html);
 await writeFile(path.join(dist,'Catherine-Notado-Resume.txt'),resume);
 await writeFile(path.join(dist,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://cathportfolio.vercel.app/sitemap.xml\n');

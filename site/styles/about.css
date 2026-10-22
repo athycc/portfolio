@@ -1,0 +1,22 @@
+.about {
+  position:relative
+}
+
+.about-copy {
+  max-width:31rem
+}
+
+.about-copy h2 {
+  font-size:1.25rem;
+  line-height:1.5;
+  letter-spacing:-.025em;
+  margin-top:.9rem
+}
+
+.about-copy p {
+  font-size:.87rem;
+  color:var(--muted);
+  line-height:1.9;
+  margin-top:1rem
+}
+

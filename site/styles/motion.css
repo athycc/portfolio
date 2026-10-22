@@ -1,0 +1,222 @@
+.motion-toggle {
+font-size:1rem;
+  line-height:1;
+  letter-spacing:-.12em
+}
+
+.motion-toggle[aria-pressed=true] {
+background:#ffffff35
+}
+
+html[data-motion=full] .hero-reveal .site-header {
+animation:soft-rise .9s .1s var(--ease) both
+}
+
+html[data-motion=full] .hero-reveal .hero-topline {
+animation:soft-rise .9s .2s var(--ease) both
+}
+
+html[data-motion=full] .hero-reveal .hero-copy {
+animation:soft-rise 1s .32s var(--ease) both
+}
+
+html[data-motion=full] .hero-reveal .featured-area {
+animation:soft-rise 1s .48s var(--ease) both
+}
+
+.motion-reveal {
+opacity:1;
+  transform:none
+}
+
+html[data-motion=full] .motion-reveal.is-pending {
+opacity:0;
+  transform:translateY(.65rem)
+}
+
+html[data-motion=full] .motion-reveal.is-visible {
+opacity:1;
+  transform:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease)
+}
+
+.project h3 button {
+transition:color .25s
+}
+
+.project:focus-within h3 button {
+color:var(--brand)
+}
+
+.project:focus-within .visual-arrow {
+transform:rotate(-40deg)
+}
+
+.filter, .pill, .icon-button {
+transition:background-color .25s,color .25s,border-color .25s,transform .35s var(--ease)
+}
+
+.pill:active, .icon-button:active {
+transform:scale(.97)
+}
+
+.text-link .arrow {
+transition:transform .35s var(--ease)
+}
+
+.text-link:focus-visible .arrow {
+transform:translateX(.25rem)
+}
+
+.desktop-nav a {
+position:relative
+}
+
+.desktop-nav a:after {
+content:"";
+  position:absolute;
+  bottom:.3rem;
+  left:0;
+  right:0;
+  height:1px;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .35s var(--ease)
+}
+
+.desktop-nav a:hover:after, .desktop-nav a:focus-visible:after, .desktop-nav a[aria-current=location]:after {
+transform:scaleX(1)
+}
+
+.timeline-item .number {
+transition:color .3s,transform .4s var(--ease)
+}
+
+.timeline-item:focus-within .number {
+color:var(--brand);
+  transform:translateX(-.25rem)
+}
+
+.timeline-item summary span {
+transition:transform .3s var(--ease)
+}
+
+.timeline-item details[open] summary span {
+transform:rotate(45deg)
+}
+
+html[data-motion=full] .timeline-item details[open] ul {
+animation:soft-rise .45s var(--ease) both
+}
+
+html[data-motion=full] .menu-dialog[open] .menu-content a {
+animation:menu-link-in .65s var(--ease) both;
+  animation-delay:calc(var(--menu-index,0) * 65ms + 80ms)
+}
+
+.menu-content a {
+display:flex;
+  gap:1rem;
+  align-items:center;
+  transition:color .25s,transform .4s var(--ease)
+}
+
+html[data-motion=full] dialog[open] .dialog-body {
+animation:soft-rise .45s .08s var(--ease) both
+}
+
+dialog.is-closing {
+pointer-events:none
+}
+
+@media(hover:hover) and (pointer:fine) {
+.project h3 button:hover {
+color:var(--brand)
+}
+
+.timeline-item:hover .number {
+color:var(--brand);
+    transform:translateX(-.25rem)
+}
+
+html[data-motion=full] .pill:hover {
+transform:translateY(-2px)
+}
+}
+
+@media(max-width:700px) {
+.site-header {
+gap:.75rem
+}
+
+.header-actions {
+gap:.5rem
+}
+
+.header-actions .icon-button {
+width:2.75rem;
+    height:2.75rem
+}
+
+.motion-toggle {
+font-size:.875rem
+}
+}
+
+html[data-motion=reduced] {
+scroll-behavior:auto
+}
+
+html[data-motion=reduced] *, html[data-motion=reduced] *:before, html[data-motion=reduced] *:after {
+animation:none!important;
+  transition-duration:.01ms!important;
+  scroll-behavior:auto!important
+}
+
+html[data-motion=reduced] .motion-reveal, html[data-motion=reduced] .reveal {
+opacity:1!important;
+  transform:none!important
+}
+
+@media(prefers-reduced-motion:reduce) {
+.motion-reveal, .motion-reveal.is-pending {
+opacity:1!important;
+    transform:none!important
+}
+}
+
+@media print {
+[data-motion-toggle] {
+display:none!important
+}
+
+.motion-reveal {
+opacity:1!important;
+    transform:none!important
+}
+}
+
+@keyframes soft-rise {
+from {
+    opacity:0;
+    transform:translateY(1.2rem)
+  }
+
+  to {
+    opacity:1;
+    transform:none
+  }
+}
+
+@keyframes menu-link-in {
+from {
+    opacity:0;
+    transform:translateX(2rem)
+  }
+
+  to {
+    opacity:1;
+    transform:none
+  }
+}
