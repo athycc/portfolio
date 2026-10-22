@@ -88,3 +88,18 @@ Testing used Chromium CSS viewports in a development-only iframe harness. It doe
 ### Limits
 
 The managed browser did not expose direct pointer-hover or OS reduced-motion emulation. Tilt/glare gating and OS-preference handling were reviewed in source; actual pause/re-enable behavior was exercised. No frame-rate, battery, CPU, physical-device, or cross-browser performance claims are made.
+
+## About photo deck — October 23, 2026 (Philippine Time)
+
+| Check | Result |
+| --- | --- |
+| Requested removals | Experience across teams strip, old photo caption, and About footnote absent from rendered DOM. |
+| Photo loading | All three optimized local WebP images loaded with nonzero natural widths. |
+| Direct selection | Portrait, Building, Speaking, and next control update the active photo, count, pressed state, and manual status; one photo remains exposed to assistive technology. |
+| Scroll interaction | Native 150px forward movement changed Speaking to Portrait; reverse movement returned to Speaking. Page scrolling remains available. |
+| Motion pause | Scrolling 150px in reduced mode kept Speaking selected; manual Portrait selection still worked. Re-enabled motion afterward. |
+| Responsive layout | Configured iframe widths 320, 375, 768, 1440px had no document horizontal overflow. Mobile About copy visually reviewed; gallery control heights were 44px, next control 48px. Desktop portrait and robotics framing visually reviewed. |
+| Content regression | Portfolio/resume JSON identical to the prior version; revised copy adds no new metrics or unsupported claims. |
+| Build | Four existing Node checks pass, covering script parsing, project records, resume facts, and all built local assets. |
+
+Browser verification used Chromium with CSS viewport harnesses, not physical devices or a cross-browser matrix. System reduced-motion handling was reviewed in source; actual site pause was exercised. The supplied robotics image is 203×277px, so no additional source detail is claimed.

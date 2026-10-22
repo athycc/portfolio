@@ -64,3 +64,11 @@ These are official project artwork/community photos, rather than screenshots of 
 The portfolio now uses coordinated hero entrances, staggered viewport reveals, photo parallax, metric counters, a reading-progress line, and fine-pointer project-card tilt/glare. Menu links enter in sequence; project, contact, and résumé dialogs have short exit transitions with a 280ms completion fallback. Keyboard menu navigation moves focus to the destination heading.
 
 The pause button in the hero header and footer stops site animation and saves the visitor's choice locally. System reduced-motion preferences take priority. Paused motion restores all pending content and final metric values; no information depends on animation. Reveals and counters run once, removed project nodes are unobserved, and optional Lenis frame work stops when paused or when the page is hidden. Tilt is restricted to fine mouse pointers on wider screens.
+
+## Scroll-driven About gallery
+
+The About section now uses Catherine's three supplied photos: portrait, robotics work, and presenting. Optimized local WebP files live in `public/about/`; the portrait offers 480px and 960px variants. The robotics and presenting sources retain their original pixel dimensions.
+
+A three-card deck advances with roughly 75–120px of visible page travel and reverses with scrolling. It shares the existing single-frame scroll scheduler and uses native page movement. Labeled photo buttons and a next control provide direct selection; manual selection alone updates the polite status announcement. System reduced motion and the site pause setting disable scroll-driven changes while preserving the controls.
+
+The experience-logo strip, old About photo caption, and About closing footnote have been removed. The revised introduction focuses on development, QA, analytics, automation, and AWS student community leadership.
