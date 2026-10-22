@@ -1,8 +1,22 @@
 {
-  "framework": "vite",
+  "framework": null,
+  "installCommand": "node -e \"console.log('Static portfolio: no dependencies required')\"",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
   ]
 }

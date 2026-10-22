@@ -4,13 +4,13 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "node scripts/vite-build.cjs",
-    "build:dev": "vite build --mode development",
-    "preview": "vite preview",
+    "dev": "node scripts/serve-static.mjs",
+    "build": "node scripts/build-static.mjs",
+    "preview": "node scripts/serve-static.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build:legacy": "node scripts/vite-build.cjs",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "postbuild": "node scripts/postbuild-copy-index.cjs"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",

@@ -1,0 +1,52 @@
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const dist = path.join(root, 'dist');
+const html = await readFile(path.join(root, 'index.html'), 'utf8');
+const match = html.match(/<script id="portfolio-data" type="application\/json">([\s\S]*?)<\/script>/);
+if (!match) throw new Error('Portfolio data is missing');
+const data = JSON.parse(match[1]);
+const resume = [
+  'NOTADO, CATHERINE',
+  'Quezon City, Philippines | +63 920 306 6498 | notadocath@gmail.com',
+  'https://www.linkedin.com/in/catherine-notado-679a29246/',
+  'https://cathportfolio.vercel.app/ | https://github.com/athycc',
+  '', 'EXPERIENCES',
+  ...data.experience.flatMap(e => ['', `${e.role} — ${e.org}`, e.period, ...e.bullets.map(b => `- ${b}`)]),
+  '', 'TECHNICAL SKILLS',
+  ...data.skills.map(([title,...items]) => `${title}: ${items.join(', ')}`),
+  '', 'PROJECTS & PARTICIPATION',
+  ...data.projects.flatMap(p => ['', `${p.title} — ${p.status}`, p.year, p.summary, `Technologies / methods: ${p.tech.join(', ')}`, ...(p.url ? [p.url] : []), ...(p.media ? [`Original demo: ${p.media}`] : [])]),
+  '', 'LEADERSHIP EXPERIENCE',
+  'Founder & CEO — AWS Student Builder Group Alpha | September 2025–Present',
+  '- Founded RTU’s AWS Learning Club, leading chapter strategy, operations, partnerships, and student engagement.',
+  '- Led AWS Student Community Day Mega Manila 2026 as Event Head for 390 attendees, coordinating 52 volunteers and 5 sponsors.',
+  '- Oversaw speaker coordination, registration, volunteer assignments, logistics, and post-event reporting.',
+  'AWS Student Builder Group Lead | November 2025–Present',
+  '- Organize cloud education initiatives and university chapter student engagement.',
+  'RTU Student Council Department of Archives | October 2023–August 2024',
+  '- Managed document distribution and archives; supported event planning and coordination.',
+  '', 'EDUCATION',
+  'Rizal Technological University | Bachelor of Science in Information Technology | 2023–Present',
+  'Cumulative GWA: 1.46 | Academic Achiever',
+  'Scholarships: Quezon City Youth Development Organization; Data Engineering Pilipinas DataCamp; AWS AI & ML.',
+  'Coursework: Software Development, Object Oriented Programming, Integrative Programming and Technologies, Web Systems, Database Management, Operating Systems, Networking.',
+  '', 'CERTIFICATIONS & TRAINING',
+  ...data.certifications.map(c => c.join(' | ')),
+  '', 'COMPETITIONS',
+  ...data.awards.map(a => a.join(' | ')),
+  '', 'VOLUNTEER EXPERIENCES',
+  ...data.volunteering.map(v => v.join(' | ')),
+  '', 'Updated October 2026', ''
+].join('\n');
+await rm(dist, {recursive:true,force:true});
+await mkdir(path.join(dist,'assets'), {recursive:true});
+await cp(path.join(root,'public'),dist,{recursive:true,filter:source=>!path.basename(source).startsWith('.')});
+await cp(path.join(root,'src/assets'),path.join(dist,'assets'),{recursive:true});
+await writeFile(path.join(dist,'index.html'),html);
+await writeFile(path.join(dist,'Catherine-Notado-Resume.txt'),resume);
+await writeFile(path.join(dist,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://cathportfolio.vercel.app/sitemap.xml\n');
+await writeFile(path.join(dist,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://cathportfolio.vercel.app/</loc></url></urlset>\n');
+console.log('Built static portfolio, existing media, and synchronized text résumé in dist/');
