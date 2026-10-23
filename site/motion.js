@@ -31,6 +31,16 @@ export function createMotion() {
   });
   const seen = new WeakSet();
   const navigation = $$('nav a[href^="#"]');
+  const headings = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(({target, isIntersecting}) => {
+      const show = isIntersecting || !enabled() || target.contains(document.activeElement);
+      target.classList.toggle('is-pending', !show);
+      target.classList.toggle('is-visible', show);
+    });
+  }, { rootMargin: '0px 0px -15% 0px', threshold: .15 }) : null;
+  $$('.heading-reveal').forEach(heading => {
+    if (headings && enabled()) { heading.classList.add('is-pending'); headings.observe(heading); }
+  });
 
   function syncFlow() {
     const playing = enabled() && !document.hidden && !$('dialog[open]');
@@ -49,7 +59,7 @@ export function createMotion() {
     }, { threshold: 0.04 }) : null;
 
   function reveal(root = document) {
-    $$('.reveal,.heading-reveal,.project,.timeline-item,.volunteer-item,.award,.skill-group,.cert-item,.photo-pair figure', root)
+    $$('.reveal,.project,.timeline-item,.volunteer-item,.award,.skill-group,.cert-item,.photo-pair figure', root)
       .forEach((element) => {
         element.classList.add('motion-reveal');
         if (!enabled() || !observer || seen.has(element)) {

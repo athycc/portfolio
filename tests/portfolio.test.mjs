@@ -65,8 +65,11 @@ test('build produces an actual downloadable résumé and every local image/video
     assert.ok(resume.includes(p.title),p.title);
     if(p.resource) assert.ok(resume.includes(p.resource),p.title);
   }
-  for(const src of new Set([...html.matchAll(/\bsrc="(\/[^"]+)"/g)].map(match=>match[1]))) assert.ok((await stat(path.join(root,'dist',src))).size>0,src);
-  assert.ok((await stat(path.join(root,'dist/assets/site.css'))).size>0);
+  const builtHtml=await readFile(path.join(root,'dist/index.html'),'utf8');
+  for(const src of new Set([...builtHtml.matchAll(/\bsrc="(\/[^"]+)"/g)].map(match=>match[1]))) assert.ok((await stat(path.join(root,'dist',src))).size>0,src);
+  const version=builtHtml.match(/\/assets\/site-([a-f0-9]{12})\.css/)[1];
+  assert.ok(builtHtml.includes(`/assets/site-${version}/app.js`));
+  assert.ok((await stat(path.join(root,`dist/assets/site-${version}.css`))).size>0);
   for(const file of ['index.html','GENAI.jpg','AIM.jpg','FEU.jpg','monogram.svg','robots.txt','sitemap.xml'])assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
 });
 

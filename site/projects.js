@@ -18,9 +18,11 @@ export function initProjects(data, dialogs, motion) {
       </div>`;
   });
   function artwork(project) {
+    const alternate = {south:'/projects/scd-south-community.webp',mega:'/projects/scd-builders.webp',backlog:'/assets/dashboard-overview.jpg'}[project.id] || project.image;
     return `<img src="${esc(project.image)}" alt="${esc(project.imageAlt || project.title + ' portfolio image')}"
       width="${project.imageWidth || 1200}" height="${project.imageHeight || 800}" loading="lazy" decoding="async"
-      class="${project.brandImage || ['backlog','looker'].includes(project.id) ? 'project-brand' : ''}">`;
+      class="${project.brandImage || ['backlog','looker'].includes(project.id) ? 'project-brand' : ''}">
+      <span class="project-peek" aria-hidden="true"><img src="${esc(alternate)}" alt="" loading="lazy" decoding="async"><span>${project.video ? 'Play demo' : 'View project'} ↗</span></span>`;
   }
   function link(url, label, className = 'project-url', accessibleName = label) {
     return `<a class="${className}" aria-label="${esc(accessibleName)}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`;
@@ -31,7 +33,7 @@ export function initProjects(data, dialogs, motion) {
     container.innerHTML = matching.map((project) => `
       <article class="project" data-id="${project.id}" aria-label="${esc(project.title)}">
         <div class="project-visual">${artwork(project)}
-          <button class="project-open" data-project="${project.id}" aria-label="Open ${esc(project.title)} project details"><span class="visual-arrow">${arrow}</span></button>
+          <button class="project-open" data-project="${project.id}" data-pointer-label="${project.video ? 'Play demo' : 'View project'}" aria-label="Open ${esc(project.title)} project details"><span class="visual-arrow">${arrow}</span></button>
         </div>
         <h3><button data-project="${project.id}">${esc(project.title)}</button></h3>
       </article>`).join('');
@@ -44,10 +46,9 @@ export function initProjects(data, dialogs, motion) {
     $('#project-dialog-body').innerHTML = `
       <span class="eyebrow">${esc(project.label)}</span>
       <h2 id="project-dialog-title">${esc(project.title)}</h2>
+      <div class="project-screen">${project.video ? `<video controls autoplay muted playsinline preload="metadata" poster="${esc(project.image)}"><source src="${esc(project.video)}" type="video/mp4"></video>` : `<img src="${esc(project.image)}" alt="${esc(project.imageAlt || project.title)}">`}</div>
       <p>${esc(project.summary)}</p><div class="tags">${tags(project.tech)}</div>
       <h3>My contribution</h3><ul>${project.details.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
-      ${project.image ? `<div class="project-modal-media"><img src="${esc(project.image)}" alt="${esc(project.imageAlt || project.title)}"></div>` : ''}
-      ${project.video ? `<div class="project-modal-media"><video controls preload="none" playsinline poster="${esc(project.image)}"><source src="${esc(project.video)}" type="video/mp4"></video></div>` : ''}
       <p class="project-stage-note">${esc(project.note)}</p>
       <div class="dialog-actions">
         ${project.resource ? link(project.resource, project.resourceLabel, 'pill', project.resourceLabel + ' — ' + project.title) : ''}

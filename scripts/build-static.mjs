@@ -1,4 +1,5 @@
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -48,11 +49,14 @@ const resume = [
 await rm(dist, {recursive:true,force:true});
 await mkdir(path.join(dist,'assets'), {recursive:true});
 await cp(path.join(root,'public'),dist,{recursive:true,filter:source=>!path.basename(source).startsWith('.')});
-await cp(path.join(root,'site'),path.join(dist,'assets/site'),{recursive:true});
 const styles = await Promise.all(['base','hero','about','projects','sections','dialogs','layout','motion','slideshow','flow','gallery','journey','cinematic'].map(name => readFile(path.join(root,'site/styles',name+'.css'),'utf8')));
-await writeFile(path.join(dist,'assets/site.css'), styles.join('\n'));
-await rm(path.join(dist,'assets/site/styles'), {recursive:true});
-await writeFile(path.join(dist,'index.html'),html);
+const modules = await Promise.all((await readdir(path.join(root,'site'))).filter(name => name.endsWith('.js')).sort().map(name => readFile(path.join(root,'site',name),'utf8')));
+const version = createHash('sha256').update([...styles,...modules].join('\n')).digest('hex').slice(0,12);
+const assetPath = `assets/site-${version}`;
+await cp(path.join(root,'site'),path.join(dist,assetPath),{recursive:true});
+await writeFile(path.join(dist,assetPath+'.css'), styles.join('\n'));
+await rm(path.join(dist,assetPath,'styles'), {recursive:true});
+await writeFile(path.join(dist,'index.html'),html.replace('/assets/site.css',`/${assetPath}.css`).replace('/assets/site/app.js',`/${assetPath}/app.js`));
 await writeFile(path.join(dist,'Catherine-Notado-Resume.txt'),resume);
 await writeFile(path.join(dist,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://cathportfolio.vercel.app/sitemap.xml\n');
 await writeFile(path.join(dist,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://cathportfolio.vercel.app/</loc></url></urlset>\n');
