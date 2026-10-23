@@ -213,3 +213,13 @@ Verification uses Chromium CSS viewports, not physical devices or a cross-browse
 - Browser observations: all three cards have distinct depth values 0/1/2; manual selection and scrolling reorder them with exactly one front card. Desktop About was visually inspected. Public page text and the opened résumé preview have no GWA text; Academic Achiever remains in the preview.
 - At configured Chromium widths 375px and 320px there is no horizontal document overflow (360/360px and 305/305px after scrollbar). All transformed card bounds fit inside the viewport; the layered photos were visually inspected at 375px.
 - Six Node checks pass, including no GWA in public HTML, résumé preview source or generated text résumé. Responsive checks are CSS viewport tests, not physical-device or cross-browser certification.
+
+
+## October 23, 2026 — Section transitions and direct project files
+
+- Added a curved seam on each incoming section through the contact footer, with CSS view-timeline morphing and gentle content lift/scale. Existing visibility observers provide a staggered fallback; system reduced motion and focused content show content directly. No new scroll listener, frame loop, dependency or scroll interception.
+- Chromium native-scroll observations at y=131 and y=337 showed the About seam progress from scaleY(.572) with asymmetric curved corners to scaleY(.02) with flat corners. The boundary was visually inspected; all seven incoming surfaces resolve the section-seam animation.
+- Product Backlog Dashboard, Capycademy and Financial Dashboard now use the three exact user-supplied Drive file URLs as primary gallery/dialog actions. The connected Drive metadata identifies them as a backlog PDF, a Capycademy MKV demo and a financial MP4 demo. Existing folders remain secondary actions. Drive sharing was not changed; anonymous access was not verified.
+- Verified exact destinations in all three project dialogs. Data filtering returns the two correctly named dashboards; keyboard End selects Financial Dashboard and Capycademy in their respective filters. Escape dismisses dialogs. Generated text résumé and preview also include the primary file links.
+- Configured Chromium widths 375px and 320px have no horizontal document overflow (360/360px and 305/305px after scrollbar). The mobile financial dialog fits horizontally at 328/328px. About retains distinct photo depths 0/1/2; GWA and visible pause controls remain absent.
+- Six Node checks pass, including exact names/file mappings and generated résumé links. No application errors observed during checked journeys; unrelated extension metadata errors excluded. Checks cover Chromium CSS viewports, not physical devices, other browser engines or frame-rate benchmarking.

@@ -14,7 +14,7 @@ export function initProjects(data, dialogs, motion) {
       <p>${esc(project.summary)}</p><div class="tags">${tags(project.tech)}</div></div>
       <div class="project-summary-actions">
         <button class="pill" data-project="${project.id}">Explore project ${arrow}</button>
-        ${project.archive ? link(project.archive, 'Project folder') : project.url ? link(project.url, project.url.replace('https://', '')) : ''}
+        ${project.resource ? link(project.resource, project.resourceLabel, 'project-url', project.resourceLabel + ' — ' + project.title) : project.archive ? link(project.archive, 'Project folder') : project.url ? link(project.url, project.url.replace('https://', '')) : ''}
       </div>`;
   });
   function artwork(project) {
@@ -50,6 +50,7 @@ export function initProjects(data, dialogs, motion) {
       ${project.video ? `<div class="project-modal-media"><video controls preload="none" playsinline poster="${esc(project.image)}"><source src="${esc(project.video)}" type="video/mp4"></video></div>` : ''}
       <p class="project-stage-note">${esc(project.note)}</p>
       <div class="dialog-actions">
+        ${project.resource ? link(project.resource, project.resourceLabel, 'pill', project.resourceLabel + ' — ' + project.title) : ''}
         ${project.url ? link(project.url, project.url.includes('github.com') ? 'View repository' : 'Visit website', 'pill') : ''}
         ${project.archive ? link(project.archive, 'Open project folder', 'pill outline') : ''}
         ${project.media ? link(project.media, 'Open original demo', 'pill outline') : ''}

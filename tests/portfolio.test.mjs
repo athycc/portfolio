@@ -25,11 +25,20 @@ test('all project records have unique IDs and complete case-study content',()=>{
   assert.equal(data.projects.length,12);
   for(const id of ['meow','healthcare','aegis','qcpd','hoshi','financial']) assert.ok(!data.projects.some(p=>p.id===id));
   assert.equal(data.projects.find(p=>p.id==='looker').image,'/assets/dashboard-detail.jpg');
+  for(const [id,title,file] of [
+    ['backlog','Product Backlog Dashboard','1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ'],
+    ['capycademy','Capycademy','1PRYsDeffIIBvqUPual322HVbgf4calIz'],
+    ['looker','Financial Dashboard','188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf']
+  ]) {
+    const project=data.projects.find(p=>p.id===id);
+    assert.equal(project.title,title);
+    assert.equal(project.resource,`https://drive.google.com/file/d/${file}/view?usp=drive_link`);
+  }
   for(const p of data.projects){
     assert.ok(p.summary&&p.title&&p.label&&p.status&&p.note,p.id);
     assert.ok(p.details.length>0&&p.tech.length>0,p.id);
     assert.ok(['web','data','automation','exploration'].includes(p.category));
-    for(const url of [p.url,p.media,p.archive].filter(Boolean))assert.equal(new URL(url).protocol,'https:');
+    for(const url of [p.url,p.resource,p.media,p.archive].filter(Boolean))assert.equal(new URL(url).protocol,'https:');
   }
 });
 
@@ -54,6 +63,7 @@ test('build produces an actual downloadable résumé and every local image/video
   for(const p of data.projects){
     for(const file of [p.image,p.video].filter(Boolean))assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
     assert.ok(resume.includes(p.title),p.title);
+    if(p.resource) assert.ok(resume.includes(p.resource),p.title);
   }
   for(const src of new Set([...html.matchAll(/\bsrc="(\/[^"]+)"/g)].map(match=>match[1]))) assert.ok((await stat(path.join(root,'dist',src))).size>0,src);
   assert.ok((await stat(path.join(root,'dist/assets/site.css'))).size>0);
@@ -81,7 +91,7 @@ test('published code has no runtime dependencies and uses a restricted script po
   assert.match(policy,/object-src 'none'/);
   assert.equal(headers['X-Frame-Options'],'DENY');
   for (const project of data.projects) {
-    for (const url of [project.url,project.archive,project.media].filter(Boolean)) {
+    for (const url of [project.url,project.resource,project.archive,project.media].filter(Boolean)) {
       assert.equal(new URL(url).protocol,'https:');
     }
   }

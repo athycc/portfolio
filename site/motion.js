@@ -4,6 +4,12 @@ export function createMotion() {
   const system = matchMedia('(prefers-reduced-motion: reduce)');
   const enabled = () => !system.matches;
   const surfaces = $$('[data-flow]');
+  surfaces.slice(1).forEach(surface => {
+    [...surface.children].filter(child => !child.classList.contains('flow-field')).forEach((child, index) => {
+      child.classList.add('section-content');
+      child.style.setProperty('--section-order', index);
+    });
+  });
   const seen = new WeakSet();
   const navigation = $$('nav a[href^="#"]');
 
