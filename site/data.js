@@ -25,9 +25,11 @@ export default {
         "Integrated axe-core scans, keyboard focus checks, reduced-motion checks, TypeScript validation, and Node tests."
       ],
       "note": "QA scope: automated Chromium viewport checks. This does not imply physical-device certification or complete accessibility compliance.",
-      "image": "/projects/scd-south.png",
-      "imageAlt": "Official AWS Student Community Day South Summit event artwork",
-      "brandImage": true
+      "image": "/projects/scd-south-highlights.webp",
+      "imageAlt": "Attendees at AWS Student Community Day South Summit 2026",
+      "imageWidth": 1600,
+      "imageHeight": 900,
+      "brandImage": false
     },
     {
       "id": "mega",
@@ -50,9 +52,11 @@ export default {
         "Reviewed layout readability, spacing, navigation, registration links, maps, speaker information, and schedule consistency."
       ],
       "note": "Physical-device findings belong to this project; they are separate from the SCD South Chromium viewport checks.",
-      "image": "/projects/scd-mega-manila.png",
-      "imageAlt": "Official AWS Student Community Day Mega Manila event artwork",
-      "brandImage": true
+      "image": "/projects/scd-mega-highlights.webp",
+      "imageAlt": "AWS Student Community Day Mega Manila 2026 attendees posing for the event group photo",
+      "imageWidth": 1600,
+      "imageHeight": 900,
+      "brandImage": false
     },
     {
       "id": "sync",
