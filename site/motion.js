@@ -5,6 +5,25 @@ export function createMotion() {
   const enabled = () => !system.matches;
   const surfaces = $$('[data-flow]');
   surfaces.slice(1).forEach(surface => {
+    const heading = $('h2', surface);
+    if (!heading) return;
+    const lines = [''];
+    heading.childNodes.forEach(node => {
+      if (node.nodeName === 'BR') lines.push('');
+      else lines[lines.length - 1] += node.textContent;
+    });
+    heading.replaceChildren(...lines.map((line, index) => {
+      const mask = document.createElement('span');
+      mask.className = 'heading-line';
+      mask.style.setProperty('--line-order', index);
+      const text = document.createElement('span');
+      text.textContent = line.replace(/\s+/g, ' ').trim();
+      mask.append(text, document.createTextNode(' '));
+      return mask;
+    }));
+    heading.classList.add('heading-reveal');
+  });
+  surfaces.slice(1).forEach(surface => {
     [...surface.children].filter(child => !child.classList.contains('flow-field')).forEach((child, index) => {
       child.classList.add('section-content');
       child.style.setProperty('--section-order', index);
@@ -30,7 +49,7 @@ export function createMotion() {
     }, { threshold: 0.04 }) : null;
 
   function reveal(root = document) {
-    $$('.reveal,.project,.timeline-item,.volunteer-item,.award,.skill-group,.cert-item,.photo-pair figure', root)
+    $$('.reveal,.heading-reveal,.project,.timeline-item,.volunteer-item,.award,.skill-group,.cert-item,.photo-pair figure', root)
       .forEach((element) => {
         element.classList.add('motion-reveal');
         if (!enabled() || !observer || seen.has(element)) {
