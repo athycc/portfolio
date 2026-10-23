@@ -1,0 +1,98 @@
+/* Layered scenes and masked headings, inspired by the reference's visual pacing. */
+.hero-scene { position: relative; background: #071b35; }
+.heading-line { display: block; overflow: clip; padding-block: .09em; margin-block: -.09em; }
+.heading-line > span { display: block; }
+html[data-motion=full] .heading-reveal.is-pending .heading-line > span {
+  transform: translate3d(0, 115%, 0) rotate(2deg);
+}
+html[data-motion=full] .heading-reveal.is-visible .heading-line > span {
+  animation: heading-rise .85s var(--ease) both;
+  animation-delay: calc(var(--line-order, 0) * 110ms);
+}
+@keyframes heading-rise {
+  from { transform: translate3d(0, 115%, 0) rotate(2deg); }
+  to { transform: none; }
+}
+
+/* Large screens have room for a pinned opening; short/touch layouts keep normal flow. */
+@media screen and (min-width: 900px) and (min-height: 650px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    html[data-motion=full] .hero-scene {
+      height: 160svh;
+      view-timeline-name: --hero-journey;
+      view-timeline-axis: block;
+      view-timeline-inset: 0;
+    }
+    html[data-motion=full] .hero {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      min-height: 0;
+      max-height: none;
+      transform-origin: 50% 30%;
+      animation: hero-recede linear both;
+      animation-timeline: --hero-journey;
+      animation-range: contain 0% contain 100%;
+    }
+    html[data-motion=full] .about {
+      margin-top: -60svh;
+      z-index: 1;
+      border-radius: 2.5rem 2.5rem 0 0;
+      background: #f2f6fbf5;
+      box-shadow: 0 -1.5rem 4rem #05152b20;
+    }
+    html[data-motion=full] .about::before { display: none; }
+    html[data-motion=full] .about .flow-field { border-radius: inherit; }
+    html[data-motion=full] .about-layout { animation-range: entry 0% entry 55%; }
+    html[data-motion=full] .about-copy { position: relative; z-index: 1; }
+    .hero:focus-within { animation: none !important; }
+  }
+}
+@keyframes hero-recede {
+  from { transform: none; opacity: 1; border-radius: 0; }
+  to { transform: translate3d(0, -2rem, 0) scale(.92) rotate(-.7deg); opacity: .48; border-radius: 2.5rem; }
+}
+
+/* Readable summaries settle between the moving gallery and calm résumé sections. */
+html[data-motion=full] .project-summary > div { animation: soft-rise .5s var(--ease) both; }
+html[data-motion=full] .project-summary-actions { animation-delay: 70ms; }
+.projects .project-visual > img { transition: transform .6s var(--ease); }
+.projects .project h3 button { transition: transform .5s var(--ease), color .25s; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html[data-motion=full] .projects .project:hover .project-visual > img,
+  html[data-motion=full] .projects .project:focus-within .project-visual > img { transform: scale(1.065); }
+  html[data-motion=full] .projects .project:hover h3 button { transform: translateX(.3rem); }
+}
+html[data-motion=full] #project-dialog[open] { animation: project-expand .55s var(--ease) both; }
+html[data-motion=full] #project-dialog[open] .dialog-body { animation: soft-rise .6s .1s var(--ease) both; }
+html[data-motion=full] dialog[open]::backdrop { animation: backdrop-in .4s ease both; }
+@keyframes project-expand {
+  from { opacity: 0; transform: translateY(2rem) scale(.92); clip-path: inset(4% 3% round 2rem); }
+  to { opacity: 1; transform: none; clip-path: inset(0 round 1.5rem); }
+}
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+.pointer-hint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+  padding: .65rem .9rem;
+  border: 1px solid #ffffff40;
+  border-radius: 2rem;
+  background: #071b35ed;
+  box-shadow: 0 .4rem 1.5rem #071b3526;
+  color: white;
+  font-size: .68rem;
+  letter-spacing: .02em;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.pointer-hint.is-visible { opacity: 1; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce), print {
+  .pointer-hint { display: none; }
+}
+@media print {
+  .hero-scene { background: none; }
+  .heading-line { overflow: visible; }
+}

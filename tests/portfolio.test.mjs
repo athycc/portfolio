@@ -24,7 +24,7 @@ test('all project records have unique IDs and complete case-study content',()=>{
   assert.equal(new Set(data.projects.map(p=>p.id)).size,data.projects.length);
   assert.equal(data.projects.length,12);
   for(const id of ['meow','healthcare','aegis','qcpd','hoshi','financial']) assert.ok(!data.projects.some(p=>p.id===id));
-  assert.equal(data.projects.find(p=>p.id==='looker').image,'/assets/dashboard-detail.jpg');
+  assert.equal(data.projects.find(p=>p.id==='looker').image,'/projects/archive/financial.webp');
   for(const [id,title,file] of [
     ['backlog','Product Backlog Dashboard','1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ'],
     ['capycademy','Capycademy','1PRYsDeffIIBvqUPual322HVbgf4calIz'],

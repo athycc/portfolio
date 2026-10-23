@@ -6,6 +6,7 @@ import { createDialogs } from './dialogs.js';
 import { initProjects } from './projects.js';
 import { initSlideshow } from './slideshow.js';
 import { initFeatured } from './featured.js';
+import { initPointerHints } from './pointer.js';
 
 renderContent(data);
 const motion = createMotion();
@@ -13,6 +14,7 @@ const dialogs = createDialogs(motion.enabled);
 initProjects(data, dialogs, motion);
 initSlideshow(motion);
 initFeatured(motion);
+initPointerHints(motion);
 
 $$('.menu-content a').forEach((link, index) => link.style.setProperty('--menu-index', index));
 document.addEventListener('click', async (event) => {

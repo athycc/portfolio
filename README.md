@@ -26,6 +26,7 @@ The development server listens on port 4173. `dist/` is generated and is not sou
 | `site/gallery.js` | Continuous 3D project stream, pointer drag, arrows and keyboard navigation |
 | `site/dialogs.js` | Native modal focus, Escape and dismissal |
 | `site/slideshow.js` | Scroll-distance photo selection, pixel wipe and manual next |
+| `site/pointer.js` | Contextual desktop pointer hints; native pointer retained |
 | `site/featured.js` | The hero's featured-project selector |
 | `site/motion.js` | Reduced motion, viewport reveals, current navigation and visible flow layers |
 | `site/styles/` | Styles grouped by component and layout; composed into one stylesheet at build time |
@@ -36,7 +37,7 @@ The unused React/TanStack tree, build adapters, framework configuration and depe
 
 ## Behavior
 
-Every main section and the footer has the same reusable flowing light field. CSS view timelines move it through the scroll journey where supported; ambient motion continues without a JavaScript scroll loop. Only visible sections animate. Curved section seams morph as the next surface enters, with a gentle lift and scale on content groups. View timelines drive these transitions where supported; existing visibility observers provide the fallback. Reduced motion shows the content directly. Native wheel/touch scrolling is retained.
+Every main section and the footer has the same reusable flowing light field. CSS view timelines move it through the scroll journey where supported; ambient motion continues without a JavaScript scroll loop. Only visible sections animate. Curved section seams morph as the next surface enters, with a gentle lift and scale on content groups. View timelines drive these transitions where supported; existing visibility observers provide the fallback. Reduced motion shows the content directly. Native wheel/touch scrolling is retained. On screens at least 900px wide and 650px tall with CSS view-timeline support, the hero pins briefly and recedes while About overlaps it. Narrow/short screens and reduced motion use ordinary flow. Major headings reveal through line masks once on entry; project details expand into their modal and image hover adds depth. Contextual desktop pointer labels describe project/photo actions without hiding the native pointer or adding a frame loop.
 
 The About photos form a three-card stack, with two real photos angled behind the active image. The stack rotates as the visitor scrolls: each 96px of travel requests the next or previous photo, with one coalesced update per animation frame while the gallery is visible. The short canvas wipe resolves to the original image; there is no idle timer. Manual next remains available. GWA is omitted from the public page, résumé preview and generated text résumé. The portrait uses its 1302px original, robotics uses the supplied 1080px photo, and speaking retains its 425px source detail.
 
@@ -47,6 +48,7 @@ Contact opens a mailto draft. It does not send email or store submitted content.
 ### Image provenance
 
 - Email automation: supplied `image(20261022-171103).png`, optimized as `public/projects/archive/email.webp`.
+- Financial Dashboard: frame at 0.5 seconds from the supplied local `financial-looker.mp4` demo, saved as `public/projects/archive/financial.webp`; replaces the unrelated backlog screenshot.
 - Backlog: page 1 of `Copy of product_backlog in power bi.pdf`, file `1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ`.
 - Capycademy: `received_2414760442229430.png`, file `15hAfZul74zbk_rUFzODKYRWBOZXgI79s`.
 - Robotics: `20250625_093016.jpg`, file `1-L-y9HmeiYiTbSzZgVzJpY68oBJjPBQ4`.

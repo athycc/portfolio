@@ -1,7 +1,7 @@
 /* A curved seam connects sections; native view timelines morph it during entry. */
 @media screen {
   main > [data-flow]:not(:first-child) { --seam-color: #f2f6fb; }
-  main > .hero + [data-flow], main > .leadership + [data-flow] { --seam-color: #071b35; }
+  main > .hero-scene + [data-flow], main > .leadership + [data-flow] { --seam-color: #071b35; }
   main > [data-flow]:not(:first-child)::before {
     content: '';
     position: absolute;
