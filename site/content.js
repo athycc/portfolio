@@ -40,6 +40,7 @@ export function renderContent(data) {
       ${data.projects.map((project) => `
         <p><strong>${esc(project.title)}</strong> · ${esc(project.status)}<br>${esc(project.summary)}
           ${project.archive ? `<br><a class="external-label" href="${esc(project.archive)}" target="_blank" rel="noopener noreferrer">Project folder ↗</a>` : ''}
+          ${project.resource ? `<br><a href="${esc(project.resource)}" target="_blank" rel="noopener noreferrer">${esc(project.resourceLabel)}</a>` : ''}
           ${project.url ? `<br><a class="external-label" href="${esc(project.url)}" target="_blank" rel="noopener noreferrer">${esc(project.url)}</a>` : ''}
         </p>`).join('')}
     </section>

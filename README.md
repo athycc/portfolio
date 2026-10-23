@@ -36,7 +36,7 @@ The unused React/TanStack tree, build adapters, framework configuration and depe
 
 ## Behavior
 
-Every main section and the footer has the same reusable flowing light field. CSS view timelines move it through the scroll journey where supported; ambient motion continues without a JavaScript scroll loop. Only visible sections animate. Native wheel/touch scrolling is retained.
+Every main section and the footer has the same reusable flowing light field. CSS view timelines move it through the scroll journey where supported; ambient motion continues without a JavaScript scroll loop. Only visible sections animate. Curved section seams morph as the next surface enters, with a gentle lift and scale on content groups. View timelines drive these transitions where supported; existing visibility observers provide the fallback. Reduced motion shows the content directly. Native wheel/touch scrolling is retained.
 
 The About photos form a three-card stack, with two real photos angled behind the active image. The stack rotates as the visitor scrolls: each 96px of travel requests the next or previous photo, with one coalesced update per animation frame while the gallery is visible. The short canvas wipe resolves to the original image; there is no idle timer. Manual next remains available. GWA is omitted from the public page, résumé preview and generated text résumé. The portrait uses its 1302px original, robotics uses the supplied 1080px photo, and speaking retains its 425px source detail.
 
@@ -48,7 +48,7 @@ Contact opens a mailto draft. It does not send email or store submitted content.
 
 - Email automation: supplied `image(20261022-171103).png`, optimized as `public/projects/archive/email.webp`.
 - Backlog: page 1 of `Copy of product_backlog in power bi.pdf`, file `1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ`.
-- CapyCademy: `received_2414760442229430.png`, file `15hAfZul74zbk_rUFzODKYRWBOZXgI79s`.
+- Capycademy: `received_2414760442229430.png`, file `15hAfZul74zbk_rUFzODKYRWBOZXgI79s`.
 - Robotics: `20250625_093016.jpg`, file `1-L-y9HmeiYiTbSzZgVzJpY68oBJjPBQ4`.
 - Credivest: `20250625_095429.jpg`, file `15S-jCubYu47TG3Z6Aom0Hwn-st8k-Cz5`.
 - Poro: file `1gi0VJ516Rdfere8eH7nzKSFCRbklyNQ3`.
@@ -62,10 +62,20 @@ Project archive image copies are WebP, downscaled to at most 1000px without inve
 | Project | Folder |
 | --- | --- |
 | Product Backlog Dashboard | https://drive.google.com/drive/folders/122VPxokv9yFkh3wk8OUBiZoyVhNaEWN4 |
-| CapyCademy | https://drive.google.com/drive/folders/10Turmdj5dJxymT1nazKWnjTAuPLTrBmg |
+| Capycademy | https://drive.google.com/drive/folders/10Turmdj5dJxymT1nazKWnjTAuPLTrBmg |
 | Autonomous Sumobot | https://drive.google.com/drive/folders/1S564VR7LJtovR2mT28XPlipMC3YsSBXH |
-| Looker Financial Model | https://drive.google.com/drive/folders/122VPxokv9yFkh3wk8OUBiZoyVhNaEWN4 |
+| Financial Dashboard | https://drive.google.com/drive/folders/122VPxokv9yFkh3wk8OUBiZoyVhNaEWN4 |
 | Credivest · Home Credit Hackada | https://drive.google.com/drive/folders/1ozoGQhvZdlvmvb0Atjy6ZMTUtgxEi5h1 |
 | Poro · Time Management | https://drive.google.com/drive/folders/157KtG4CGbU0aJH4nN7eNxeYS-HxjJgRr |
 | Gabay | https://drive.google.com/drive/folders/1MTaMhuUPGgy8sYWmtd18Tfati9xcz0VQ |
 | Skills Gap Assessment Research | https://drive.google.com/drive/folders/1d0lsU1-cBcNqNIWLcn2RafRWIE6Thl15 |
+
+### Primary project files
+
+The gallery summary, project dialog and résumé use these user-supplied direct destinations. Archive folders remain available in project details.
+
+| Project | File |
+| --- | --- |
+| Product Backlog Dashboard | https://drive.google.com/file/d/1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ/view?usp=drive_link |
+| Capycademy | https://drive.google.com/file/d/1PRYsDeffIIBvqUPual322HVbgf4calIz/view?usp=drive_link |
+| Financial Dashboard | https://drive.google.com/file/d/188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf/view?usp=drive_link |

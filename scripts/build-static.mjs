@@ -8,7 +8,7 @@ const html = await readFile(path.join(root, 'index.html'), 'utf8');
 const data = (await import('../site/data.js')).default;
 for (const project of data.projects) {
   if (!/^[a-z][a-z0-9-]*$/.test(project.id)) throw new Error('Invalid project ID');
-  for (const url of [project.url, project.archive, project.media].filter(Boolean)) {
+  for (const url of [project.url, project.resource, project.archive, project.media].filter(Boolean)) {
     if (new URL(url).protocol !== 'https:') throw new Error('Project links must use HTTPS');
   }
 }
@@ -22,7 +22,7 @@ const resume = [
   '', 'TECHNICAL SKILLS',
   ...data.skills.map(([title,...items]) => `${title}: ${items.join(', ')}`),
   '', 'PROJECTS & PARTICIPATION',
-  ...data.projects.flatMap(p => ['', `${p.title} — ${p.status}`, p.year, p.summary, `Technologies / methods: ${p.tech.join(', ')}`, ...(p.url ? [p.url] : []), ...(p.archive ? [`Project folder: ${p.archive}`] : []), ...(p.media ? [`Original demo: ${p.media}`] : [])]),
+  ...data.projects.flatMap(p => ['', `${p.title} — ${p.status}`, p.year, p.summary, `Technologies / methods: ${p.tech.join(', ')}`, ...(p.url ? [p.url] : []), ...(p.resource ? [`Project file: ${p.resource}`] : []), ...(p.archive ? [`Project folder: ${p.archive}`] : []), ...(p.media ? [`Original demo: ${p.media}`] : [])]),
   '', 'LEADERSHIP EXPERIENCE',
   'Founder & CEO — AWS Student Builder Group Alpha | September 2025–Present',
   '- Founded RTU’s AWS Learning Club, leading chapter strategy, operations, partnerships, and student engagement.',
@@ -49,7 +49,7 @@ await rm(dist, {recursive:true,force:true});
 await mkdir(path.join(dist,'assets'), {recursive:true});
 await cp(path.join(root,'public'),dist,{recursive:true,filter:source=>!path.basename(source).startsWith('.')});
 await cp(path.join(root,'site'),path.join(dist,'assets/site'),{recursive:true});
-const styles = await Promise.all(['base','hero','about','projects','sections','dialogs','layout','motion','slideshow','flow','gallery'].map(name => readFile(path.join(root,'site/styles',name+'.css'),'utf8')));
+const styles = await Promise.all(['base','hero','about','projects','sections','dialogs','layout','motion','slideshow','flow','gallery','journey'].map(name => readFile(path.join(root,'site/styles',name+'.css'),'utf8')));
 await writeFile(path.join(dist,'assets/site.css'), styles.join('\n'));
 await rm(path.join(dist,'assets/site/styles'), {recursive:true});
 await writeFile(path.join(dist,'index.html'),html);
