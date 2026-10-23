@@ -40,7 +40,7 @@ The unused React/TanStack tree, build adapters, framework configuration and depe
 
 Every main section and the footer share a flowing light field. One scroll-scheduled animation frame updates the receding hero and slower background travel for visible sections; it does not require CSS view timelines. The hero pins on desktop and mobile, accounting for content taller than the viewport so short-screen controls remain reachable. About overlaps it through a translucent 14px blur layer. Fourteen masked heading lines replay as their headings enter the reading area. Experience and education content stay steady. System reduced motion uses ordinary document flow and a static hero poster.
 
-The hero film is a nine-second muted crossfade of three existing community/robotics photos, compressed to about 192KB. It plays only while visible, with motion enabled and no modal open. Project cards show an inset image on hover/keyboard focus. Selection opens a dark media-first overlay: actual local demos play muted with controls, while other projects show their image and existing links. The native pointer stays visible alongside contextual labels. Build output fingerprints CSS and the complete JavaScript module directory together so new deployments cannot mix cached code versions.
+The hero film uses the full 67.55-second uploaded AWS SCD video, optimized from 82,656,824 bytes to 1,763,640 bytes as a muted 768×432 H.264 background copy. The original attachment is unchanged. It plays only while visible, with motion enabled and no modal open. Project cards show an inset image on hover/keyboard focus. Selection opens a dark media-first overlay: actual local demos play muted with controls, while other projects show their image and existing links. The native pointer stays visible alongside contextual labels. Build output fingerprints CSS and the complete JavaScript module directory together so new deployments cannot mix cached code versions.
 
 The About photos form a three-card stack, with two real photos angled behind the active image. The stack rotates as the visitor scrolls: each 96px of travel requests the next or previous photo, with one coalesced update per animation frame while the gallery is visible. The short canvas wipe resolves to the original image; there is no idle timer. Manual next remains available. GWA is omitted from the public page, résumé preview and generated text résumé. The portrait uses its 1302px original, robotics uses the supplied 1080px photo, and speaking retains its 425px source detail.
 
@@ -49,6 +49,9 @@ Project filters expose 4 Web & QA, 2 Data, 2 Automation & AI and 4 Other builds.
 Contact opens a mailto draft. It does not send email or store submitted content. Security scope and deployment policy are documented in [SECURITY.md](SECURITY.md); browser checks and limitations are in [QA.md](QA.md).
 
 ### Image provenance
+
+- SCD Mega Manila: uploaded `109.png`, optimized to 1600×900 WebP; used in the project card, detail screen, community section and hero poster.
+- SCD South: uploaded `image(20261023-045507).png`, optimized to 1600×900 WebP; used in the project card, detail screen and community section. Existing event artwork remains in the interactive inset previews.
 
 - Email automation: supplied `image(20261022-171103).png`, optimized as `public/projects/archive/email.webp`.
 - Financial Dashboard: frame at 0.5 seconds from the supplied local `financial-looker.mp4` demo, saved as `public/projects/archive/financial.webp`; replaces the unrelated backlog screenshot.
