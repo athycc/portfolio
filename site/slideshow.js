@@ -52,7 +52,8 @@ export function initSlideshow(motion) {
     next = requested;
     clearTransition();
     const current = ++revision;
-    try { await images[next].decode(); } catch { return; }
+    try { await images[next].decode(); }
+    catch { if (current === revision) display(next, manual); return; }
     if (current !== revision) return;
     if (next === index || !motion.enabled() || !context || !canvas.animate) { display(next, manual); return; }
     drawPixels(images[next], 12);
