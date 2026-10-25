@@ -277,3 +277,9 @@ Verification uses Chromium CSS viewports, not physical devices or a cross-browse
 - Added the user-confirmed Playwright tooling to Mega Manila and SYNC summaries, technology tags and contribution details. South already listed Playwright. The generated text résumé uses these same records.
 - All eight Node checks pass, including assertions that the backlog keeps its Power BI image and image-based detail view, and that every QA-labelled project includes Playwright in its summary, tools and contribution details.
 - Cua local preview verified both backlog card image paths, the loaded Power BI image in the detail dialog, absence of a backlog video, and the preserved PDF URL. Opened South, Mega Manila and SYNC dialogs and confirmed Playwright in each dialog's tags and text. No new media assets or dependencies were added.
+
+## October 25, 2026 — Filled project frames and bounded carousel
+
+- Project thumbnails now fill 16:9 landscape frames with cover sizing and no image padding, replacing the contain layout that exposed blank bands. Original detail-view media remains available. Existing white card borders are reinforced at the bottom, and a white lower edge finishes the carousel viewport.
+- Replaced straight horizontal travel with a bounded circular arc. Position, depth and rotation share the same radius, cached on resize; drag sensitivity follows the arc spacing. Keyboard, arrow controls, circular wrapping and automatic movement remain.
+- All eight Node checks pass. Cua rotated through all 12 selected projects in both 1440×844 and 375×844 same-origin viewports. Every checked visible card frame stayed inside the track bounds; mobile had no horizontal document overflow. All 12 main images loaded, and computed thumbnail styles use cover sizing with zero padding. The lower edge computed as solid white. These are Chromium viewport and interaction checks, not physical-device or cross-browser certification.

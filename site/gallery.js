@@ -7,7 +7,7 @@ const wrap = (value, size) => ((value % size) + size) % size;
 export function initGallery(track, motion, onChange) {
   const summary = $('#project-summary');
   const previous = $('#project-prev'), next = $('#project-next'), position = $('#project-position');
-  let cards = [], phase = 0, spacing = 300, visible = false, drag, tween;
+  let cards = [], phase = 0, spacing = 300, radius = 300, visible = false, drag, tween;
   let frameId = 0, lastTime = 0, selected = -1, suppressClick = false;
 
   function canPlay() {
@@ -19,13 +19,14 @@ export function initGallery(track, motion, onChange) {
     if (!count) return;
     cards.forEach((card, index) => {
       const distance = wrap(index - phase + count / 2, count) - count / 2;
-      const shown = Math.abs(distance) < 2.05;
+      const shown = Math.abs(distance) < 1.65;
       card.inert = !shown;
       card.style.visibility = shown ? 'visible' : 'hidden';
       if (!shown) return;
       const depth = Math.abs(distance);
-      card.style.transform = `translateX(calc(-50% + ${distance * spacing}px)) translateZ(${-depth * 110}px) rotateY(${-distance * 18}deg) scale(${1 - Math.min(depth, 2) * .06})`;
-      card.style.opacity = Math.min(1, (2.05 - depth) * 1.4);
+      const angle = distance * 55, radians = angle * Math.PI / 180;
+      card.style.transform = `translateX(calc(-50% + ${Math.sin(radians) * radius}px)) translateZ(${(Math.cos(radians) - 1) * radius}px) rotateY(${-angle}deg) scale(${1 - depth * .06})`;
+      card.style.opacity = Math.min(1, (1.65 - depth) * 2);
       card.style.zIndex = String(10 - Math.round(depth * 3));
     });
     const index = wrap(Math.round(phase), count);
@@ -114,7 +115,8 @@ export function initGallery(track, motion, onChange) {
   ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach(event => summary.addEventListener(event, sync));
   ['motionchange', 'visibilitychange', 'dialogchange'].forEach(event => document.addEventListener(event, sync));
   new ResizeObserver(() => {
-    spacing = track.firstElementChild ? track.firstElementChild.offsetWidth * .98 : 300;
+    radius = track.clientWidth * .34;
+    spacing = Math.max(1, radius * Math.sin(55 * Math.PI / 180));
     render();
   }).observe(track);
   if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => {
@@ -125,7 +127,8 @@ export function initGallery(track, motion, onChange) {
     finish(); tween = null; phase = 0; selected = -1;
     cards = [...track.children];
     previous.disabled = next.disabled = cards.length < 2;
-    spacing = cards[0] ? cards[0].offsetWidth * .98 : 300;
+    radius = track.clientWidth * .34;
+    spacing = Math.max(1, radius * Math.sin(55 * Math.PI / 180));
     render(); sync();
   } };
 }
