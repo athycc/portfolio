@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import data from '../site/data.js';
+import { photoIndex } from '../site/slideshow.js';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,6 +11,11 @@ import { fileURLToPath } from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const html=await readFile(path.join(root,'index.html'),'utf8');
 const content=html+JSON.stringify(data);
+
+test('About photos advance once through three scroll intervals and reverse without wrapping',()=>{
+  assert.deepEqual([-100,0,639,640,1279,1280,1920,10000].map(distance=>photoIndex(distance,640,3)),[0,0,0,1,1,2,2,2]);
+  assert.deepEqual([1600,800,200].map(distance=>photoIndex(distance,640,3)),[2,1,0]);
+});
 
 test('all maintained browser modules parse as native JavaScript',async()=>{
   for(const file of (await readdir(path.join(root,'site'))).filter(name=>name.endsWith('.js'))) {

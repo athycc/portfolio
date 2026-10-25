@@ -256,3 +256,10 @@ Verification uses Chromium CSS viewports, not physical devices or a cross-browse
 - Configured 375px viewport has no horizontal page overflow (360/360px). Both project images load; South’s dark detail dialog displays its full image, preserves https://aws.scd-south.cloud/ and fits horizontally at 326/326px. Escape dismisses it. All six Node checks pass. Scope is Chromium CSS viewport inspection, not physical-device or other-engine certification.
 
 - Publication recovery: the missing video upload was regenerated from the supplied 82,656,824-byte original using the same 768×432 / 20fps bitrate settings. Full decode completed for all 1,351 frames; the web copy is 1,763,640 bytes with no audio track. The two committed image files were reused unchanged, and all six existing Node checks passed again.
+
+## October 25, 2026 — Landscape About photo sequence
+
+- Reused all three About images in 3:2 landscape frames with cover cropping and face-aware positions; the pixel transition uses the same crop as the final image.
+- Native sticky positioning holds About for three scroll intervals. The sequence clamps at the final photo instead of looping on scroll; upward scrolling reverses it. The next-photo button remains keyboard accessible and moves to the matching scroll interval. Reduced motion retains manual navigation without the sticky scroll sequence.
+- All seven Node checks pass, including the new interval, reverse-scroll and overscroll regression check, module parsing, static build and existing content/media checks.
+- Cua desktop DOM inspection at 1920×1200 confirmed the landscape frame, 01→02→03 progression, a stable pinned About position and release into Selected Work after the final interval. A same-origin 375×844 responsive preview confirmed loaded cover images, keyboard photo selection, a visible photo while the taller section pins at -95px, and no document overflow (354/354px). Browser viewport override and screenshot capture were unavailable in this session; these are DOM/interaction observations, not screenshot or physical-device certification. OS reduced-motion behavior was source-reviewed, not emulated.
