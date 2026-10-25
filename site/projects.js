@@ -18,7 +18,7 @@ export function initProjects(data, dialogs, motion) {
       </div>`;
   });
   function artwork(project) {
-    const alternate = {south:'/projects/scd-south.png',mega:'/projects/scd-mega-manila.png',backlog:'/assets/dashboard-overview.jpg'}[project.id] || project.image;
+    const alternate = {south:'/projects/scd-south.png',mega:'/projects/scd-mega-manila.png'}[project.id] || project.image;
     return `<img src="${esc(project.image)}" alt="${esc(project.imageAlt || project.title + ' portfolio image')}"
       width="${project.imageWidth || 1200}" height="${project.imageHeight || 800}" loading="lazy" decoding="async"
       class="${project.brandImage || ['backlog','looker'].includes(project.id) ? 'project-brand' : ''}">
