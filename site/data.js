@@ -39,19 +39,21 @@ export default {
       "year": "September 11, 2026",
       "art": "mega",
       "status": "QA contribution",
-      "summary": "Tested responsiveness, performance, navigation, and content across 4 Android devices with 2–8 GB RAM and Android 10–14.",
+      "summary": "Used Playwright for website QA and tested responsiveness, performance, navigation, and content across 4 Android devices with 2–8 GB RAM and Android 10–14.",
       "tech": [
+        "Playwright",
         "Real-device QA",
         "Content validation",
         "Bug reporting"
       ],
       "url": "https://www.aws-scd.cloud/",
       "details": [
+        "Used Playwright for automated browser QA alongside real-device checks.",
         "Checked four Android configurations: 2 GB / Android 10, 3 GB / Android 11, 8 GB / Android 13, and 4 GB / Android 14.",
         "Identified lag on lower-memory devices and interaction issues during rapid swiping.",
         "Reviewed layout readability, spacing, navigation, registration links, maps, speaker information, and schedule consistency."
       ],
-      "note": "Physical-device findings belong to this project; they are separate from the SCD South Chromium viewport checks.",
+      "note": "Combined Playwright browser QA with the physical-device checks described above.",
       "image": "/projects/scd-mega-highlights.webp",
       "imageAlt": "AWS Student Community Day Mega Manila 2026 attendees posing for the event group photo",
       "imageWidth": 1600,
@@ -66,15 +68,16 @@ export default {
       "year": "September 11, 2026",
       "art": "sync",
       "status": "QA contribution",
-      "summary": "Performed functional and usability QA for a platform serving 400+ users, reviewing navigation, schedule access, and mobile interactions.",
+      "summary": "Performed functional and usability QA with Playwright for a platform serving 400+ users, reviewing navigation, schedule access, and mobile interactions.",
       "tech": [
+        "Playwright",
         "Functional QA",
         "Mobile usability",
         "User journeys"
       ],
       "url": "https://sync.aws-scd.cloud/",
       "details": [
-        "Reviewed attendee-facing navigation, schedule access, page transitions, and mobile usability.",
+        "Used Playwright to review attendee-facing navigation, schedule access, page transitions, and mobile usability.",
         "Compared loading and interaction behavior with the SCD Mega Manila website to identify responsiveness and performance differences."
       ],
       "note": "My contribution was quality assurance, rather than development of the platform.",
@@ -122,7 +125,6 @@ export default {
         "KPI tracking",
         "Backlog analysis"
       ],
-      "video": "/videos/product-demo.mp4",
       "details": [
         "Organized backlog status, urgency, priority, and sprint progress for stakeholder reporting.",
         "Built views covering 170 items, 9 initiatives, 40 epics, and 36 stories totaling 427.33 story points."

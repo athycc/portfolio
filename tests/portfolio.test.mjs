@@ -41,6 +41,13 @@ test('all project records have unique IDs and complete case-study content',()=>{
   assert.equal(data.projects.length,12);
   for(const id of ['meow','healthcare','aegis','qcpd','hoshi','financial']) assert.ok(!data.projects.some(p=>p.id===id));
   assert.equal(data.projects.find(p=>p.id==='looker').image,'/projects/archive/financial.webp');
+  assert.equal(data.projects.find(p=>p.id==='backlog').image,'/projects/archive/backlog.webp');
+  assert.equal(data.projects.find(p=>p.id==='backlog').video,undefined,'Power BI project details must show the Power BI image');
+  for(const project of data.projects.filter(p=>/\bQA\b|quality assurance/i.test(p.label+' '+p.status))) {
+    assert.ok(project.tech.includes('Playwright'),project.id);
+    assert.match(project.summary,/Playwright/,project.id);
+    assert.ok(project.details.some(detail=>detail.includes('Playwright')),project.id);
+  }
   for(const [id,title,file] of [
     ['backlog','Product Backlog Dashboard','1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ'],
     ['capycademy','Capycademy','1PRYsDeffIIBvqUPual322HVbgf4calIz'],
