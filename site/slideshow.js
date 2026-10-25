@@ -1,11 +1,16 @@
 import { $, $$ } from './dom.js';
 
+export function photoIndex(distance, step, count) {
+  return Math.max(0, Math.min(count - 1, Math.floor(distance / step)));
+}
+
 export function initSlideshow(motion) {
   const gallery = $('.about-gallery'), stage = $('.photo-stage', gallery);
+  const scene = $('.about-scene'), section = $('#about');
   const images = $$('[data-slide]', gallery), canvas = $('canvas', gallery);
   const context = canvas.getContext('2d');
   let index = 0, requested = 0, revision = 0, refinement, wipe;
-  let lastY = window.scrollY, distance = 0, scrollFrame = 0, visible = false;
+  let scrollFrame = 0, step = 1;
 
   function clearTransition() {
     clearTimeout(refinement);
@@ -27,14 +32,15 @@ export function initSlideshow(motion) {
     canvas.height = Math.round(columns * stage.clientHeight / stage.clientWidth);
     context.fillStyle = '#e8eef7';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    const scale = Math.min(canvas.width / image.naturalWidth, canvas.height / image.naturalHeight);
+    const scale = Math.max(canvas.width / image.naturalWidth, canvas.height / image.naturalHeight);
     const width = image.naturalWidth * scale, height = image.naturalHeight * scale;
-    context.drawImage(image, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
+    const position = getComputedStyle(image).objectPosition.split(' ').map(value => parseFloat(value) / 100);
+    context.drawImage(image, (canvas.width - width) * position[0], (canvas.height - height) * position[1], width, height);
   }
   async function select(next, manual = false) {
-    clearTransition();
     requested = ((next % images.length) + images.length) % images.length;
     next = requested;
+    clearTransition();
     const current = ++revision;
     try { await images[next].decode(); } catch { return; }
     if (current !== revision) return;
@@ -54,30 +60,40 @@ export function initSlideshow(motion) {
     }
     refinement = setTimeout(sharpen, 80);
   }
+  function start() {
+    return window.scrollY + scene.getBoundingClientRect().top + Math.max(0, section.offsetHeight - innerHeight);
+  }
   function onScroll() {
     if (scrollFrame) return;
     scrollFrame = requestAnimationFrame(() => {
       scrollFrame = 0;
-      const currentY = window.scrollY;
-      distance += currentY - lastY; lastY = currentY;
-      if (!motion.enabled() || document.hidden || $('dialog[open]')) { distance = 0; return; }
-      const steps = Math.trunc(distance / 96);
-      if (steps) { distance -= steps * 96; select(requested + Math.sign(steps)); }
+      if (!motion.enabled() || document.hidden || $('dialog[open]')) return;
+      const next = photoIndex(window.scrollY - start(), step, images.length);
+      if (next !== requested) select(next);
     });
+  }
+  function measure() {
+    step = Math.max(320, innerHeight * .85);
+    scene.style.setProperty('--about-height', `${section.offsetHeight}px`);
+    scene.style.setProperty('--photo-travel', `${images.length * step}px`);
+    onScroll();
   }
   function sync() {
     window.removeEventListener('scroll', onScroll);
     cancelAnimationFrame(scrollFrame); scrollFrame = 0;
-    lastY = window.scrollY; distance = 0;
-    if (visible && motion.enabled() && !document.hidden && !$('dialog[open]'))
+    if (motion.enabled() && !document.hidden && !$('dialog[open]'))
       window.addEventListener('scroll', onScroll, { passive: true });
     if (!motion.enabled()) { revision++; clearTransition(); }
+    measure();
   }
-  $('.gallery-next', gallery).addEventListener('click', () => select(requested + 1, true));
+  $('.gallery-next', gallery).addEventListener('click', () => {
+    const next = (requested + 1) % images.length;
+    select(next, true);
+    if (motion.enabled()) window.scrollTo({ top: start() + next * step + 1, behavior: 'instant' });
+  });
   ['visibilitychange', 'motionchange', 'dialogchange'].forEach(event => document.addEventListener(event, sync));
-  if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting; sync();
-  }, { threshold: .05 }).observe(gallery);
-  else visible = true;
+  new ResizeObserver(measure).observe(section);
+  addEventListener('resize', measure, { passive: true });
+  document.fonts?.ready.then(measure);
   sync();
 }
