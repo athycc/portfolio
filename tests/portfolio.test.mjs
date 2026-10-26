@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import data from '../site/data.js';
-import { matchingProjects } from '../site/projects.js';
+import { matchingProjects, projectCard } from '../site/projects.js';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,6 +13,7 @@ const html=await readFile(path.join(root,'index.html'),'utf8');
 const content=html+JSON.stringify(data);
 
 test('filters retain every project, use multiple categories, and preserve PM order without mutating data',()=>{
+  for(const id of ['mega','south']) assert.match(projectCard(data.projects.find(p=>p.id===id)),/class="project-inset"/,'keep the original website inset artwork');
   const original=data.projects.map(p=>p.id);
   assert.equal(matchingProjects(data.projects).length,12);
   assert.deepEqual(matchingProjects(data.projects).slice(0,4).map(p=>p.id),['mega','south','sync','email']);
