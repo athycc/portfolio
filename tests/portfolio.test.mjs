@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import data from '../site/data.js';
-import { photoIndex, wheelPhotoIndex } from '../site/slideshow.js';
+import { matchingProjects, projectCard } from '../site/projects.js';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,19 +12,16 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const html=await readFile(path.join(root,'index.html'),'utf8');
 const content=html+JSON.stringify(data);
 
-test('About photos advance once through three scroll intervals and reverse without wrapping',()=>{
-  assert.deepEqual([-100,0,639,640,1279,1280,1920,10000].map(distance=>photoIndex(distance,640,3)),[0,0,0,1,1,2,2,2]);
-  assert.deepEqual([1600,800,200].map(distance=>photoIndex(distance,640,3)),[2,1,0]);
-});
-
-test('large wheel gestures enter at the first photo and cannot skip the middle photo',()=>{
-  assert.equal(wheelPhotoIndex(0,500,100,3,0,10000),0);
-  assert.equal(wheelPhotoIndex(501,500,100,3,0,10000),1);
-  assert.equal(wheelPhotoIndex(601,500,100,3,1,10000),2);
-  assert.equal(wheelPhotoIndex(701,500,100,3,2,10000),null);
-  assert.equal(wheelPhotoIndex(701,500,100,3,2,-10000),1);
-  assert.equal(wheelPhotoIndex(950,500,100,3,2,-10000),2);
-  assert.equal(wheelPhotoIndex(950,500,100,3,2,100),null);
+test('filters retain every project, use multiple categories, and preserve PM order without mutating data',()=>{
+  for(const id of ['mega','south']) assert.match(projectCard(data.projects.find(p=>p.id===id)),/class="project-inset"/,'keep the original website inset artwork');
+  const original=data.projects.map(p=>p.id);
+  assert.equal(matchingProjects(data.projects).length,12);
+  assert.deepEqual(matchingProjects(data.projects).slice(0,4).map(p=>p.id),['mega','south','sync','email']);
+  assert.deepEqual(matchingProjects(data.projects,'events').map(p=>p.id),['mega','south','sync']);
+  const represented=new Set(['events','web','data','automation','exploration'].flatMap(filter=>matchingProjects(data.projects,filter).map(p=>p.id)));
+  assert.equal(represented.size,12);
+  for(const id of ['mega','south','sync']) assert.ok(matchingProjects(data.projects,'web').some(p=>p.id===id));
+  assert.deepEqual(data.projects.map(p=>p.id),original);
 });
 
 test('all maintained browser modules parse as native JavaScript',async()=>{
@@ -78,24 +75,25 @@ test('résumé corrections and contribution boundaries are retained',async()=>{
   assert.equal(data.projects.find(p=>p.id==='south').url,'https://aws.scd-south.cloud/');
 });
 
-test('build produces an actual downloadable résumé and every local image/video target',async()=>{
+test('build preserves local media and supplies a real PDF fallback without a public phone or text résumé',async()=>{
   execFileSync(process.execPath,['scripts/build-static.mjs'],{cwd:root,stdio:'pipe'});
-  const resume=await readFile(path.join(root,'dist/Catherine-Notado-Resume.txt'),'utf8');
-  assert.doesNotMatch(resume, /1\.46|\bGWA\b/);
-  for(const phrase of ['NOTADO, CATHERINE','12-image','August 2026','October 7, 2026','June 23, 2025','400+','52 volunteers','5 sponsors','April 2025–March 2026'])assert.ok(resume.includes(phrase),phrase);
-  for(const p of data.projects){
-    for(const file of [p.image,p.video].filter(Boolean))assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
-    assert.ok(resume.includes(p.title),p.title);
-    if(p.resource) assert.ok(resume.includes(p.resource),p.title);
-  }
+  for(const p of data.projects) for(const file of [p.image,p.video].filter(Boolean)) assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
   const builtHtml=await readFile(path.join(root,'dist/index.html'),'utf8');
-  for(const src of new Set([...builtHtml.matchAll(/\bsrc="(\/[^"]+)"/g)].map(match=>match[1]))) assert.ok((await stat(path.join(root,'dist',src))).size>0,src);
+  assert.doesNotMatch(builtHtml,/__RESUME_PDF__|FEATURED_WORK|ALL_WORK|tel:|Catherine-Notado-Resume\.txt/);
+  const grid=builtHtml.slice(builtHtml.indexOf('id="projects"'),builtHtml.indexOf('class="project-more"'));
+  assert.equal((grid.match(/data-id=/g)||[]).length,12,'all projects must exist before browser JavaScript runs');
+  for(const p of data.projects) assert.ok(grid.includes('data-id="'+p.id+'"'),p.id);
+  const featured=builtHtml.slice(builtHtml.indexOf('id="featured-projects"'),builtHtml.indexOf('class="all-work-heading"'));
+  assert.deepEqual([...featured.matchAll(/data-id="([^"]+)"/g)].map(match=>match[1]),['mega','south','sync']);
+  assert.doesNotMatch(builtHtml,/data-id="edukasyon"|data-project="edukasyon"/);
+  assert.ok(builtHtml.includes(data.resume.backupUrl));
+  await assert.rejects(stat(path.join(root,'dist/Catherine-Notado-Resume.txt')),{code:'ENOENT'});
+  for(const src of new Set([...builtHtml.matchAll(/\bsrc="(\/[^" ]+)"/g)].map(match=>match[1]))) assert.ok((await stat(path.join(root,'dist',src))).size>0,src);
   const version=builtHtml.match(/\/assets\/site-([a-f0-9]{12})\.css/)[1];
-  assert.ok(builtHtml.includes(`/assets/site-${version}/app.js`));
-  assert.ok((await stat(path.join(root,`dist/assets/site-${version}.css`))).size>0);
-  for(const file of ['index.html','GENAI.jpg','AIM.jpg','FEU.jpg','monogram.svg','robots.txt','sitemap.xml'])assert.ok((await stat(path.join(root,'dist',file))).size>0,file);
+  assert.ok(builtHtml.includes('/assets/site-'+version+'/app.js'));
+  const og=await readFile(path.join(root,'dist/og/catherine-notado-pm.png'));
+  assert.equal(og.readUInt32BE(16),1200); assert.equal(og.readUInt32BE(20),630);
 });
-
 
 test('archive entries point to the seven verified project folders',()=>{
   const folders=new Set(data.projects.map(p=>p.archive).filter(Boolean));
@@ -121,4 +119,24 @@ test('published code has no runtime dependencies and uses a restricted script po
       assert.equal(new URL(url).protocol,'https:');
     }
   }
+});
+
+test('all twelve projects have grounded goals and the requested case-study fields only',()=>{
+  assert.equal(data.projects.length,12);
+  assert.equal(data.deliveryStories,undefined);
+  assert.ok(data.experience.some(entry=>entry.org==='Edukasyon.ph'),'keep the original internship experience');
+  for(const entry of data.projects) {
+    for(const key of ['goal','role','risks']) assert.ok(entry.caseStudy[key],entry.id+': '+key);
+    assert.doesNotMatch(entry.caseStudy.goal,/FILL IN/);
+    for(const key of ['team','timeline','reflection']) assert.ok(!(key in entry.caseStudy),entry.id+': '+key);
+  }
+  assert.match(data.projects.find(p=>p.id==='mega').caseStudy.role,/Event Head.*QA contribution/);
+});
+
+test('section order and five-link navigation expose the hiring journey',()=>{
+  const ids=['home','opportunities','leadership','work','approach','experience','about','background','contact'];
+  assert.deepEqual([...ids].sort((a,b)=>html.indexOf('id="'+a+'"')-html.indexOf('id="'+b+'"')),ids);
+  const nav=html.match(/<nav class="desktop-nav"[\s\S]*?<\/nav>/)[0];
+  assert.equal((nav.match(/<a /g)||[]).length,5);
+  assert.match(html,/Catherine Notado \| Project Coordination &amp; Operations/);
 });

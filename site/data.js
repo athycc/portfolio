@@ -29,7 +29,18 @@ export default {
       "imageAlt": "Attendees at AWS Student Community Day South Summit 2026",
       "imageWidth": 1600,
       "imageHeight": 900,
-      "brandImage": false
+      "brandImage": false,
+      "filters": [
+        "events",
+        "web"
+      ],
+      "priority": 1,
+      "featured": true,
+      "caseStudy": {
+        "goal": "Build and test an event website that helps attendees find speaker, venue, and registration information.",
+        "role": "Website development & QA",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "mega",
@@ -58,7 +69,28 @@ export default {
       "imageAlt": "AWS Student Community Day Mega Manila 2026 attendees posing for the event group photo",
       "imageWidth": 1600,
       "imageHeight": 900,
-      "brandImage": false
+      "brandImage": false,
+      "filters": [
+        "events",
+        "web"
+      ],
+      "priority": 0,
+      "featured": true,
+      "caseStudy": {
+        "goal": "Coordinate SCD Mega Manila delivery and validate the event website’s usability, content, and performance across devices.",
+        "role": "Event Head, SCD Mega Manila; QA contribution to the event website.",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "approach": [
+          "Oversaw speaker coordination, volunteer assignments, registration, logistics, and post-event reporting.",
+          "Used Playwright for automated browser QA alongside real-device checks.",
+          "Checked four Android configurations: 2 GB / Android 10, 3 GB / Android 11, 8 GB / Android 13, and 4 GB / Android 14.",
+          "Identified lag on lower-memory devices and interaction issues during rapid swiping.",
+          "Reviewed layout readability, spacing, navigation, registration links, maps, speaker information, and schedule consistency."
+        ],
+        "result": "Event Head for SCD Mega Manila 2026: 390 attendees, 52 volunteers coordinated, and 5 sponsors. Used Playwright for website QA and tested responsiveness, performance, navigation, and content across 4 Android devices with 2–8 GB RAM and Android 10–14."
+      },
+      "featuredLabel": "Event leadership & website QA",
+      "featuredSummary": "Led SCD Mega Manila for 390 attendees, coordinating 52 volunteers and 5 sponsors."
     },
     {
       "id": "sync",
@@ -83,7 +115,18 @@ export default {
       "note": "My contribution was quality assurance, rather than development of the platform.",
       "image": "/projects/sync.png",
       "imageAlt": "Current SYNC event platform branding",
-      "brandImage": true
+      "brandImage": true,
+      "filters": [
+        "events",
+        "web"
+      ],
+      "priority": 2,
+      "featured": true,
+      "caseStudy": {
+        "goal": "Validate attendee navigation, schedule access, page transitions, and mobile usability on the SYNC event platform.",
+        "role": "Functional & usability QA",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "email",
@@ -109,7 +152,17 @@ export default {
       "imageAlt": "AWS email automation repository README showing Python and HTML template support",
       "brandImage": true,
       "imageWidth": 1000,
-      "imageHeight": 208
+      "imageHeight": 208,
+      "filters": [
+        "automation"
+      ],
+      "priority": 3,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Support consistent AWS Alpha communications through a Python email sender with reusable HTML templates.",
+        "role": "Python automation · AWS Alpha",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "backlog",
@@ -136,7 +189,17 @@ export default {
       "imageWidth": 1000,
       "imageHeight": 579,
       "resource": "https://drive.google.com/file/d/1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ/view?usp=drive_link",
-      "resourceLabel": "Open dashboard PDF"
+      "resourceLabel": "Open dashboard PDF",
+      "filters": [
+        "data"
+      ],
+      "priority": 4,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Make backlog status, urgency, priority, and sprint progress clear for stakeholder reporting.",
+        "role": "Data analytics · Eskwelabs",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "capycademy",
@@ -165,7 +228,17 @@ export default {
       "imageWidth": 1000,
       "imageHeight": 530,
       "resource": "https://drive.google.com/file/d/1PRYsDeffIIBvqUPual322HVbgf4calIz/view?usp=drive_link",
-      "resourceLabel": "Watch project demo"
+      "resourceLabel": "Watch project demo",
+      "filters": [
+        "automation"
+      ],
+      "priority": 6,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Develop an application that addresses skills gaps and supports learning.",
+        "role": "Team lead · APPCON 2024",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "robotics",
@@ -192,7 +265,17 @@ export default {
       "imageAlt": "Catherine and her robotics team with their competition build",
       "brandImage": true,
       "imageWidth": 1000,
-      "imageHeight": 638
+      "imageHeight": 638,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 11,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Build an autonomous Arduino sumobot with motor control, edge detection, and opponent tracking.",
+        "role": "Robotics competition · TIP",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "looker",
@@ -218,7 +301,17 @@ export default {
       "imageAlt": "Financial Dashboard demo showing revenue, costs, gross margin and a P&L summary",
       "brandImage": true,
       "resource": "https://drive.google.com/file/d/188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf/view?usp=drive_link",
-      "resourceLabel": "Watch dashboard demo"
+      "resourceLabel": "Watch dashboard demo",
+      "filters": [
+        "data"
+      ],
+      "priority": 5,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Make program revenue, costs, profit and loss, and gross margin clear through financial dashboards for stakeholder decisions.",
+        "role": "Financial analytics · Eskwelabs",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "credivest",
@@ -246,7 +339,17 @@ export default {
       "imageAlt": "Credivest customer engagement interface in the Home Credit application",
       "brandImage": true,
       "imageWidth": 549,
-      "imageHeight": 1000
+      "imageHeight": 1000,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 8,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Prototype a customer engagement and loyalty platform for Home Credit Philippines.",
+        "role": "Lead programmer · Home Credit Hackada",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "poro",
@@ -269,7 +372,17 @@ export default {
       ],
       "note": "View the original project materials in its dedicated Google Drive folder.",
       "imageWidth": 798,
-      "imageHeight": 396
+      "imageHeight": 396,
+      "filters": [
+        "web"
+      ],
+      "priority": 7,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Help users organize their time with a monthly calendar, tasks, and an activity overview.",
+        "role": "Time management web application",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "gabay",
@@ -292,7 +405,17 @@ export default {
       ],
       "note": "View the original project materials in its dedicated Google Drive folder.",
       "imageWidth": 633,
-      "imageHeight": 925
+      "imageHeight": 925,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 9,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Explore a mobile interface that brings conversations, charts, and a dashboard into one experience.",
+        "role": "Mobile interface prototype",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     },
     {
       "id": "skillgap",
@@ -317,7 +440,17 @@ export default {
       ],
       "note": "View the original project materials in its dedicated Google Drive folder.",
       "imageWidth": 1000,
-      "imageHeight": 563
+      "imageHeight": 563,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 10,
+      "featured": false,
+      "caseStudy": {
+        "goal": "Investigate workplace skills gaps and propose an assessment website with course recommendations and progress tracking.",
+        "role": "Research & prototype · Tech Careerscape",
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
+      }
     }
   ],
   "experience": [
@@ -551,5 +684,9 @@ export default {
       "Robotics Competition · TIP",
       "May 6, 2023 · Autonomous Arduino sumobot."
     ]
-  ]
+  ],
+  "resume": {
+    "pdfPath": null,
+    "backupUrl": "https://drive.google.com/file/d/1tGHgGV_S_Psj7qlHdQhn-7bWlYJkNifQ/view?usp=drivesdk"
+  }
 };

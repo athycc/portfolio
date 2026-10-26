@@ -21,13 +21,18 @@ export function renderContent(data) {
     </article>`).join('');
   $('#skills').innerHTML = data.skills.map(([title, ...items]) => `
     <div class="skill-group"><h3>${esc(title)}</h3><div class="tags">${tags(items)}</div></div>`).join('');
-  $('#certifications').innerHTML = data.certifications.map(([title, date]) => `
-    <div class="cert-item"><span>${esc(title)}</span><time>${esc(date)}</time></div>`).join('');
+  const certification = ([title, date]) => '<div class="cert-item"><span>'+esc(title)+'</span><time>'+esc(date)+'</time></div>';
+  $('#certifications').innerHTML = data.certifications.slice(0,3).map(certification).join('') +
+    '<details class="more-credentials"><summary>More credentials &amp; training ('+(data.certifications.length-3)+')</summary>'+data.certifications.slice(3).map(certification).join('')+'</details>';
   $('#awards').innerHTML = data.awards.map(([place, title, description]) => `
     <article class="award"><span class="placing">${esc(place)}</span>
       <h3>${esc(title)}</h3><p>${esc(description)}</p>
     </article>`).join('');
 
+}
+
+export function renderResume(data) {
+  if ($('#resume-preview').children.length) return;
   $('#resume-preview').innerHTML = `
     <section>
       <h3>Professional experience</h3>
