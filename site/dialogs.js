@@ -3,7 +3,7 @@ import { $$ } from './dom.js';
 export function createDialogs(motionEnabled) {
   const dialogs = $$('dialog');
   const closing = new Map();
-  let returnFocus;
+  let returnFocus, returnScroll;
   const changed = () => document.dispatchEvent(new Event('dialogchange'));
 
   function open(dialog, trigger) {
@@ -12,6 +12,7 @@ export function createDialogs(motionEnabled) {
       if (other.open) other.close();
     }
     returnFocus = trigger || document.activeElement;
+    returnScroll = { left: scrollX, top: scrollY };
     dialog.showModal();
     const target = dialog.id === 'contact-dialog'
       ? dialog.querySelector('input') : dialog.querySelector('[data-close]');
@@ -21,7 +22,7 @@ export function createDialogs(motionEnabled) {
 
   async function close(dialog, destination) {
     if (!dialog.open) return;
-    if (destination) returnFocus = destination;
+    if (destination) { returnFocus = destination; returnScroll = null; }
     if (closing.has(dialog)) return;
     if (motionEnabled() && dialog.animate) {
       const animation = dialog.animate([
@@ -57,6 +58,7 @@ export function createDialogs(motionEnabled) {
       dialog.querySelectorAll('video').forEach((video) => video.pause());
       if (!dialogs.some((item) => item.open) && returnFocus?.isConnected) {
         returnFocus.focus({ preventScroll: true });
+        if (returnScroll) window.scrollTo({ ...returnScroll, behavior: 'instant' });
       }
       changed();
     });

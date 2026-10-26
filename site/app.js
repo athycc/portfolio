@@ -1,22 +1,17 @@
 import data from './data.js';
 import { $, $$ } from './dom.js';
-import { renderContent } from './content.js';
+import { renderContent, renderResume } from './content.js';
 import { createMotion } from './motion.js';
 import { createDialogs } from './dialogs.js';
 import { initProjects } from './projects.js';
-import { initSlideshow } from './slideshow.js';
-import { initFeatured } from './featured.js';
-import { initPointerHints } from './pointer.js';
-import { initScenes } from './scene.js';
+import { initPhotos, initHeroMedia } from './photos.js';
 
 renderContent(data);
 const motion = createMotion();
 const dialogs = createDialogs(motion.enabled);
 initProjects(data, dialogs, motion);
-initSlideshow(motion);
-initFeatured(motion);
-initPointerHints(motion);
-initScenes(motion);
+initPhotos();
+initHeroMedia(motion);
 
 $$('.menu-content a').forEach((link, index) => link.style.setProperty('--menu-index', index));
 document.addEventListener('click', async (event) => {
@@ -24,16 +19,20 @@ document.addEventListener('click', async (event) => {
   if (!target) return;
   const destinations = { 'data-contact': '#contact-dialog', 'data-resume': '#resume-dialog', 'data-menu': '#menu-dialog' };
   for (const [attribute, selector] of Object.entries(destinations)) {
-    if (target.hasAttribute(attribute)) dialogs.open($(selector), target);
+    if (!target.hasAttribute(attribute)) continue;
+    if (attribute === 'data-resume') renderResume(data);
+    dialogs.open($(selector), target);
   }
-  if (!target.matches('#menu-dialog a[href^="#"]')) return;
-  event.preventDefault();
+  if (!target.matches('a[href^="#"]')) return;
   const hash = target.getAttribute('href');
-  const section = $(hash), heading = $('h1,h2', section);
+  const section = document.getElementById(hash.slice(1));
+  if (!section) return;
+  event.preventDefault();
+  const heading = section.matches('h1,h2,h3,main') ? section : $('h1,h2,h3', section) || section;
   heading.tabIndex = -1;
-  await dialogs.close($('#menu-dialog'), heading);
-  history.pushState(null, '', hash);
-  section.scrollIntoView({ behavior: motion.enabled() ? 'smooth' : 'instant' });
+  if (target.closest('#menu-dialog')) await dialogs.close($('#menu-dialog'), heading);
+  if (location.hash !== hash) history.pushState(null, '', hash);
+  section.scrollIntoView({ behavior: 'instant' });
   heading.focus({ preventScroll: true });
 });
 
