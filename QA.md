@@ -51,6 +51,12 @@ Mobile final measured FCP 1.7s, LCP 3.9s, TBT 60ms, speed index 3.3s. Performanc
 
 Raw Lighthouse JSON and desktop/mobile screenshots are stored outside the repository in the task evidence directory. Temporary QA files are not committed or deployed.
 
+## Hosted Vercel preview audit
+
+At code revision 5735c6f, the public Vercel preview measured mobile performance 91, accessibility 100, best practices 92, and SEO 69. The SEO deduction is Vercel's preview-only x-robots-tag: noindex. The best-practices deduction is the injected Vercel feedback toolbar blocked by the site's existing script-src self policy. These are preview-platform conditions; the portfolio's CSP was not weakened and preview indexing was not enabled. The local production-equivalent page scored 100 for accessibility, best practices, and SEO.
+
+The subsequent nav correction uses a height-based observation band rooted in the portfolio document, refreshes tracking on resize, and updates the current link immediately on internal anchor activation. It corrects the stuck active-link state seen at desktop sizes. Native keyboard navigation and live media were checked on the hosted preview.
+
 ## Release boundaries
 
 - Vercel preview is built from the feature branch; production remains the approved main branch while Part A is reviewed.

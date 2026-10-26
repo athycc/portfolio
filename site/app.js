@@ -34,6 +34,7 @@ document.addEventListener('click', async (event) => {
   if (location.hash !== hash) history.pushState(null, '', hash);
   section.scrollIntoView({ behavior: 'instant' });
   heading.focus({ preventScroll: true });
+  motion.activate(section);
 });
 
 $('#contact-form').addEventListener('submit', (event) => {
