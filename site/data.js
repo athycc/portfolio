@@ -29,7 +29,21 @@ export default {
       "imageAlt": "Attendees at AWS Student Community Day South Summit 2026",
       "imageWidth": 1600,
       "imageHeight": 900,
-      "brandImage": false
+      "brandImage": false,
+      "filters": [
+        "events",
+        "web"
+      ],
+      "priority": 1,
+      "featured": true,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Website development & QA",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "October 7, 2026 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "mega",
@@ -58,7 +72,31 @@ export default {
       "imageAlt": "AWS Student Community Day Mega Manila 2026 attendees posing for the event group photo",
       "imageWidth": 1600,
       "imageHeight": 900,
-      "brandImage": false
+      "brandImage": false,
+      "filters": [
+        "events",
+        "web"
+      ],
+      "priority": 0,
+      "featured": true,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Event Head, SCD Mega Manila; QA contribution to the event website.",
+        "team": "Coordinated 52 volunteers and 5 sponsors; speaker coordination, registration, and logistics.",
+        "timeline": "September 11, 2026 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]",
+        "approach": [
+          "Oversaw speaker coordination, volunteer assignments, registration, logistics, and post-event reporting.",
+          "Used Playwright for automated browser QA alongside real-device checks.",
+          "Checked four Android configurations: 2 GB / Android 10, 3 GB / Android 11, 8 GB / Android 13, and 4 GB / Android 14.",
+          "Identified lag on lower-memory devices and interaction issues during rapid swiping.",
+          "Reviewed layout readability, spacing, navigation, registration links, maps, speaker information, and schedule consistency."
+        ],
+        "result": "Event Head for SCD Mega Manila 2026: 390 attendees, 52 volunteers coordinated, and 5 sponsors. Used Playwright for website QA and tested responsiveness, performance, navigation, and content across 4 Android devices with 2–8 GB RAM and Android 10–14."
+      },
+      "featuredLabel": "Event leadership & website QA",
+      "featuredSummary": "Led SCD Mega Manila for 390 attendees, coordinating 52 volunteers and 5 sponsors."
     },
     {
       "id": "sync",
@@ -83,7 +121,21 @@ export default {
       "note": "My contribution was quality assurance, rather than development of the platform.",
       "image": "/projects/sync.png",
       "imageAlt": "Current SYNC event platform branding",
-      "brandImage": true
+      "brandImage": true,
+      "filters": [
+        "events",
+        "web"
+      ],
+      "priority": 2,
+      "featured": true,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Functional & usability QA",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "September 11, 2026 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "email",
@@ -109,7 +161,20 @@ export default {
       "imageAlt": "AWS email automation repository README showing Python and HTML template support",
       "brandImage": true,
       "imageWidth": 1000,
-      "imageHeight": 208
+      "imageHeight": 208,
+      "filters": [
+        "automation"
+      ],
+      "priority": 3,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Python automation · AWS Alpha",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "June 23, 2025 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "backlog",
@@ -136,7 +201,20 @@ export default {
       "imageWidth": 1000,
       "imageHeight": 579,
       "resource": "https://drive.google.com/file/d/1Uh9bJjxc0A22boYsUxMzbzf83pK0wQaQ/view?usp=drive_link",
-      "resourceLabel": "Open dashboard PDF"
+      "resourceLabel": "Open dashboard PDF",
+      "filters": [
+        "data"
+      ],
+      "priority": 4,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Data analytics · Eskwelabs",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "2026 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "capycademy",
@@ -165,7 +243,20 @@ export default {
       "imageWidth": 1000,
       "imageHeight": 530,
       "resource": "https://drive.google.com/file/d/1PRYsDeffIIBvqUPual322HVbgf4calIz/view?usp=drive_link",
-      "resourceLabel": "Watch project demo"
+      "resourceLabel": "Watch project demo",
+      "filters": [
+        "automation"
+      ],
+      "priority": 6,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Team lead · APPCON 2024",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "75 / 178 teams · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "robotics",
@@ -192,7 +283,20 @@ export default {
       "imageAlt": "Catherine and her robotics team with their competition build",
       "brandImage": true,
       "imageWidth": 1000,
-      "imageHeight": 638
+      "imageHeight": 638,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 11,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Robotics competition · TIP",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "Champion · 2023 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "looker",
@@ -218,7 +322,20 @@ export default {
       "imageAlt": "Financial Dashboard demo showing revenue, costs, gross margin and a P&L summary",
       "brandImage": true,
       "resource": "https://drive.google.com/file/d/188QVEm6pZugXMkiR1mU7qrMpp5vDL9Sf/view?usp=drive_link",
-      "resourceLabel": "Watch dashboard demo"
+      "resourceLabel": "Watch dashboard demo",
+      "filters": [
+        "data"
+      ],
+      "priority": 5,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Financial analytics · Eskwelabs",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "2026 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "credivest",
@@ -246,7 +363,20 @@ export default {
       "imageAlt": "Credivest customer engagement interface in the Home Credit application",
       "brandImage": true,
       "imageWidth": 549,
-      "imageHeight": 1000
+      "imageHeight": 1000,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 8,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Lead programmer · Home Credit Hackada",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "3rd Runner-Up · 2024 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "poro",
@@ -269,7 +399,20 @@ export default {
       ],
       "note": "View the original project materials in its dedicated Google Drive folder.",
       "imageWidth": 798,
-      "imageHeight": 396
+      "imageHeight": 396,
+      "filters": [
+        "web"
+      ],
+      "priority": 7,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Time management web application",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "Project archive · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "gabay",
@@ -292,7 +435,20 @@ export default {
       ],
       "note": "View the original project materials in its dedicated Google Drive folder.",
       "imageWidth": 633,
-      "imageHeight": 925
+      "imageHeight": 925,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 9,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Mobile interface prototype",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "Project archive · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     },
     {
       "id": "skillgap",
@@ -317,7 +473,20 @@ export default {
       ],
       "note": "View the original project materials in its dedicated Google Drive folder.",
       "imageWidth": 1000,
-      "imageHeight": 563
+      "imageHeight": 563,
+      "filters": [
+        "exploration"
+      ],
+      "priority": 10,
+      "featured": false,
+      "caseStudy": {
+        "goal": "[FILL IN: project goal and success criteria]",
+        "role": "Research & prototype · Tech Careerscape",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "3rd Runner-Up · 2023 · [FILL IN: project start and end dates]",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
     }
   ],
   "experience": [
@@ -551,5 +720,39 @@ export default {
       "Robotics Competition · TIP",
       "May 6, 2023 · Autonomous Arduino sumobot."
     ]
-  ]
+  ],
+  "deliveryStories": [
+    {
+      "id": "edukasyon",
+      "title": "Edukasyon.ph automation planning",
+      "label": "Marketing operations & automation",
+      "status": "Experience case study",
+      "year": "Hybrid · March–June 2026",
+      "summary": "Automated outreach with Apps Script and built a social media KPI dashboard tracking a 280K quarterly target.",
+      "tech": [
+        "Google Apps Script",
+        "Gmail",
+        "Google Sheets"
+      ],
+      "details": [
+        "Automated email workflows using Google Apps Script, Gmail, and Google Sheets.",
+        "Built a social media KPI dashboard to monitor campaign performance against a 280K quarterly target.",
+        "Researched EDCOM, financial literacy, LGBTQ+ inclusion, marketing strategies, and AWS re/Start.",
+        "Managed community engagement, social monitoring, and content execution."
+      ],
+      "note": "The 280K figure is a quarterly target tracked by the dashboard, not a claimed result. [FILL IN: approved case-study link]",
+      "caseStudy": {
+        "goal": "Automate outreach workflows and monitor social media campaign performance.",
+        "role": "Marketing Intern",
+        "team": "[FILL IN: team and stakeholders]",
+        "timeline": "Hybrid · March–June 2026",
+        "risks": "[FILL IN: risks encountered and how you addressed them]",
+        "reflection": "[FILL IN: what you would do differently]"
+      }
+    }
+  ],
+  "resume": {
+    "pdfPath": null,
+    "backupUrl": "https://drive.google.com/file/d/1tGHgGV_S_Psj7qlHdQhn-7bWlYJkNifQ/view?usp=drivesdk"
+  }
 };
