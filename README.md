@@ -20,8 +20,8 @@ The static server defaults to port 4173; set PORT to use another port. Vercel bu
 | File | Responsibility |
 | --- | --- |
 | index.html | Ordered sections, five-link navigation, contact form, metadata, dialogs, and build placeholders |
-| site/data.js | All 12 original projects, filter mappings/order, case-study facts/placeholders, experience, skills, credentials, awards, and the separate Edukasyon experience |
-| site/projects.js | Shared build/browser card renderer, category filters, and nine-section case studies |
+| site/data.js | All 12 original projects, filter mappings/order, case-study facts/placeholders, experience, skills, credentials, awards, and the original internship experience |
+| site/projects.js | Shared build/browser card renderer, category filters, and six-section case studies |
 | site/content.js | Experience/background rendering and the résumé preview, loaded when opened |
 | site/app.js | Initialization, accessible internal anchors, contact mailto draft, and Copy email |
 | site/dialogs.js | Native dialogs, Escape/close, focus return, and exact scroll restoration |
@@ -37,7 +37,7 @@ The static server defaults to port 4173; set PORT to use another port. Vercel bu
 
 Hero → proof strip → skills strip → open-to-work → leadership & delivery (including community/volunteering) → featured & all work → Plan / Coordinate / Deliver / Report → experience → About → education, skills & credentials → contact.
 
-Featured: Mega Manila, South Summit, Edukasyon.ph automation planning (an experience case), and SYNC QA. All work contains every original project in a 3/2/1-column responsive grid. Featured entries are labeled in the grid. Filters are native buttons with aria-pressed and a live result count. Cards are present in the initial HTML, including with JavaScript unavailable; filtering and dialogs require JavaScript.
+Featured: Mega Manila, South Summit, and SYNC QA. The Edukasyon.ph card was removed; the original internship remains in Experience. All work contains every original project in a 3/2/1-column responsive grid. Featured entries are labeled in the grid. Filters are native buttons with aria-pressed and a live result count. Cards are present in the initial HTML, including with JavaScript unavailable; filtering and dialogs require JavaScript.
 
 All original project IDs, links, description facts, contribution boundaries, Power BI artwork, Financial Dashboard artwork/demo, and project archive links remain. QA entries retain Playwright. Original alternate website artwork is retained as event card insets and case-study images.
 
@@ -52,7 +52,7 @@ All original project IDs, links, description facts, contribution boundaries, Pow
 
 ## Facts still needed
 
-See PLACEHOLDERS.md for the complete per-case list. Availability and preferred arrangement are intentionally unspecified. No missing achievements, tools, teams, dates, or outcomes have been invented.
+See PLACEHOLDERS.md for the complete per-case list. Availability and preferred arrangement are intentionally unspecified. Project goals are drafted from existing summaries and contribution notes. Case studies omit Team & stakeholders, Timeline, and What I’d do differently, as requested. No missing achievements, tools, teams, dates, or outcomes have been invented.
 
 To host the actual résumé PDF, place it inside public/ and set resume.pdfPath in site/data.js to its site-relative path. The build validates the file and uses the original Drive PDF while pdfPath is null. The old public text résumé is no longer generated. The public page and résumé preview contain no phone number; the original external PDF remains the supplied document.
 

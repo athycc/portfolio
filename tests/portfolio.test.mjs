@@ -83,6 +83,9 @@ test('build preserves local media and supplies a real PDF fallback without a pub
   const grid=builtHtml.slice(builtHtml.indexOf('id="projects"'),builtHtml.indexOf('class="project-more"'));
   assert.equal((grid.match(/data-id=/g)||[]).length,12,'all projects must exist before browser JavaScript runs');
   for(const p of data.projects) assert.ok(grid.includes('data-id="'+p.id+'"'),p.id);
+  const featured=builtHtml.slice(builtHtml.indexOf('id="featured-projects"'),builtHtml.indexOf('class="all-work-heading"'));
+  assert.deepEqual([...featured.matchAll(/data-id="([^"]+)"/g)].map(match=>match[1]),['mega','south','sync']);
+  assert.doesNotMatch(builtHtml,/data-id="edukasyon"|data-project="edukasyon"/);
   assert.ok(builtHtml.includes(data.resume.backupUrl));
   await assert.rejects(stat(path.join(root,'dist/Catherine-Notado-Resume.txt')),{code:'ENOENT'});
   for(const src of new Set([...builtHtml.matchAll(/\bsrc="(\/[^" ]+)"/g)].map(match=>match[1]))) assert.ok((await stat(path.join(root,'dist',src))).size>0,src);
@@ -118,14 +121,15 @@ test('published code has no runtime dependencies and uses a restricted script po
   }
 });
 
-test('case studies distinguish missing facts and the separate Edukasyon experience',()=>{
+test('all twelve projects have grounded goals and the requested case-study fields only',()=>{
   assert.equal(data.projects.length,12);
-  assert.equal(data.deliveryStories.length,1);
-  assert.equal(data.deliveryStories[0].id,'edukasyon');
-  for(const entry of [...data.projects,...data.deliveryStories]) {
-    for(const key of ['goal','role','team','timeline','risks','reflection']) assert.ok(entry.caseStudy[key],entry.id+': '+key);
+  assert.equal(data.deliveryStories,undefined);
+  assert.ok(data.experience.some(entry=>entry.org==='Edukasyon.ph'),'keep the original internship experience');
+  for(const entry of data.projects) {
+    for(const key of ['goal','role','risks']) assert.ok(entry.caseStudy[key],entry.id+': '+key);
+    assert.doesNotMatch(entry.caseStudy.goal,/FILL IN/);
+    for(const key of ['team','timeline','reflection']) assert.ok(!(key in entry.caseStudy),entry.id+': '+key);
   }
-  assert.match(data.deliveryStories[0].note,/target.*not a claimed result/);
   assert.match(data.projects.find(p=>p.id==='mega').caseStudy.role,/Event Head.*QA contribution/);
 });
 

@@ -79,15 +79,12 @@ button.text-link { border:0; border-bottom:1px solid currentColor; background:no
 .work { border-radius:1.5rem; background:#f2f6fb; }
 .group-heading, .all-work-heading h3 { font-size:1.3rem; letter-spacing:-.035em; }
 .group-heading { margin-bottom:1.25rem; }
-.featured-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+.featured-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
 .work-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; position:static; height:auto; perspective:none; padding:0; overflow:visible; }
 .work-card { min-width:0; display:flex; flex-direction:column; position:relative; background:white; border:1px solid #dbe4ef; border-radius:1.25rem; overflow:hidden; }
 .project-visual { position:relative; margin:6px 6px 0; overflow:hidden; border-radius:.9rem; aspect-ratio:16/10; background:#eaf0f7; border-bottom:6px solid white; }
 .featured-grid .project-visual { aspect-ratio:16/9; }
 .project-visual img { width:100%; height:100%; display:block; object-fit:cover; }
-.story-art { height:100%; background:var(--navy); color:#e5efff; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(1rem,3vw,2rem); background-image:linear-gradient(135deg,#113a73,#071b35); }
-.story-art span { font-size:.65rem; letter-spacing:.1em; }
-.story-art strong { font-size:clamp(1.5rem,3vw,2.8rem); font-weight:500; letter-spacing:-.05em; }
 .work-card-body { padding:1.25rem; display:flex; flex-direction:column; gap:.85rem; flex:1; }
 .card-kicker { color:var(--brand); font-size:.68rem; line-height:1.6; }
 .project-title { border:0; padding:0; margin:0; background:none; color:var(--navy); text-align:left; font-size:1.15rem; line-height:1.35; font-weight:500; letter-spacing:-.035em; }
@@ -177,7 +174,7 @@ button.text-link { border:0; border-bottom:1px solid currentColor; background:no
   .pm-header { grid-template-columns:1fr auto; }
   .pm-header .desktop-nav { display:none; }
   .pm-header .menu-button { display:inline-flex; }
-  .work-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .work-grid, .featured-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .hero-portrait { max-width:16rem; }
 }
 @media(max-width:800px) {

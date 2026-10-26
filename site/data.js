@@ -37,12 +37,9 @@ export default {
       "priority": 1,
       "featured": true,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Build and test an event website that helps attendees find speaker, venue, and registration information.",
         "role": "Website development & QA",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "October 7, 2026 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -80,12 +77,9 @@ export default {
       "priority": 0,
       "featured": true,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Coordinate SCD Mega Manila delivery and validate the event website’s usability, content, and performance across devices.",
         "role": "Event Head, SCD Mega Manila; QA contribution to the event website.",
-        "team": "Coordinated 52 volunteers and 5 sponsors; speaker coordination, registration, and logistics.",
-        "timeline": "September 11, 2026 · [FILL IN: project start and end dates]",
         "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]",
         "approach": [
           "Oversaw speaker coordination, volunteer assignments, registration, logistics, and post-event reporting.",
           "Used Playwright for automated browser QA alongside real-device checks.",
@@ -129,12 +123,9 @@ export default {
       "priority": 2,
       "featured": true,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Validate attendee navigation, schedule access, page transitions, and mobile usability on the SYNC event platform.",
         "role": "Functional & usability QA",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "September 11, 2026 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -168,12 +159,9 @@ export default {
       "priority": 3,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Support consistent AWS Alpha communications through a Python email sender with reusable HTML templates.",
         "role": "Python automation · AWS Alpha",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "June 23, 2025 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -208,12 +196,9 @@ export default {
       "priority": 4,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Make backlog status, urgency, priority, and sprint progress clear for stakeholder reporting.",
         "role": "Data analytics · Eskwelabs",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "2026 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -250,12 +235,9 @@ export default {
       "priority": 6,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Develop an application that addresses skills gaps and supports learning.",
         "role": "Team lead · APPCON 2024",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "75 / 178 teams · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -290,12 +272,9 @@ export default {
       "priority": 11,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Build an autonomous Arduino sumobot with motor control, edge detection, and opponent tracking.",
         "role": "Robotics competition · TIP",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "Champion · 2023 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -329,12 +308,9 @@ export default {
       "priority": 5,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Make program revenue, costs, profit and loss, and gross margin clear through financial dashboards for stakeholder decisions.",
         "role": "Financial analytics · Eskwelabs",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "2026 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -370,12 +346,9 @@ export default {
       "priority": 8,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Prototype a customer engagement and loyalty platform for Home Credit Philippines.",
         "role": "Lead programmer · Home Credit Hackada",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "3rd Runner-Up · 2024 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -406,12 +379,9 @@ export default {
       "priority": 7,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Help users organize their time with a monthly calendar, tasks, and an activity overview.",
         "role": "Time management web application",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "Project archive · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -442,12 +412,9 @@ export default {
       "priority": 9,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Explore a mobile interface that brings conversations, charts, and a dashboard into one experience.",
         "role": "Mobile interface prototype",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "Project archive · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     },
     {
@@ -480,12 +447,9 @@ export default {
       "priority": 10,
       "featured": false,
       "caseStudy": {
-        "goal": "[FILL IN: project goal and success criteria]",
+        "goal": "Investigate workplace skills gaps and propose an assessment website with course recommendations and progress tracking.",
         "role": "Research & prototype · Tech Careerscape",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "3rd Runner-Up · 2023 · [FILL IN: project start and end dates]",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
+        "risks": "[FILL IN: risks encountered and how you addressed them]"
       }
     }
   ],
@@ -720,36 +684,6 @@ export default {
       "Robotics Competition · TIP",
       "May 6, 2023 · Autonomous Arduino sumobot."
     ]
-  ],
-  "deliveryStories": [
-    {
-      "id": "edukasyon",
-      "title": "Edukasyon.ph automation planning",
-      "label": "Marketing operations & automation",
-      "status": "Experience case study",
-      "year": "Hybrid · March–June 2026",
-      "summary": "Automated outreach with Apps Script and built a social media KPI dashboard tracking a 280K quarterly target.",
-      "tech": [
-        "Google Apps Script",
-        "Gmail",
-        "Google Sheets"
-      ],
-      "details": [
-        "Automated email workflows using Google Apps Script, Gmail, and Google Sheets.",
-        "Built a social media KPI dashboard to monitor campaign performance against a 280K quarterly target.",
-        "Researched EDCOM, financial literacy, LGBTQ+ inclusion, marketing strategies, and AWS re/Start.",
-        "Managed community engagement, social monitoring, and content execution."
-      ],
-      "note": "The 280K figure is a quarterly target tracked by the dashboard, not a claimed result. [FILL IN: approved case-study link]",
-      "caseStudy": {
-        "goal": "Automate outreach workflows and monitor social media campaign performance.",
-        "role": "Marketing Intern",
-        "team": "[FILL IN: team and stakeholders]",
-        "timeline": "Hybrid · March–June 2026",
-        "risks": "[FILL IN: risks encountered and how you addressed them]",
-        "reflection": "[FILL IN: what you would do differently]"
-      }
-    }
   ],
   "resume": {
     "pdfPath": null,

@@ -14,8 +14,8 @@ for (const project of data.projects) {
     if (new URL(url).protocol !== 'https:') throw new Error('Project links must use HTTPS');
   }
 }
-const records = [...data.projects, ...data.deliveryStories];
-const renderedHtml = html.replace('<!--FEATURED_WORK-->', ['mega','south','edukasyon','sync'].map(id => projectCard(records.find(project => project.id === id), true)).join(''))
+const records = data.projects;
+const renderedHtml = html.replace('<!--FEATURED_WORK-->', ['mega','south','sync'].map(id => projectCard(records.find(project => project.id === id), true)).join(''))
   .replace('<!--ALL_WORK-->', matchingProjects(data.projects).map(project => projectCard(project)).join(''));
 const resumeUrl = data.resume.pdfPath || data.resume.backupUrl;
 if (data.resume.pdfPath) {

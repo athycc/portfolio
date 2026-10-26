@@ -1,3 +1,20 @@
+# Requested card/case-study revision
+
+- Removed the extra Edukasyon.ph featured card and case-study record; retained its existing internship experience.
+- Kept all 12 original projects and their links/media. Featured work now contains Mega Manila, South Summit, and SYNC.
+- Filled every Goal from existing summaries and contribution notes, without adding new achievements, metrics, or tools.
+- Removed Team & stakeholders, Timeline, and What I’d do differently from every case study and its data.
+- Current case-study sections: Goal, My role, Tools, How I ran it, Risks & fixes, Result.
+- Placeholder inventory now covers internship availability/arrangement, the hosted PDF path, and unresolved risks/fixes only.
+
+Current revision checks: npm test passed 9/9 (including the static build), diff checks passed, and all 12 project views were exercised through cua_repl. Each displayed a filled Goal and exactly Goal, My role, Tools, How I ran it, Risks & fixes, Result. Featured IDs were mega/south/sync; no Edukasyon card was present.
+
+---
+
+# Historical Part A verification
+
+The following results describe the earlier four-featured-card/nine-section layout and are retained for provenance.
+
 # Part A verification — 26 October 2026 (Asia/Manila)
 
 Scope: approved PM internship layout on feature/pm-layout-and-motion. Part B motion requires a separate approval. This report supersedes the old carousel QA; historical evidence remains in Git at 37dcc42.
